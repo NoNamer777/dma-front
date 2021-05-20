@@ -1,3 +1,21 @@
-
+:host main {
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
+}
+:host main dma-header {
+  flex: 0 0 auto;
+}
+:host main mat-sidenav-container {
+  flex: 1 1 auto;
+}
+:host main mat-sidenav {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+:host main mat-sidenav dma-sidenav {
+  flex: 1 1 auto;
+}
 
 /*# sourceMappingURL=app.component.css.map */

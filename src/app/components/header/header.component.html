@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand">DnD Mapp</a>
+    <button id="toggle-sidebar-btn" class="btn btn-light" type="button" (click)="onToggleSidebar()">
+      <fa-icon icon="bars" *ngIf="!sidebarService.opened"></fa-icon>
+      <fa-icon icon="times" *ngIf="sidebarService.opened"></fa-icon>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link" routerLinkActive="active">Characters</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" routerLinkActive="active">Spell book</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" routerLinkActive="active">Library</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item border-end">
+          <a href="#" class="nav-link fw-bold text-primary" routerLinkActive="active">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link fw-bold" routerLinkActive="active">Sign up</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
