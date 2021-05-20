@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
+    DmaIconsModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]
