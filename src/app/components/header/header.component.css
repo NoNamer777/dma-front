@@ -1,0 +1,13 @@
+:host #toggle-sidebar-btn {
+  display: none;
+}
+@media (max-width: 991.98px) {
+  :host #toggle-sidebar-btn {
+    display: inline-block;
+  }
+}
+:host #toggle-sidebar-btn:focus {
+  box-shadow: none;
+}
+
+/*# sourceMappingURL=header.component.css.map */

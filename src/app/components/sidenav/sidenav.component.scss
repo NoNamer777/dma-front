@@ -1,0 +1,20 @@
+:host {
+  height: -webkit-fill-available;
+
+  .navbar {
+    align-items: unset;
+
+    ul {
+      width: 100%;
+
+      .nav-item {
+        margin-bottom: .4rem;
+
+        a {
+          flex: 1 1 auto;
+          outline: none;
+        }
+      }
+    }
+  }
+}

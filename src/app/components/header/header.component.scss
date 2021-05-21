@@ -1,0 +1,18 @@
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import '../../../../node_modules/bootstrap/scss/variables';
+@import '../../../../node_modules/bootstrap/scss/mixins/breakpoints';
+
+:host {
+
+  #toggle-sidebar-btn {
+    display: none;
+
+    @include media-breakpoint-down(lg, $grid-breakpoints) {
+      display: inline-block;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

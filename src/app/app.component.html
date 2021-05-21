@@ -1,1 +1,17 @@
-<div>DnD Mapp is running!</div>
+<main>
+<!--  header  -->
+  <dma-header (toggleSidebar)="sidebarService.toggleSidebar()"></dma-header>
+  <mat-sidenav-container>
+<!--    main content  -->
+    <mat-sidenav-content class="container mt-3">
+      DnD Mapp is running!
+    </mat-sidenav-content>
+
+<!--    sidebar navigation  -->
+    <mat-sidenav position="end" [(opened)]="sidebarService.opened">
+      <dma-sidenav></dma-sidenav>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</main>
+
+

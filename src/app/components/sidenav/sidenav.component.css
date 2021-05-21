@@ -1,0 +1,18 @@
+:host {
+  height: -webkit-fill-available;
+}
+:host .navbar {
+  align-items: unset;
+}
+:host .navbar ul {
+  width: 100%;
+}
+:host .navbar ul .nav-item {
+  margin-bottom: 0.4rem;
+}
+:host .navbar ul .nav-item a {
+  flex: 1 1 auto;
+  outline: none;
+}
+
+/*# sourceMappingURL=sidenav.component.css.map */
