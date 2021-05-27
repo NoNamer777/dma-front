@@ -1,0 +1,42 @@
+{
+  "Entity": {
+    "extends": null,
+    "properties": [
+      {
+        "value": "id",
+        "type": "string",
+        "multi": false
+      }
+    ]
+  },
+  "NamedEntity": {
+    "extends": "Entity",
+    "properties": [
+      {
+        "value": "name",
+        "type": "string",
+        "multi": false
+      }
+    ]
+  },
+  "Storage": {
+    "extends": null,
+    "properties": [
+      {
+        "value": "session",
+        "type": "Session",
+        "multi": false
+      }
+    ]
+  },
+  "Session": {
+    "extends": "Entity",
+    "properties": [
+      {
+        "value": "token",
+        "type": "string",
+        "multi": false
+      }
+    ]
+  }
+}
