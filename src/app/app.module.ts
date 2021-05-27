@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,9 +24,10 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     BrowserAnimationsModule,
     CommonModule,
     DmaIconsModule,
+    HttpClientModule,
     MatSidenavModule,
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
 })
 export class AppModule {}
