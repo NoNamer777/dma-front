@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "serve-local": "ng serve --configuration development",
-    "serve-remote": "ng serve --configuration development --host 192.168.178.94",
+    "serve-local": "ng serve --configuration=development",
+    "serve-remote": "ng serve --configuration=development --host=192.168.178.94",
     "build": "ng build",
     "test:dev": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCI",
     "postinstall": "ngcc"
   },
   "private": true,
