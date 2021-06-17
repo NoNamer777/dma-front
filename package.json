@@ -6,7 +6,7 @@
     "serve-local": "ng serve --configuration development",
     "serve-remote": "ng serve --configuration development --host 192.168.178.94",
     "build": "ng build",
-    "test": "ng test",
+    "test:dev": "ng test",
     "postinstall": "ngcc"
   },
   "private": true,
