@@ -1,0 +1,12 @@
+{
+  "Cache": {
+    "extends": null,
+    "properties": [
+      {
+        "name": "useLocalStorage",
+        "type": null,
+        "multiple": false
+      }
+    ]
+  }
+}
