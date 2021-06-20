@@ -123,6 +123,10 @@
               }
             ],
             "codeCoverage": true,
+            "codeCoverageExclude": [
+              "src/app/models/**/*",
+              "src/environments/**/*"
+            ]
           }
         }
       }
