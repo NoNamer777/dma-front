@@ -28,11 +28,6 @@ jobs:
         with:
           node-version: 14
 
-      - name: Setup test environment
-        run: |
-          truncate -s 0 src/environments/environment.test.ts
-          echo ${{ secrets.TEST_ENVIRONMENT }} > src/environments/environment.test.ts
-
       - name: Run tests
         run: |
           npm ci
