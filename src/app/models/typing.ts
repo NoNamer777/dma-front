@@ -126,7 +126,7 @@ function instantiateNewTypedModel<E>(type: string): E {
   } catch (error) {}
 
   try {
-    if (typedModel != null) {
+    if (typedModel == null) {
       typedModel = new ENTITIES_MODULE[type]();
     }
 

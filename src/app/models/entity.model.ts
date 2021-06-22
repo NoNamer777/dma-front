@@ -1,6 +1,6 @@
 export class Entity {
 
-  id = '';
+  id: string | undefined;
 
   equals(object: object): boolean {
     if (object == null || !(object instanceof Entity)) return false;

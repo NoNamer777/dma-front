@@ -3,7 +3,42 @@
     "extends": null,
     "properties": [
       {
+        "name": "session",
+        "type": "Session",
+        "multiple": false
+      },
+      {
         "name": "useLocalStorage",
+        "type": null,
+        "multiple": false
+      }
+    ]
+  },
+  "Entity": {
+    "extends": null,
+    "properties": [
+      {
+        "name": "id",
+        "type": null,
+        "multiple": false
+      }
+    ]
+  },
+  "NamedEntity": {
+    "extends": "Entity",
+    "properties": [
+      {
+        "name": "name",
+        "type": null,
+        "multiple": false
+      }
+    ]
+  },
+  "Session": {
+    "extends": "Entity",
+    "properties": [
+      {
+        "name": "token",
         "type": null,
         "multiple": false
       }
