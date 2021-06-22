@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
+import { environment } from '../../environments/environment';
 import { CacheService } from './cache.service';
+import { typeValue } from '../models/typing';
 import { StorageMock } from '../models/storage-mock.model';
 import { Cache } from '../models';
-import { environment } from '../../environments/environment';
 
 describe('CacheService', () => {
 
@@ -11,7 +12,7 @@ describe('CacheService', () => {
 
   let storageMock: StorageMock;
 
-  const CACHE_CLEAN = new Cache();
+  const CACHE_CLEAN = typeValue<Cache>(new Cache(), 'Cache');
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -42,7 +43,7 @@ describe('CacheService', () => {
   });
 
   it('should write data to the cache and session storage', () => {
-    const expectedCache = new Cache();
+    const expectedCache = typeValue<Cache>(new Cache(), 'Cache');
     expectedCache.useLocalStorage = true;
 
     cacheService = TestBed.inject(CacheService);

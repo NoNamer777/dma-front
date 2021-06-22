@@ -102,7 +102,7 @@ export class CacheService {
       this._cache = typeValue<Cache>(JSON.parse(storedCache as string), 'Cache');
     }
     else {
-      this._cache = new Cache();
+      this._cache = typeValue<Cache>(new Cache(), 'Cache');
     }
     this.updateBrowserCache(this._cache.useLocalStorage);
     this._cacheIndex = Object.keys(this._cache)
