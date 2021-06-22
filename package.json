@@ -6,7 +6,7 @@
     "serve-local": "ng serve --configuration=development",
     "serve-remote": "ng serve --configuration=development --host=192.168.178.94",
     "build": "ng build",
-    "test:dev": "ng test",
+    "test:dev": "ng test --watch=true --browsers=Chrome",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCI",
     "postinstall": "ngcc"
   },
