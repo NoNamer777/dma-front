@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { DmaIconsModule } from './modules/dma-icons.module';
 
-import { TOKEN_INTERCEPTOR_PROVIDER } from './interceptors/token.interceptor';
+import { TOKEN_INTERCEPTOR_PROVIDER } from './services/interceptors/token.interceptor';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';

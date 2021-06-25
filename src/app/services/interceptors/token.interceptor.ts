@@ -2,8 +2,8 @@ import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { forwardRef, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { CacheService } from '../services/cache.service';
-import { Session } from '../models/entities';
+import { CacheService } from '../cache.service';
+import { Session } from '../../models/entities';
 
 export const TOKEN_INTERCEPTOR_PROVIDER = {
   provide: HTTP_INTERCEPTORS,
