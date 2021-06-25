@@ -67,7 +67,7 @@ describe('SessionService', () => {
     });
 
     httpClientTester.expectOne(`${environment.apiURL}/session/${SESSION_RESPONSE.id}`)
-      .flush(SESSION_RESPONSE, { headers: { Authorization: `Bearer ${TOKEN}` } });
+      .flush(SESSION_RESPONSE);
 
     expect(cacheService.write).toHaveBeenCalledTimes(1);
     expect(JSON.parse(sessionStorage.getItem(environment.cacheNameSpace) as string)).toEqual(EXPECTED_STORED_CACHE);

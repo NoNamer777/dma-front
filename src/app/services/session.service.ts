@@ -53,7 +53,7 @@ export class SessionService {
     this._httpClient
       .get<Session>(`${environment.apiURL}/session/${session.id}`, { observe: 'response' })
       .subscribe(
-        (response: HttpResponse<Session>) => this._handleSessionInitialization(response),
+        (response: HttpResponse<Session>) => this._handleSessionInitialization(response, session),
         error => console.error(error)
     );
   }
@@ -62,14 +62,14 @@ export class SessionService {
    * Handles the returned response by setting the token to use in the Session
    * and writing it to the application cache.
    */
-  private _handleSessionInitialization(response: HttpResponse<Session>): void {
+  private _handleSessionInitialization(response: HttpResponse<Session>, cachedSession: Session | null = null): void {
     const session = response.body;
     let token: string | null = response.headers.get('Authorization');
 
-    if (token == null) throw new Error('No token was found in the response headers.');
+    if (token == null && cachedSession?.token == null) throw new Error('No token was found in the response headers.');
     if (session == null) throw new Error('No session data was found in the response body.');
 
-    token = (token as string).replace('Bearer ', '');
+    token = (token ?? cachedSession!.token)!.replace('Bearer ', '');
     session.token = token;
 
     this.session = typeValue<Session>(session, 'Session');
