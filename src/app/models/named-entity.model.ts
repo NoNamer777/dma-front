@@ -2,7 +2,7 @@ import { Entity } from './entity.model';
 
 export class NamedEntity extends Entity {
 
-  name = '';
+  name: string | undefined;
 
   equals(object: object): boolean {
     if (object == null || !(object instanceof NamedEntity)) return false;

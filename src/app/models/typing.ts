@@ -77,7 +77,11 @@ export function typeValue<E>(value: any, type: string): E {
 
   for (const property of typeProperties) {
     // Skip nullish values
-    if (value[property.name] == null) continue;
+    if (value[property.name] == null) {
+      delete typedModel[property.name];
+
+      continue;
+    }
 
     // Handle simple values (strings, numbers, booleans)
     if (property.type == null) {
@@ -126,7 +130,7 @@ function instantiateNewTypedModel<E>(type: string): E {
   } catch (error) {}
 
   try {
-    if (typedModel != null) {
+    if (typedModel == null) {
       typedModel = new ENTITIES_MODULE[type]();
     }
 

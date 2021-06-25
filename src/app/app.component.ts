@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { SessionService } from './services/session.service';
 import { SidebarService } from './services/sidebar.service';
 
 @Component({
@@ -9,5 +10,5 @@ import { SidebarService } from './services/sidebar.service';
 })
 export class AppComponent {
 
-  constructor(public sidebarService: SidebarService) {}
+  constructor(public sessionService: SessionService, public sidebarService: SidebarService) {}
 }
