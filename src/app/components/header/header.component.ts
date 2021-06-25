@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
-import { SidebarService } from '../../services/sidebar.service';
+import { SidebarService } from '@services/sidebar.service';
 
 @Component({
   selector: 'dma-header',

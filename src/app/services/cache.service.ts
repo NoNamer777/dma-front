@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { environment } from '../../environments/environment';
-import { typeValue } from '../models/typing';
-import { Cache } from '../models';
+import { environment } from '@environments/environment';
+import { typeValue } from '@models/typing';
+import { Cache } from '@app/models';
 
 /**
  * Exception when the a key is used to store something in the application cache

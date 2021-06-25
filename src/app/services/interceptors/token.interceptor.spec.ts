@@ -1,12 +1,12 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TOKEN_INTERCEPTOR_PROVIDER, TokenInterceptor } from './token.interceptor';
-import { StorageMock } from '../../models/storage-mock.model';
-import { Session } from '../../models/entities';
-import { environment } from '../../../environments/environment';
-import { Cache } from '../../models';
+import { environment } from '@environments/environment';
+import { TOKEN_INTERCEPTOR_PROVIDER, TokenInterceptor } from '@services/interceptors/token.interceptor';
+import { StorageMock } from '@models/storage-mock.model';
+import { Cache } from '@app/models';
+import { Session } from '@models/entities';
 
 describe('TokenInterceptor', () => {
 

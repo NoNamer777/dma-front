@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { environment } from '../../environments/environment';
-import { CacheService } from './cache.service';
-import { typeValue } from '../models/typing';
-import { StorageMock } from '../models/storage-mock.model';
-import { Cache } from '../models';
+import { environment } from '@environments/environment';
+import { CacheService } from '@services/cache.service';
+import { typeValue } from '@models/typing';
+import { StorageMock } from '@models/storage-mock.model';
+import { Cache } from '@app/models';
 
 describe('CacheService', () => {
 

@@ -1,4 +1,4 @@
-import { Session } from './entities';
+import { Session } from '@models/entities';
 
 export class Cache {
 

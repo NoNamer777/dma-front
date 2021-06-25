@@ -4,13 +4,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
-import { environment } from '../environments/environment';
-import { CacheService } from './services/cache.service';
-import { SessionService } from './services/session.service';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { StorageMock } from './models/storage-mock.model';
+import { environment } from '@environments/environment';
+import { CacheService } from '@services/cache.service';
+import { SessionService } from '@services/session.service';
+import { AppComponent } from '@app/app.component';
+import { HeaderComponent } from '@components/header/header.component';
+import { SidenavComponent } from '@components/sidenav/sidenav.component';
+import { StorageMock } from '@models/storage-mock.model';
 
 describe('AppComponent', () => {
 

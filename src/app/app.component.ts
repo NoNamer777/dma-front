@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { SessionService } from './services/session.service';
-import { SidebarService } from './services/sidebar.service';
+import { SessionService } from '@services/session.service';
+import { SidebarService } from '@services/sidebar.service';
 
 @Component({
   selector: 'dma-root',

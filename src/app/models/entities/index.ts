@@ -1,1 +1,1 @@
-export * from './session.model';
+export * from '@models/entities/session.model';

@@ -1,10 +1,10 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { environment } from '../../environments/environment';
-import { CacheService } from './cache.service';
-import { typeValue } from '../models/typing';
-import { Session } from '../models/entities';
+import { environment } from '@environments/environment';
+import { CacheService } from '@services/cache.service';
+import { typeValue } from '@models/typing';
+import { Session } from '@models/entities';
 
 @Injectable({ providedIn: 'root' })
 export class SessionService {

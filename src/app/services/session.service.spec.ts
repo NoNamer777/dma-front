@@ -1,10 +1,10 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { environment } from '../../environments/environment';
-import { CacheService } from './cache.service';
-import { SessionService } from './session.service';
-import { StorageMock } from '../models/storage-mock.model';
+import { environment } from '@environments/environment';
+import { CacheService } from '@services/cache.service';
+import { SessionService } from '@services/session.service';
+import { StorageMock } from '@models/storage-mock.model';
 
 describe('SessionService', () => {
 

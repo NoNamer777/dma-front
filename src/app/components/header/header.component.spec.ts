@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
-import { HeaderComponent } from './header.component';
-import { SidebarService } from '../../services/sidebar.service';
+import { HeaderComponent } from '@components/header/header.component';
+import { SidebarService } from '@services/sidebar.service';
 
 describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;

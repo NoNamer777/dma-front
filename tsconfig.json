@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -21,7 +21,19 @@
       "dom"
     ],
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@app/*": [ "app/*" ],
+      "@assets/*": [ "assets/*" ],
+      "@environments/*": [ "environments/*" ],
+      "@components/*": [ "app/components/*" ],
+      "@directives/*": [ "app/directives/*" ],
+      "@models/*": [ "app/models/*" ],
+      "@modules/*": [ "app/modules/*" ],
+      "@pipes/*": [ "app/pipes/*" ],
+      "@services/*": [ "app/services/*" ],
+      "@views/*": [ "app/views/*" ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

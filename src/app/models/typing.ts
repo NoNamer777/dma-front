@@ -1,7 +1,8 @@
-import ModelProperties from '../../assets/data/model-properties.json';
-import * as Models from './index';
-import * as Entities from './entities/index';
 import { Type } from '@angular/core';
+
+import ModelProperties from '@assets/data/model-properties.json';
+import * as Models from '@app/models';
+import * as Entities from '@models/entities';
 
 /**
  * The structure of an property of a {@link ModelPropertiesMap}.

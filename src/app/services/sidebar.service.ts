@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SidebarService {
