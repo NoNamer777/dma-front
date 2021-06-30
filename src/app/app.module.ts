@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from '@modules/app-routing.module';
+
 import { DmaIconsModule } from '@modules/dma-icons.module';
+import { DmaMaterialModule } from '@modules/dma-material.module';
 
 import { TOKEN_INTERCEPTOR_PROVIDER } from '@services/interceptors/token.interceptor';
 
@@ -23,11 +23,10 @@ import { SidenavComponent } from '@components/sidenav/sidenav.component';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    BrowserAnimationsModule,
     CommonModule,
     DmaIconsModule,
+    DmaMaterialModule,
     HttpClientModule,
-    MatSidenavModule,
   ],
   providers: [
     TOKEN_INTERCEPTOR_PROVIDER,
