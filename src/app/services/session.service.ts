@@ -40,10 +40,7 @@ export class SessionService {
   private _initializationNewSession(): void {
     this._httpClient
       .get<Session>(`${environment.apiURL}/session/initialize`, { observe: 'response' })
-      .subscribe(
-        (response: HttpResponse<Session>) => this._handleSessionInitialization(response),
-        error => console.error(error)
-      );
+      .subscribe((response: HttpResponse<Session>) => this._handleSessionInitialization(response));
   }
 
   /**
@@ -52,10 +49,7 @@ export class SessionService {
   private _checkCachedSession(session: Session): void {
     this._httpClient
       .get<Session>(`${environment.apiURL}/session/${session.id}`, { observe: 'response' })
-      .subscribe(
-        (response: HttpResponse<Session>) => this._handleSessionInitialization(response, session),
-        error => console.error(error)
-    );
+      .subscribe((response: HttpResponse<Session>) => this._handleSessionInitialization(response, session));
   }
 
   /**

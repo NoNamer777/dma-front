@@ -14,11 +14,9 @@ export const TOKEN_INTERCEPTOR_PROVIDER = {
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  // constructor(private _injector: Injector) {}
   constructor(private _cacheService: CacheService) {}
 
   intercept(request: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
-    // const cacheService = this._injector.get(CacheService);
     const token = this._cacheService.read<Session>('session')?.token;
 
     if (token == null) return handler.handle(request);

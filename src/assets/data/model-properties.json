@@ -24,6 +24,36 @@
       }
     ]
   },
+  "ExceptionResponse": {
+    "extends": "Entity",
+    "properties": [
+      {
+        "name": "message",
+        "type": null,
+        "multiple": false
+      },
+      {
+        "name": "error",
+        "type": null,
+        "multiple": false
+      },
+      {
+        "name": "session",
+        "type": "Session",
+        "multiple": false
+      },
+      {
+        "name": "status",
+        "type": null,
+        "multiple": false
+      },
+      {
+        "name": "origin",
+        "type": null,
+        "multiple": false
+      }
+    ]
+  },
   "NamedEntity": {
     "extends": "Entity",
     "properties": [

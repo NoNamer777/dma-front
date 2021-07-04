@@ -25,9 +25,7 @@ describe('TokenInterceptor', () => {
   function setupEnvironment(): void {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
-      providers: [
-        TOKEN_INTERCEPTOR_PROVIDER,
-      ],
+      providers: [ TOKEN_INTERCEPTOR_PROVIDER ],
     });
 
     httpClientTester = TestBed.inject(HttpTestingController);
