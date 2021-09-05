@@ -1,0 +1,58 @@
+{
+    "root": true,
+    "ignorePatterns": ["projects/**/*"],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.json"],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "plugin:@typescript-eslint/recommended",
+                "prettier"
+            ],
+            "plugins": ["@typescript-eslint", "ban"],
+            "rules": {
+                "ban/ban": [
+                    "error",
+                    {
+                        "name": "fit",
+                        "message": "This function is forbidden"
+                    },
+                    {
+                        "name": "fdescribe",
+                        "message": "This function is forbidden"
+                    }
+                ],
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "dma",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "dma",
+                        "style": "kebab-case"
+                    }
+                ],
+                "@typescript-eslint/explicit-module-boundary-types": "off",
+                // Covered by Typescript itself
+                "@typescript-eslint/no-unused-vars": "off",
+                "no-unused-vars": "off"
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": ["plugin:@angular-eslint/template/recommended"],
+            "rules": {}
+        }
+    ]
+}
