@@ -5,6 +5,8 @@ import { DmaHeaderComponent } from './dma-header.component';
 
 describe('DmaHeaderComponent', () => {
     let fixture: ComponentFixture<DmaHeaderComponent>;
+    let windowWidthSpy: jasmine.Spy;
+
     let element: HTMLElement;
 
     beforeEach(async () => {
@@ -14,7 +16,12 @@ describe('DmaHeaderComponent', () => {
         }).compileComponents();
     });
 
-    function initialize() {
+    function initialize(mockDocumentWidth = false, width = '') {
+        windowWidthSpy = spyOn(window, 'getComputedStyle').and.callThrough();
+
+        if (mockDocumentWidth) {
+            windowWidthSpy.and.returnValue({ width } as CSSStyleDeclaration);
+        }
         fixture = TestBed.createComponent(DmaHeaderComponent);
         element = fixture.debugElement.nativeElement;
 
@@ -22,25 +29,15 @@ describe('DmaHeaderComponent', () => {
     }
 
     it('should not offset the brand on medium and larger devices', () => {
-        spyOn(window, 'getComputedStyle')
-            .and.callThrough()
-            .withArgs(document.documentElement)
-            .and.returnValue({ width: '800px' } as CSSStyleDeclaration);
-
-        initialize();
+        initialize(true, '800px');
 
         const brand = element.querySelector('a.navbar-brand');
 
-        expect(window.getComputedStyle(brand).transform).toBe('none');
+        expect(window.getComputedStyle(brand).transform).toBe(undefined);
     });
 
-    xit('should offset the brand on medium and smaller devices', async () => {
-        spyOn(window, 'getComputedStyle')
-            .and.callThrough()
-            .withArgs(document.documentElement)
-            .and.returnValue({ width: '760px' } as CSSStyleDeclaration);
-
-        initialize();
+    it('should offset the brand on medium and smaller devices', () => {
+        initialize(true, '760px');
 
         window.dispatchEvent(new Event('resize'));
         fixture.detectChanges();
