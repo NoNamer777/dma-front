@@ -1,0 +1,11 @@
+@use 'sass:math';
+
+:host {
+    mat-sidenav-container {
+        height: 100%;
+
+        mat-sidenav {
+            width: 20em;
+        }
+    }
+}

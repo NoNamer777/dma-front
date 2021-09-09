@@ -1,1 +1,1 @@
-export * from './shared.module';
+export * from './dma-shared.module';

@@ -1,5 +1,9 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "html-css-class-completion.enableEmmetSupport": true,
+  "html-css-class-completion.remoteStyleSheets": [
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+  ],
 }

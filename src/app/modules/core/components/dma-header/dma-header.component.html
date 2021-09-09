@@ -1,0 +1,28 @@
+<header [@openedCollapsed]="sidebarService.collapsed">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid justify-content-center justify-content-md-between">
+            <a href="#" class="navbar-brand mx-auto" [style.transform]="brandOffset()">
+                <img src="assets/images/map.png" alt="logo" class="d-inline align-text-top" />
+                <span class="ms-2 d-none d-md-inline">DnD Mapp</span>
+            </a>
+
+            <button
+                type="button"
+                class="btn btn-light btn-lg d-block d-md-none"
+                id="collapse-button"
+                #toggleCollapseNavBtn
+                (click)="sidebarService.toggle()"
+            >
+                <fa-icon [icon]="toggleCollapseNavBtnIcon"></fa-icon>
+            </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto-mb-2-mb-md-0">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Collapsable content here</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

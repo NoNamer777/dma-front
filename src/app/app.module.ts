@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
-
-import { CoreModule } from './modules/core';
-import { SharedModule } from './modules/shared';
-
 import { AppComponent } from './app.component';
+import { DmaCoreModule } from './modules/core';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [CoreModule, SharedModule],
+    imports: [DmaCoreModule],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,2 +1,11 @@
-
-/*# sourceMappingURL=app.component.css.map *//*# sourceMappingURL=app.component.css.map */
+:host {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+}
+:host dma-header {
+    flex: 0 0 auto;
+}
+:host dma-center {
+    flex: 1 1 auto;
+} /*# sourceMappingURL=app.component.css.map */

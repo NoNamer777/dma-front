@@ -22,6 +22,12 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "outDir": "./dist/out-tsc",
+        "paths": {
+            "@dma-core": ["src/app/modules/core"],
+            "@dma-core/*": ["src/app/modules/core/*"],
+            "@dma-shared": ["src/app/modules/shared"],
+            "@dma-shared/*": ["src/app/modules/shared/*"]
+        },
         "resolveJsonModule": true,
         "sourceMap": true,
         "strict": true,

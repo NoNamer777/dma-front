@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+
+    dma-header {
+        flex: 0 0 auto;
+    }
+
+    dma-center {
+        flex: 1 1 auto;
+    }
+}

@@ -6,7 +6,7 @@
     "serve:local": "ng serve --configuration=development",
     "serve:remote": "ng serve --configuration=development --host=192.168.178.220",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCI",
-    "test:dev": "ng test --watch=true --browsers=Chrome",
+    "test:dev": "ng test --watch=true --browsers=ChromeHeadless",
     "lint": "ng lint",
     "format:check": "prettier -l .",
     "format:write": "prettier --write .",
