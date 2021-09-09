@@ -1,6 +1,6 @@
 :host mat-sidenav-container {
-  height: 100%;
+    height: 100%;
 }
 :host mat-sidenav-container mat-sidenav {
-  width: 20em;
-}/*# sourceMappingURL=dma-center.component.css.map */
+    width: 20em;
+} /*# sourceMappingURL=dma-center.component.css.map */
