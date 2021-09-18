@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
 import { DmaHeaderComponent } from '../dma-header/dma-header.component';
@@ -26,7 +27,7 @@ describe('DmaCenterComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [DmaFaIconsModule, MatSidenavModule, NoopAnimationsModule],
+            imports: [DmaFaIconsModule, MatSidenavModule, NoopAnimationsModule, RouterTestingModule],
             declarations: [AppMockComponent, DmaCenterComponent, DmaHeaderComponent, DmaSidebarComponent],
         }).compileComponents();
     });
