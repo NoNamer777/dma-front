@@ -111,7 +111,12 @@
                             }
                         ],
                         "codeCoverage": true,
-                        "codeCoverageExclude": ["src/app/models/**/*", "src/environments/**/*"]
+                        "codeCoverageExclude": [
+                            "src/environments/**",
+                            "src/app/**/*.module.ts",
+                            "src/test.ts",
+                            "testing/**"
+                        ]
                     }
                 },
                 "lint": {
