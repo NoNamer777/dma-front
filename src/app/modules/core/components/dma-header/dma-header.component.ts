@@ -38,11 +38,16 @@ export class DmaHeaderComponent implements AfterContentChecked {
             window.getComputedStyle(this.toggleCollapseNavBtn.nativeElement).width.replace('px', ''),
             10,
         );
-        const documentWidth = parseInt(window.getComputedStyle(document.documentElement).width.replace('px', ''), 10);
         const offset = toggleCollapseNavBtnWidth / 2;
 
+        return this.isCollapsable ? `translateX(${offset}px)` : '';
+    }
+
+    get isCollapsable(): boolean {
+        const documentWidth = parseInt(window.getComputedStyle(document.documentElement).width.replace('px', ''), 10);
+
         // Look for a document width something slightly smaller than the breakpoint itself.
-        return documentWidth > BS_MD_BREAKPOINT - 0.2 ? '' : `translateX(${offset}px)`;
+        return documentWidth < BS_MD_BREAKPOINT - 0.2;
     }
 
     get toggleCollapseNavBtnIcon(): IconProp {

@@ -11,7 +11,7 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <main class="container-fluid" [@expandShrink]="!sidebarService.collapsed">
-            <p>dma-center works!</p>
+            <router-outlet></router-outlet>
         </main>
     </mat-sidenav-content>
 </mat-sidenav-container>

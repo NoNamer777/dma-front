@@ -1,6 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { DmaSidebarService } from '@dma-core';
 import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
+import { dispatchMouseEvent } from 'testing/fake-events';
 import { DmaHeaderComponent } from './dma-header.component';
 
 describe('DmaHeaderComponent', () => {
@@ -23,7 +26,7 @@ describe('DmaHeaderComponent', () => {
             windowWidthSpy.and.returnValue({ width } as CSSStyleDeclaration);
         }
         fixture = TestBed.createComponent(DmaHeaderComponent);
-        element = fixture.debugElement.nativeElement;
+        element = fixture.nativeElement;
 
         fixture.detectChanges();
     }
@@ -39,7 +42,7 @@ describe('DmaHeaderComponent', () => {
     it('should offset the brand on medium and smaller devices', () => {
         initialize(true, '760px');
 
-        window.dispatchEvent(new Event('resize'));
+        window.dispatchEvent(new UIEvent('resize'));
         fixture.detectChanges();
 
         const brand = element.querySelector('a.navbar-brand');
@@ -50,16 +53,55 @@ describe('DmaHeaderComponent', () => {
     it('should toggle icons based on collapsed state', () => {
         initialize();
 
-        expect(element.querySelector('button#collapse-button fa-icon').getAttribute('ng-reflect-icon')).toBe('bars');
+        const button = element.querySelector('button#collapse-button');
+        const buttonIcon = element.querySelector('button#collapse-button fa-icon');
 
-        element.querySelector('button#collapse-button').dispatchEvent(new Event('click'));
+        expect(buttonIcon.getAttribute('ng-reflect-icon')).toBe('bars');
+
+        dispatchMouseEvent(button, 'click');
         fixture.detectChanges();
 
-        expect(element.querySelector('button#collapse-button fa-icon').getAttribute('ng-reflect-icon')).toBe('times');
+        expect(buttonIcon.getAttribute('ng-reflect-icon')).toBe('times');
 
-        element.querySelector('button#collapse-button').dispatchEvent(new Event('click'));
+        dispatchMouseEvent(button, 'click');
         fixture.detectChanges();
 
-        expect(element.querySelector('button#collapse-button fa-icon').getAttribute('ng-reflect-icon')).toBe('bars');
+        expect(buttonIcon.getAttribute('ng-reflect-icon')).toBe('bars');
     });
+
+    it('should not toggle the sidebar when logo is clicked, the sidebar is closed and not collapsable', inject(
+        [DmaSidebarService],
+        (sidebarService: DmaSidebarService) => {
+            initialize(true, '800px');
+
+            spyOn(sidebarService.sidebarOpenedChange$, 'next');
+            const brand = element.querySelector('a.navbar-brand');
+
+            dispatchMouseEvent(brand, 'click');
+            fixture.detectChanges();
+
+            expect(sidebarService.sidebarOpenedChange$.next).not.toHaveBeenCalled();
+        },
+    ));
+
+    it('should toggle the sidebar when logo is clicked, the sidebar is opened and collapsable', inject(
+        [DmaSidebarService],
+        (sidebarService: DmaSidebarService) => {
+            initialize(true, '760px');
+
+            spyOn(sidebarService.sidebarOpenedChange$, 'next');
+            const brand = element.querySelector('a.navbar-brand');
+            const toggleBtn = element.querySelector('#collapse-button') as HTMLButtonElement;
+
+            dispatchMouseEvent(toggleBtn, 'click');
+            fixture.detectChanges();
+
+            expect(sidebarService.sidebarOpenedChange$.next).toHaveBeenCalledTimes(1);
+
+            dispatchMouseEvent(brand, 'click');
+            fixture.detectChanges();
+
+            expect(sidebarService.sidebarOpenedChange$.next).toHaveBeenCalledTimes(2);
+        },
+    ));
 });

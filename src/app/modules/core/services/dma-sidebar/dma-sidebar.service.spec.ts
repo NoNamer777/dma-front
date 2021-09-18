@@ -25,4 +25,21 @@ describe('DmaSidebarService', () => {
 
         expect(sidebarService.sidebarOpenedChange$.complete).toHaveBeenCalled();
     });
+
+    it('should toggle the sidebar on specific instances', () => {
+        spyOn(sidebarService.sidebarOpenedChange$, 'next');
+
+        sidebarService.toggle();
+
+        expect(sidebarService.sidebarOpenedChange$.next).toHaveBeenCalledWith(true);
+
+        sidebarService.toggle(false);
+
+        expect(sidebarService.sidebarOpenedChange$.next).toHaveBeenCalledTimes(1);
+
+        sidebarService.toggle();
+
+        expect(sidebarService.sidebarOpenedChange$.next).toHaveBeenCalledTimes(2);
+        expect(sidebarService.sidebarOpenedChange$.next).toHaveBeenCalledWith(false);
+    });
 });
