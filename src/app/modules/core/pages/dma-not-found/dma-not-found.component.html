@@ -1,0 +1,9 @@
+<h2>404 - Page not found</h2>
+<hr />
+<p id="message">Oops... Looks like you're {{ message }}</p>
+<div *ngIf="url">
+    You we're trying to go to the following url: <br />
+    <span class="fw-bold">{{ url }}</span>
+    <hr />
+</div>
+<p>Take me back <a routerLink="/">Home.</a></p>

@@ -7,10 +7,11 @@ import { DmaSidebarComponent } from './components/dma-sidebar/dma-sidebar.compon
 import { DmaMaterialModule } from './dma-material.module';
 import { DmaRoutingModule } from './dma-routing.module';
 import { DmaHomeComponent } from './pages/dma-home/dma-home.component';
+import { DmaNotFoundComponent } from './pages/dma-not-found/dma-not-found.component';
 
 @NgModule({
     imports: [BrowserModule, DmaMaterialModule, DmaRoutingModule, DmaSharedModule],
-    declarations: [DmaCenterComponent, DmaHeaderComponent, DmaSidebarComponent, DmaHomeComponent],
-    exports: [DmaCenterComponent, DmaHeaderComponent, DmaHomeComponent],
+    declarations: [DmaCenterComponent, DmaHeaderComponent, DmaSidebarComponent, DmaHomeComponent, DmaNotFoundComponent],
+    exports: [DmaCenterComponent, DmaHeaderComponent, DmaHomeComponent, DmaNotFoundComponent],
 })
 export class DmaCoreModule {}
