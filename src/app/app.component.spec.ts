@@ -20,13 +20,12 @@ describe('AppComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AppComponent);
-
         app = fixture.debugElement.componentInstance;
 
         fixture.detectChanges();
     });
 
     it('should create an app component instance', () => {
-        expect(app).not.toBeNull();
+        expect(app).toBeDefined();
     });
 });

@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DmaFaIconsModule } from '@dma-core/dma-fa-icons.module';
+
+import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
 import { DmaHeaderComponent } from '../dma-header/dma-header.component';
 import { DmaSidebarComponent } from '../dma-sidebar/dma-sidebar.component';
 import { DmaCenterComponent } from './dma-center.component';

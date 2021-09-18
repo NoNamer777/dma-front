@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule, FaConfig, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBook, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const icons: IconDefinition[] = [faBars, faTimes];
+const icons: IconDefinition[] = [faBars, faTimes, faBook];
 
 @NgModule({
     imports: [FontAwesomeModule],
