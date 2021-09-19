@@ -1,0 +1,42 @@
+{
+    "Description": {
+        "extends": "Entity",
+        "properties": [
+            {
+                "name": "order",
+                "type": "number",
+                "collection": false
+            },
+            {
+                "name": "title",
+                "type": "string",
+                "collection": false
+            },
+            {
+                "name": "text",
+                "type": "string",
+                "collection": false
+            }
+        ]
+    },
+    "Entity": {
+        "extends": null,
+        "properties": [
+            {
+                "name": "id",
+                "type": "string",
+                "collection": false
+            }
+        ]
+    },
+    "NamedEntity": {
+        "extends": "Entity",
+        "properties": [
+            {
+                "name": "name",
+                "type": "string",
+                "collection": false
+            }
+        ]
+    }
+}
