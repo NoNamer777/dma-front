@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-between align-content-center">
+    <h4 mat-dialog-title class="mt-2">{{ spell.name }}</h4>
+    <button type="button" class="btn btn-light rounded-circle" (click)="onCloseDialog()">
+        <fa-icon icon="times"></fa-icon>
+    </button>
+</div>
+<p class="d-flex justify-content-between mb-1 fw-bold text-muted">
+    {{ spell.formattedSpellSchoolAndLevel }}
+</p>
+<hr />
+<div mat-dialog-content>
+    <p class="d-flex justify-content-between mb-1 fw-bold">
+        <span>Components: </span>
+        <span class="text-primary">{{ spell.formattedComponents }}</span>
+    </p>
+    <p class="d-flex justify-content-between mb-1">
+        <span class="fw-bold">Range: </span>
+        <span>{{ spell.range }}</span>
+    </p>
+    <p class="d-flex justify-content-between mb-1">
+        <span class="fw-bold">Duration: </span>
+        <span>
+            {{ spell.duration }}{{ spell.concentration ? ', ' : '' }}
+            <span class="text-primary fw-bold">
+                {{ spell.concentration ? 'C' : '' }}
+            </span>
+        </span>
+    </p>
+    <p class="d-flex justify-content-between mb-1">
+        <span class="fw-bold">Casting Time: </span>
+        <span>{{ spell.castingTime }}</span>
+    </p>
+    <p class="d-flex justify-content-between mb-1">
+        <span class="fw-bold">Could be cast as ritual: </span>
+        <span [ngClass]="{ 'text-primary fw-bold': spell.ritual }">{{ spell.ritual ? 'Yes' : 'No' }}</span>
+    </p>
+    <hr />
+    <div *ngIf="spell.requiresMaterials">
+        <p>
+            <span class="fw-bold">Material Components:</span><br />
+            <span>{{ spell.formattedMaterials }}</span>
+        </p>
+
+        <hr />
+    </div>
+    <p class="mb-2" *ngFor="let description of spell.descriptions">
+        <span *ngIf="description.title" class="fw-bold">{{ '\t' + description.title }}</span>
+        {{ description.text }}
+    </p>
+</div>

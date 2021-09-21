@@ -1,0 +1,188 @@
+[
+    {
+        "id": "spell-1",
+        "name": "Acid Splash",
+        "level": 0,
+        "schoolOfMagic": "Conjuration",
+        "ritual": false,
+        "castingTime": "1 action",
+        "range": "60 feet",
+        "components": ["Vocal", "Somatic"],
+        "materials": null,
+        "concentration": false,
+        "duration": "Instantanious",
+        "descriptions": [
+            {
+                "id": "description-1",
+                "order": 0,
+                "title": null,
+                "text": "You hurl a bubble of acid. Choose one creature within range, or choose two creatures within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 acid damage."
+            },
+            {
+                "id": "description-2",
+                "order": 1,
+                "title": null,
+                "text": "This spells's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+            }
+        ]
+    },
+    {
+        "id": "spell-2",
+        "name": "Aid",
+        "level": 2,
+        "schoolOfMagic": "Abjuration",
+        "ritual": false,
+        "castingTime": "1 action",
+        "range": "30 feet",
+        "components": ["Vocal", "Somatic", "Material"],
+        "materials": ["a tiny strip of white cloth"],
+        "concentration": false,
+        "duration": "8 hours",
+        "descriptions": [
+            {
+                "id": "description-3",
+                "order": 0,
+                "title": null,
+                "text": "Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit points maximum and current hit points increase by 5 for the duration."
+            },
+            {
+                "id": "description-4",
+                "order": 1,
+                "title": "At Higher Levels.",
+                "text": "When you cast this spell using a spell slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above the 2nd."
+            }
+        ]
+    },
+    {
+        "id": "spell-3",
+        "name": "Alarm",
+        "level": 1,
+        "schoolOfMagic": "Abjuration",
+        "ritual": true,
+        "castingTime": "1 minute",
+        "range": "30 feet",
+        "components": ["Vocal", "Somatic", "Material"],
+        "materials": ["a tiny bell", "a piece of fine silver wire"],
+        "concentration": false,
+        "duration": "8 hours",
+        "descriptions": [
+            {
+                "id": "description-5",
+                "order": 0,
+                "title": null,
+                "text": "You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot cube. Until the spell ends, an alarm alerts you whenever a Tiny or larger creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is mental or audible."
+            },
+            {
+                "id": "description-6",
+                "order": 1,
+                "title": null,
+                "text": "A mental alarm alerts you with a ping in your mind if you are within 1 mile of the warded area. The ping awakens you if you are sleeping."
+            },
+            {
+                "id": "description-7",
+                "order": 2,
+                "title": null,
+                "text": "An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet."
+            }
+        ]
+    },
+    {
+        "id": "spell-4",
+        "name": "Alter Self",
+        "level": 2,
+        "schoolOfMagic": "Transmutation",
+        "ritual": false,
+        "castingTime": "1 action",
+        "range": "Self",
+        "components": ["Vocal", "Somatic"],
+        "materials": null,
+        "concentration": true,
+        "duration": "up to 1 hour",
+        "descriptions": [
+            {
+                "id": "description-8",
+                "order": 0,
+                "title": null,
+                "text": "You assume a different form. When you cast the spell, choose one of the following options, the ffects of which last for the duration of the spell. While the spell lasts, you can end one option as an action to gain the benefits of a different one."
+            },
+            {
+                "id": "description-9",
+                "order": 1,
+                "title": "Aquatic Adaptation.",
+                "text": "You adapt your body to an aquatic environment, sprouting gills and growing webbing between your fingers. You can breathe underwater and gain a swimming speed equal to your walking speed."
+            },
+            {
+                "id": "description-10",
+                "order": 2,
+                "title": "Natural Weapons.",
+                "text": "You transform your appearance. You decide what you look like, including your height, weight, facial features, sound of your voice, hair length, coloration, and distinguishing characteristics, if any. You can make yourself appear as a member of another race, though none of your statistics change. You also can't appear as a creature of a different size than you, and your basic shape stays the same; if you're bipedal, you can't use this spell to become quadrupedal, for instance. At any time for the duration of the spell, you can use your action to change your appearance in this way again."
+            },
+            {
+                "id": "description-11",
+                "order": 3,
+                "title": "Natural Weapons.",
+                "text": "You grow claws, fangs, spines, horns, or a different natural weapon of your choice. Your unarmed strikes deal 1d6 bludgeoning, piercing, or slashing damage, as appropriate to the natural weapon you chose, and you are proficient with your unarmed strikes. Finally, the natural weapon is magic and you have a +1 bonus to the attack and damage rolls you make using it."
+            }
+        ]
+    },
+    {
+        "id": "spell-5",
+        "name": "Animal Friendship",
+        "level": 1,
+        "schoolOfMagic": "Enchantment",
+        "ritual": false,
+        "castingTime": "1 action",
+        "range": "30 feet",
+        "components": ["Vocal", "Somatic", "Material"],
+        "materials": ["a morsel of food"],
+        "concentration": false,
+        "duration": "24 hours",
+        "descriptions": [
+            {
+                "id": "description-12",
+                "order": 0,
+                "title": null,
+                "text": "This spell lets you convince a beast that you mean it no harm. Choose a beast that you can see within range. It must see and hear you. If the beast's Intelligence is 4 or higher, the spell fails. Otherwise, the beast must succeed on a Wisdom saving throw or be charmed by you for the spell's duration. If you or one of your companions harms the target, the spell ends."
+            },
+            {
+                "id": "description-13",
+                "order": 1,
+                "title": "At Higher Levels.",
+                "text": "When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional beast for each slot level above the 1st."
+            }
+        ]
+    },
+    {
+        "id": "spell-6",
+        "name": "Animal Messenger",
+        "level": 2,
+        "schoolOfMagic": "Enchantment",
+        "ritual": true,
+        "castingTime": "1 action",
+        "range": "30 feet",
+        "components": ["Vocal", "Somatic", "Material"],
+        "materials": ["a morsel of food"],
+        "concentration": false,
+        "duration": "24 hours",
+        "descriptions": [
+            {
+                "id": "description-14",
+                "order": 0,
+                "title": null,
+                "text": "By means of this spell, you can use an animal to deliver a message. Choose a Tiny beast you can see within range, such as a squirrel, a blue jay, or a bat. You specify a location, which you must have visited, and a recipient who matches a general description, such as \"a man or woman dressed in the uniform of the town guard\" or \"a red-haired dwarf wearing a pointed hat.\" You also speak a message of up to 25 words. The target beast travels for the duration of the spell toward the specified location, covering about 50 miles per 24 hours for a flying messenger, or 25 miles for other animals."
+            },
+            {
+                "id": "description-15",
+                "order": 1,
+                "title": null,
+                "text": "When the messenger arrives, it delivers your message to the creature that you described, replicating the sound of your voice. The messenger speaks only to a creature matching the description you gave. If the messenger doesn't reach its destination before the spell ends, the message is lost, and the beast makes its way back to where you cast this spell."
+            },
+            {
+                "id": "description-16",
+                "order": 2,
+                "title": "At Higher Levels.",
+                "text": "If you cast this spell using a spell slot of 3rd level or higher, the duration of the spell increases by 48 hours for each slot level above the 2nd."
+            }
+        ]
+    }
+]
