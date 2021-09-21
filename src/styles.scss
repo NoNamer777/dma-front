@@ -40,3 +40,9 @@ form.ng-invalid {
         @include invalid-input();
     }
 }
+
+.dma-dialog {
+    max-width: 90% !important;
+    width: 90%;
+    height: 85%;
+}

@@ -1,0 +1,12 @@
+:host {
+    margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+        margin-right: 1rem;
+
+        .card {
+            width: 20rem;
+            height: 12rem;
+        }
+    }
+}

@@ -2955,4 +2955,10 @@ input.ng-invalid.ng-touched {
 
 form.ng-invalid input.ng-touched:not(.ng-valid) {
     border-right: red 0.5rem solid;
+}
+
+.dma-dialog {
+    max-width: 90% !important;
+    width: 90%;
+    height: 85%;
 } /*# sourceMappingURL=styles.css.map */
