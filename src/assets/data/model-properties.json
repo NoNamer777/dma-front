@@ -38,5 +38,60 @@
                 "collection": false
             }
         ]
+    },
+    "Spell": {
+        "extends": "NamedEntity",
+        "properties": [
+            {
+                "name": "level",
+                "type": "number",
+                "collection": false
+            },
+            {
+                "name": "schoolOfMagic",
+                "type": "string",
+                "collection": false
+            },
+            {
+                "name": "castingTime",
+                "type": "string",
+                "collection": false
+            },
+            {
+                "name": "range",
+                "type": "string",
+                "collection": false
+            },
+            {
+                "name": "components",
+                "type": "string",
+                "collection": true
+            },
+            {
+                "name": "materials",
+                "type": "string",
+                "collection": true
+            },
+            {
+                "name": "concentration",
+                "type": "boolean",
+                "collection": false
+            },
+            {
+                "name": "duration",
+                "type": "string",
+                "collection": false
+            },
+            {
+                "name": "descriptions",
+                "type": "Description",
+                "collection": true
+            },
+            {
+                "name": "ritual",
+                "type": "boolean",
+                "collection": false
+            }
+        ]
     }
 }
