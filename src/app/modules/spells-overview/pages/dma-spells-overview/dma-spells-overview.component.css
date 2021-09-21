@@ -1,0 +1,8 @@
+:host #spell-cards-container {
+    flex-direction: column;
+}
+@media (min-width: 768px) {
+    :host #spell-cards-container {
+        flex-direction: row;
+    }
+} /*# sourceMappingURL=dma-spells-overview.component.css.map */

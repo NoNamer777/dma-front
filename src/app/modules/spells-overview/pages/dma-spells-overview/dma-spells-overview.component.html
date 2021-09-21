@@ -1,0 +1,16 @@
+<article>
+    <h2 class="text-primary">Spells</h2>
+    <hr />
+    <div
+        id="spell-cards-container"
+        class="d-flex flex-wrap justify-content-center"
+        *ngIf="!waitingForResponse; else spinner"
+    >
+        <dma-spell-card *ngFor="let spell of spellsService.spells" [spell]="spell"></dma-spell-card>
+    </div>
+    <ng-template #spinner>
+        <div class="d-flex justify-content-center mt-5">
+            <div class="spinner-border"></div>
+        </div>
+    </ng-template>
+</article>

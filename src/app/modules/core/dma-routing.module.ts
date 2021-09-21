@@ -9,6 +9,11 @@ const routes: Routes = [
         component: DmaHomeComponent,
     },
     {
+        path: 'spells',
+        loadChildren: () =>
+            import('@dma-spells-overview/dma-spells-overview.module').then((module) => module.DmaSpellsOverviewModule),
+    },
+    {
         path: 'not-found',
         component: DmaNotFoundComponent,
     },
