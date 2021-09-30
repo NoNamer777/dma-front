@@ -61,7 +61,7 @@ describe('DmaApiService', () => {
         const url = 'https://server.dnd-mapp.nl.eu.org/constants/string-1';
         const expectedResponse = 'super simple string value';
 
-        apiService.getResourse<string>(url, null).subscribe((response) => {
+        apiService.getResource<string>(url, null).subscribe((response) => {
             expect(response).toBe(expectedResponse);
         });
 
@@ -72,7 +72,7 @@ describe('DmaApiService', () => {
         const url = 'https://server.dnd-mapp.nl.eu.org/named-entity/named-entity-1';
         const expectedResponse = new NamedEntity('named-entity-1', 'My named Entity');
 
-        apiService.getResourse<NamedEntity>(url, 'NamedEntity').subscribe((response) => {
+        apiService.getResource<NamedEntity>(url, 'NamedEntity').subscribe((response) => {
             expect(response).toEqual(expectedResponse);
         });
 
@@ -86,7 +86,7 @@ describe('DmaApiService', () => {
             new NamedEntity('named-entity-2', 'My other named Entity'),
         ];
 
-        apiService.getResourse<NamedEntity[]>(url, 'NamedEntity').subscribe((response) => {
+        apiService.getResource<NamedEntity[]>(url, 'NamedEntity').subscribe((response) => {
             expect(response).toEqual(expectedResponse);
         });
 

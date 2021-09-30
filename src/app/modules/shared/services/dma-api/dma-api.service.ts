@@ -42,7 +42,7 @@ const SIMPLE_VALUE_TYPES = ['string', 'boolean', 'number'];
 export class DmaApiService {
     constructor(private httpClient: HttpClient) {}
 
-    getResourse<T>(url: string, type: MappedModelType): Observable<T> {
+    getResource<T>(url: string, type: MappedModelType): Observable<T> {
         return this.httpClient
             .get<unknown>(url)
             .pipe(map((response: unknown) => this.typeResponse<T>(response, type))) as Observable<T>;

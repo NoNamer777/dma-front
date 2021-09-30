@@ -12,7 +12,7 @@ export class DmaSpellsService {
 
     getSpells(): Observable<Spell[]> {
         return this.apiService
-            .getResourse<Spell[]>('assets/data/spells.json', 'Spell')
+            .getResource<Spell[]>('assets/data/spells.json', 'Spell')
             .pipe(tap((spells) => (this.spells = spells)));
     }
 }
