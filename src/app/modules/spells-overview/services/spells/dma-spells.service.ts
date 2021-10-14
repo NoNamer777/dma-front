@@ -3,6 +3,7 @@ import { DmaApiService } from '@dma-shared';
 import { Observable, tap } from 'rxjs';
 
 import { Spell } from '@dma-shared/models/entities';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class DmaSpellsService {
@@ -12,7 +13,7 @@ export class DmaSpellsService {
 
     getSpells(): Observable<Spell[]> {
         return this.apiService
-            .getResource<Spell[]>('assets/data/spells.json', 'Spell')
+            .getResource<Spell[]>(`${environment.baseApiUrl}/spell`, 'Spell')
             .pipe(tap((spells) => (this.spells = spells)));
     }
 }
