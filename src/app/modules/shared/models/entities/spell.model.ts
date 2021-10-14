@@ -2,23 +2,24 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { MagicSchool, SpellComponent } from '../enums';
 import { NamedEntity } from '../named-entity.model';
 import { Description } from './description.model';
+import { MaterialComponent } from './material-component.model';
 
 export class Spell extends NamedEntity {
     public get level(): number {
         return coerceNumberProperty(this._level);
     }
     public set level(value: number) {
-        this._level = value;
+        this._level = coerceNumberProperty(value, 0);
     }
     private _level = 0;
 
-    public get schoolOfMagic(): MagicSchool {
-        return this._schoolOfMagic;
+    public get magicSchool(): MagicSchool {
+        return this._magicSchool;
     }
-    public set schoolOfMagic(value: MagicSchool) {
-        this._schoolOfMagic = value;
+    public set magicSchool(value: MagicSchool) {
+        this._magicSchool = value;
     }
-    private _schoolOfMagic: MagicSchool;
+    private _magicSchool: MagicSchool;
 
     public get ritual(): boolean {
         return this._ritual;
@@ -49,10 +50,10 @@ export class Spell extends NamedEntity {
     }
     private _components: SpellComponent[] = [];
 
-    get materials(): string[] {
+    get materials(): MaterialComponent[] {
         return this._materials;
     }
-    private _materials: string[] = [];
+    private _materials: MaterialComponent[] = [];
 
     public get concentration(): boolean {
         return this._concentration;
@@ -85,8 +86,8 @@ export class Spell extends NamedEntity {
 
     get formattedSpellSchoolAndLevel(): string {
         return this.level === 0
-            ? `${this.schoolOfMagic} ${this.formattedLevel}`
-            : `${this.formattedLevel} ${this.schoolOfMagic}`;
+            ? `${this.magicSchool} ${this.formattedLevel}`
+            : `${this.formattedLevel} ${this.magicSchool}`;
     }
 
     get formattedLevel(): string {
@@ -123,7 +124,7 @@ export class Spell extends NamedEntity {
             if (idx == this.materials.length - 1 && this.materials.length > 1) {
                 value += 'and ';
             }
-            value += `${material}, `;
+            value += `${material.name}, `;
         }
         return value.charAt(0).toUpperCase() + value.substring(1, value.length - 2) + '.';
     }
@@ -162,11 +163,11 @@ export class Spell extends NamedEntity {
         this._components = [];
     }
 
-    requiresMaterial(material: string): boolean {
+    requiresMaterial(material: MaterialComponent): boolean {
         return this.materials.includes(material);
     }
 
-    addMaterial(material: string): boolean {
+    addMaterial(material: MaterialComponent): boolean {
         if (!this.requiresMaterials) return false;
         if (this.requiresMaterial(material)) return false;
 
@@ -175,7 +176,7 @@ export class Spell extends NamedEntity {
         return true;
     }
 
-    removeMaterial(material: string): boolean {
+    removeMaterial(material: MaterialComponent): boolean {
         if (!this.requiresMaterials) return false;
         if (!this.requiresMaterial(material)) return false;
 

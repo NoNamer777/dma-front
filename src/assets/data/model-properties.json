@@ -29,6 +29,21 @@
             }
         ]
     },
+    "MaterialComponent": {
+        "extends": "NamedEntity",
+        "properties": [
+            {
+                "name": "cost",
+                "type": "number",
+                "collection": false
+            },
+            {
+                "name": "consumedBySpell",
+                "type": "boolean",
+                "collection": false
+            }
+        ]
+    },
     "NamedEntity": {
         "extends": "Entity",
         "properties": [
@@ -48,7 +63,7 @@
                 "collection": false
             },
             {
-                "name": "schoolOfMagic",
+                "name": "magicSchool",
                 "type": "string",
                 "collection": false
             },
@@ -69,7 +84,7 @@
             },
             {
                 "name": "materials",
-                "type": "string",
+                "type": "MaterialComponent",
                 "collection": true
             },
             {

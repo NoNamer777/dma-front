@@ -21,7 +21,7 @@ describe('DmaSpellDialogComponent', () => {
     mockSpell.concentration = true;
     mockSpell.ritual = true;
     mockSpell.level = 4;
-    mockSpell.schoolOfMagic = MagicSchool.CONJURATION;
+    mockSpell.magicSchool = MagicSchool.CONJURATION;
     mockSpell.addComponent(SpellComponent.Vocal);
 
     class MatDialogRefMock {

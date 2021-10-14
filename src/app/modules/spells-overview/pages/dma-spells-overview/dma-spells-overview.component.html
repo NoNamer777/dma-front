@@ -6,7 +6,7 @@
         class="d-flex flex-wrap justify-content-center"
         *ngIf="!waitingForResponse; else spinner"
     >
-        <dma-spell-card *ngFor="let spell of spellsService.spells" [spell]="spell"></dma-spell-card>
+        <dma-spell-card *ngFor="let spell of spellsService.spellsPage.content" [spell]="spell"></dma-spell-card>
     </div>
     <ng-template #spinner>
         <div class="d-flex justify-content-center mt-5">

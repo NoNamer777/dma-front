@@ -4,16 +4,17 @@ import { Observable, tap } from 'rxjs';
 
 import { Spell } from '@dma-shared/models/entities';
 import { environment } from '../../../../../environments/environment';
+import { Pageable } from '@dma-shared/models/pageable.model';
 
 @Injectable({ providedIn: 'root' })
 export class DmaSpellsService {
-    spells: Spell[];
+    spellsPage: Pageable<Spell>;
 
     constructor(private apiService: DmaApiService) {}
 
-    getSpells(): Observable<Spell[]> {
+    getSpells(): Observable<Pageable<Spell>> {
         return this.apiService
-            .getResource<Spell[]>(`${environment.baseApiUrl}/spell`, 'Spell')
-            .pipe(tap((spells) => (this.spells = spells)));
+            .getPageableResource<Spell>(`${environment.baseApiUrl}/spell`, 'Spell')
+            .pipe(tap((spellsPage) => (this.spellsPage = spellsPage)));
     }
 }
