@@ -9,7 +9,6 @@ describe('DmaNotFoundComponent', () => {
     let fixture: ComponentFixture<DmaCenterMockComponent>;
     let router: Router;
 
-    let component: DmaNotFoundComponent;
     let element: HTMLElement;
 
     function getDebugElement<T>(componentType: Type<T>): DebugElement {
