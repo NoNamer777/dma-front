@@ -9,9 +9,12 @@ import { DmaRoutingModule } from './dma-routing.module';
 import { DmaHomeComponent } from './pages/dma-home/dma-home.component';
 import { DmaNotFoundComponent } from './pages/dma-not-found/dma-not-found.component';
 
+import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/serialize.interceptor';
+
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, DmaRoutingModule, DmaSharedModule],
     declarations: [DmaCenterComponent, DmaHeaderComponent, DmaSidebarComponent, DmaHomeComponent, DmaNotFoundComponent],
     exports: [DmaCenterComponent, DmaHeaderComponent, DmaHomeComponent, DmaNotFoundComponent],
+    providers: [SERIALIZE_INTERCEPTOR_PROVIDER],
 })
 export class DmaCoreModule {}
