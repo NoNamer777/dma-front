@@ -28,7 +28,7 @@ body {
 }
 
 @mixin invalid-input {
-    border-right: red 0.5rem solid;
+    border-right: .5rem solid #dc3545;
 }
 
 input.ng-invalid.ng-touched {
@@ -45,4 +45,9 @@ form.ng-invalid {
     max-width: 90% !important;
     width: 90%;
     height: 85%;
+
+    @media (min-width: 768px) {
+        width: 60%;
+        height: 75%;
+    }
 }
