@@ -5,7 +5,7 @@ import { map, Observable } from 'rxjs';
 import ModelsPropertiesMap from '../../../../../assets/data/model-properties.json';
 import * as ModelsModule from '@dma-shared/models';
 import { Entity } from '@dma-shared/models';
-import { Pageable } from '@dma-shared/models/pageable.model';
+import { Pageable } from '@dma-shared/models';
 
 type MappedModelType = keyof typeof ModelsPropertiesMap;
 
@@ -51,19 +51,21 @@ export class DmaApiService {
     }
 
     getPageableResource<T extends Entity>(url: string, type: MappedModelType): Observable<Pageable<T>> {
-        return this.httpClient
-            .get<unknown>(url)
-            .pipe(map((response: unknown) => {
+        return this.httpClient.get<unknown>(url).pipe(
+            map((response: unknown) => {
                 const pageableSpells = response as Pageable<T>;
 
                 pageableSpells.content = this.typeAllEntities<T>(pageableSpells.content, type);
 
                 return pageableSpells;
-        }));
+            }),
+        );
     }
 
-    postResource(url: string, resource: unknown): Observable<unknown> {
-        return this.httpClient.post(url, resource);
+    postResource<T>(url: string, resource: T, type: MappedModelType): Observable<T> {
+        return this.httpClient
+            .post<unknown>(url, resource)
+            .pipe(map((response: unknown) => this.typeResponse<T>(response, type) as T));
     }
 
     putResource<T>(url: string, resource: T, type: MappedModelType): Observable<T> {
