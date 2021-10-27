@@ -194,7 +194,7 @@ export class Spell extends NamedEntity {
     }
 
     addDescription(description: Description): boolean {
-        if (this.hasDescription(description.id)) return false;
+        if (description.id !== null && this.hasDescription(description.id)) return false;
 
         this.descriptions.push(description);
 
