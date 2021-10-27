@@ -2,10 +2,11 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Spell } from '@dma-shared/models';
-import { DmaSpellCardComponent } from '@dma-spells-overview/components/dma-spell-card/dma-spell-card.component';
 
+import { environment } from '../../../../../environments/environment';
 import { DmaSpellsOverviewComponent } from './dma-spells-overview.component';
+import { DmaSpellCardComponent } from '@dma-spells-overview/components/dma-spell-card/dma-spell-card.component';
+import { Spell } from '@dma-shared/models';
 
 describe('DmaSpellsOverviewComponent', () => {
     let fixture: ComponentFixture<DmaSpellsOverviewComponent>;
@@ -26,19 +27,21 @@ describe('DmaSpellsOverviewComponent', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(DmaSpellsOverviewComponent);
         httpTestingController = TestBed.inject(HttpTestingController);
+        fixture = TestBed.createComponent(DmaSpellsOverviewComponent);
 
         element = fixture.nativeElement;
+
+        fixture.detectChanges();
+
+        httpTestingController.expectOne(`${environment.baseApiUrl}/spell`).flush({
+            content: [mockSpell1, mockSpell2],
+        });
 
         fixture.detectChanges();
     });
 
     it('should show received Spells as cards in the overview template', () => {
-        httpTestingController.expectOne('assets/data/spells.json').flush([mockSpell1, mockSpell2]);
-
-        fixture.detectChanges();
-
         const spellCards = element.querySelectorAll('dma-spell-card');
 
         expect(spellCards.length).toBe(2);
