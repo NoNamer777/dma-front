@@ -18,7 +18,7 @@ export interface PageableContent {
 export interface Pageable<E extends Entity> {
     content: E[];
     pageable: PageableContent;
-    first: boolean
+    first: boolean;
     last: boolean;
     totalPages: number;
     numberOfElements: number;

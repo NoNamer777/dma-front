@@ -2,7 +2,6 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { NamedEntity } from '../named-entity.model';
 
 export class MaterialComponent extends NamedEntity {
-
     get cost(): number {
         return this._cost;
     }
