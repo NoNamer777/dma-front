@@ -1,6 +1,10 @@
 <article>
-    <h2 class="text-primary">Spells</h2>
-    <hr />
+    <div class="d-flex justify-content-between border-bottom mb-3">
+        <h2 class="text-primary">Spells</h2>
+        <div class="d-none d-md-flex justify-content-between mb-2">
+            <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
+        </div>
+    </div>
     <div
         id="spell-cards-container"
         class="d-flex flex-wrap justify-content-center"
@@ -8,9 +12,30 @@
     >
         <dma-spell-card *ngFor="let spell of spellsService.spellsPage.content" [spell]="spell"></dma-spell-card>
     </div>
-    <ng-template #spinner>
-        <div class="d-flex justify-content-center mt-5">
-            <div class="spinner-border"></div>
-        </div>
-    </ng-template>
+    <div class="d-flex d-md-none justify-content-between mx-1 mb-2">
+        <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
+    </div>
 </article>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border"></div>
+    </div>
+</ng-template>
+
+<ng-template #paginationButtons>
+    <button
+        class="btn btn-primary previous-btn me-2"
+        [disabled]="spellsService.spellsPage?.first"
+        (click)="onRequestPage(this.spellsService.pageNumber - 1)"
+    >
+        Previous
+    </button>
+    <button
+        class="btn btn-primary next-btn"
+        [disabled]="spellsService.spellsPage?.last"
+        (click)="onRequestPage(this.spellsService.pageNumber + 1)"
+    >
+        Next
+    </button>
+</ng-template>
