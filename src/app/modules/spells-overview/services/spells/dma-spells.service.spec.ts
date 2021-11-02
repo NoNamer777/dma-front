@@ -15,6 +15,9 @@ describe('DmaSpellsService', () => {
     spellMock.name = 'My Awesome Spell';
     const spellPageMock = {
         content: [spellMock],
+        pageable: {
+            pageNumber: 0,
+        },
     } as Pageable<Spell>;
 
     afterEach(() => httpTestingController.verify());
@@ -41,6 +44,9 @@ describe('DmaSpellsService', () => {
                     name: 'My Awesome Spell',
                 },
             ],
+            pageable: {
+                pageNumber: 0,
+            },
         });
     });
 

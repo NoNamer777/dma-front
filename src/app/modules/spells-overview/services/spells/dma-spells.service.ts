@@ -24,11 +24,16 @@ export class DmaSpellsService {
         if (this.pageNumber === 0) {
             return this.apiService
                 .getPageableResource<Spell>(`${environment.baseApiUrl}/spell`, 'Spell')
-                .pipe(tap((spellsPage) => (this.spellsPage = spellsPage)));
+                .pipe(tap((spellsPage) => this.updateData(spellsPage)));
         }
 
         return this.apiService
             .getPageableResource<Spell>(`${environment.baseApiUrl}/spell?page=${this.pageNumber}`, 'Spell')
-            .pipe(tap((spellsPage) => (this.spellsPage = spellsPage)));
+            .pipe(tap((spellsPage) => this.updateData(spellsPage)));
+    }
+
+    private updateData(spellsPage: Pageable<Spell>): void {
+        this.spellsPage = spellsPage;
+        this.pageNumber = spellsPage.pageable.pageNumber;
     }
 }

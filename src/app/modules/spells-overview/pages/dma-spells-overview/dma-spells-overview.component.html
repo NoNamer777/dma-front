@@ -1,7 +1,7 @@
 <article>
     <div class="d-flex justify-content-between border-bottom mb-3">
         <h2 class="text-primary">Spells</h2>
-        <div class="d-none d-md-flex justify-content-between mb-2">
+        <div class="d-none d-md-block">
             <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
         </div>
     </div>
@@ -12,7 +12,7 @@
     >
         <dma-spell-card *ngFor="let spell of spellsService.spellsPage.content" [spell]="spell"></dma-spell-card>
     </div>
-    <div class="d-flex d-md-none justify-content-between mx-1 mb-2">
+    <div class="d-block d-md-none mx-1" *ngIf="!waitingForResponse">
         <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
     </div>
 </article>
@@ -24,18 +24,25 @@
 </ng-template>
 
 <ng-template #paginationButtons>
-    <button
-        class="btn btn-primary previous-btn me-2"
-        [disabled]="spellsService.spellsPage?.first"
-        (click)="onRequestPage(this.spellsService.pageNumber - 1)"
-    >
-        Previous
-    </button>
-    <button
-        class="btn btn-primary next-btn"
-        [disabled]="spellsService.spellsPage?.last"
-        (click)="onRequestPage(this.spellsService.pageNumber + 1)"
-    >
-        Next
-    </button>
+    <form class="d-flex justify-content-between mb-2" [formGroup]="paginationForm">
+        <button
+            class="btn btn-primary previous-btn"
+            type="button"
+            [disabled]="isOnFirstPage ?? true"
+            (click)="onRequestPage(this.spellsService.pageNumber - 1)"
+        >
+            Previous
+        </button>
+        <select class="form-control mx-2" formControlName="pageNumber" (change)="onChangePageNumber()">
+            <option [ngValue]="page" [selected]="isSelected(page)" *ngFor="let page of pageNumbers">{{ page }}</option>
+        </select>
+        <button
+            class="btn btn-primary next-btn"
+            type="button"
+            [disabled]="isOnLastPage ?? true"
+            (click)="onRequestPage(this.spellsService.pageNumber + 1)"
+        >
+            Next
+        </button>
+    </form>
 </ng-template>

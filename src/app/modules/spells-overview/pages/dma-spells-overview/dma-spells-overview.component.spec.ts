@@ -1,5 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Route } from '@angular/router';
@@ -30,10 +31,11 @@ describe('DmaSpellsOverviewComponent', () => {
         },
     ];
 
-    function initialize(expectedResponse: Record<string, unknown>, pageNumber?: number): void {
+    function initialize(expectedResponse: Record<string, unknown>): void {
         let expectedUrl = `${environment.baseApiUrl}/spell`;
+        const pageNumber = (expectedResponse.pageable as Record<string, unknown>).pageNumber;
 
-        if (pageNumber !== undefined) {
+        if (pageNumber !== 0) {
             expectedUrl += `?page=${pageNumber}`;
 
             TestBed.overrideProvider(ActivatedRoute, {
@@ -65,6 +67,7 @@ describe('DmaSpellsOverviewComponent', () => {
                 HttpClientTestingModule,
                 MatDialogModule,
                 NoopAnimationsModule,
+                ReactiveFormsModule,
                 RouterTestingModule.withRoutes(testRoutes),
             ],
             declarations: [DmaSpellsOverviewComponent, DmaSpellCardComponent],
@@ -78,6 +81,10 @@ describe('DmaSpellsOverviewComponent', () => {
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 2,
         });
 
         const spellCards = element.querySelectorAll('dma-spell-card');
@@ -90,6 +97,10 @@ describe('DmaSpellsOverviewComponent', () => {
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 2,
         });
 
         expect(element.querySelector('button.previous-btn').getAttribute('disabled')).toBe('');
@@ -100,34 +111,40 @@ describe('DmaSpellsOverviewComponent', () => {
             content: [mockSpell1, mockSpell2],
             first: false,
             last: true,
+            pageable: {
+                pageNumber: 1,
+            },
+            totalPages: 2,
         });
 
         expect(element.querySelector('button.next-btn').getAttribute('disabled')).toBe('');
     });
 
     it('should get the page number from the route', () => {
-        initialize(
-            {
-                content: [mockSpell1, mockSpell2],
-                first: false,
-                last: true,
+        initialize({
+            content: [mockSpell1, mockSpell2],
+            first: false,
+            last: true,
+            pageable: {
+                pageNumber: 1,
             },
-            2,
-        );
+            totalPages: 2,
+        });
 
         expect(element.querySelector('button.next-btn').getAttribute('disabled')).toBe('');
         expect(element.querySelector('button.previous-btn').getAttribute('disabled')).toBe(null);
     });
 
     it('should be able to request the previous page when not on the first page', () => {
-        initialize(
-            {
-                content: [mockSpell1, mockSpell2],
-                first: false,
-                last: true,
+        initialize({
+            content: [mockSpell1, mockSpell2],
+            first: false,
+            last: true,
+            pageable: {
+                pageNumber: 1,
             },
-            1,
-        );
+            totalPages: 2,
+        });
 
         const previousBtn = element.querySelector('button.previous-btn');
 
@@ -140,6 +157,10 @@ describe('DmaSpellsOverviewComponent', () => {
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 2,
         });
         fixture.detectChanges();
 
@@ -151,6 +172,10 @@ describe('DmaSpellsOverviewComponent', () => {
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 2,
         });
 
         const nextBtn = element.querySelector('button.next-btn');
@@ -164,9 +189,72 @@ describe('DmaSpellsOverviewComponent', () => {
             content: [mockSpell1, mockSpell2],
             first: false,
             last: true,
+            pageable: {
+                pageNumber: 1,
+            },
+            totalPages: 2,
         });
         fixture.detectChanges();
 
         expect(nextBtn.getAttribute('disabled')).toBe('');
+    });
+
+    it('should request a specific page when selecting one in the pagination select', () => {
+        initialize({
+            content: [mockSpell1, mockSpell2],
+            first: true,
+            last: false,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 2,
+        });
+
+        const paginationSelect = element.querySelector(`select[formControlName='pageNumber']`);
+        dispatchEvent(paginationSelect, new MouseEvent('click'));
+        fixture.detectChanges();
+
+        fixture.componentInstance.paginationForm.controls.pageNumber.setValue(1);
+        dispatchEvent(paginationSelect, new Event('change'));
+        fixture.detectChanges();
+
+        httpTestingController.expectOne(`${environment.baseApiUrl}/spell?page=1`).flush({
+            content: [mockSpell1, mockSpell2],
+            first: false,
+            last: true,
+            pageable: {
+                pageNumber: 1,
+            },
+            totalPages: 2,
+        });
+
+        fixture.detectChanges();
+
+        expect(element.querySelector('button.previous-btn').getAttribute('disabled')).toBe(null);
+        expect(element.querySelector('button.next-btn').getAttribute('disabled')).toBe('');
+    });
+
+    it('should not request a page when already on that page', () => {
+        initialize({
+            content: [mockSpell1, mockSpell2],
+            first: true,
+            last: false,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 2,
+        });
+
+        const paginationSelect = element.querySelector(`select[formControlName='pageNumber']`);
+        dispatchEvent(paginationSelect, new MouseEvent('click'));
+        fixture.detectChanges();
+
+        dispatchEvent(paginationSelect, new Event('change'));
+        fixture.detectChanges();
+
+        httpTestingController.expectNone(`${environment.baseApiUrl}/spell`);
+
+        expect(element.querySelector('button.previous-btn').getAttribute('disabled')).toBe('');
+        expect(element.querySelector('button.next-btn').getAttribute('disabled')).toBe(null);
     });
 });
