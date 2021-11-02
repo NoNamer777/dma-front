@@ -15,10 +15,9 @@ const localServer = http.createServer(function onRequest(request, response) {
 });
 
 const port = 4300;
-const hostname = '192.168.178.94';
 
-remoteServer.listen(port, hostname, function onServerCreated() {
-    console.log(`\nlistening to http://${hostname}:${port}`);
+remoteServer.listen(port, '0.0.0.0', function onServerCreated() {
+    console.log(`\nlistening to http://0.0.0.0:${port}`);
 });
 
 localServer.listen(port, 'localhost', function onServerCreated() {
