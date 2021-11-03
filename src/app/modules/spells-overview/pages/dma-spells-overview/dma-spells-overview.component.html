@@ -1,16 +1,48 @@
 <article>
-    <h2 class="text-primary">Spells</h2>
-    <hr />
+    <div class="d-flex justify-content-between border-bottom mb-3">
+        <h2 class="text-primary">Spells</h2>
+        <div class="d-none d-md-block">
+            <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
+        </div>
+    </div>
     <div
         id="spell-cards-container"
         class="d-flex flex-wrap justify-content-center"
         *ngIf="!waitingForResponse; else spinner"
     >
-        <dma-spell-card *ngFor="let spell of spellsService.spells" [spell]="spell"></dma-spell-card>
+        <dma-spell-card *ngFor="let spell of spellsService.spellsPage.content" [spell]="spell"></dma-spell-card>
     </div>
-    <ng-template #spinner>
-        <div class="d-flex justify-content-center mt-5">
-            <div class="spinner-border"></div>
-        </div>
-    </ng-template>
+    <div class="d-block d-md-none mx-1" *ngIf="!waitingForResponse">
+        <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
+    </div>
 </article>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border"></div>
+    </div>
+</ng-template>
+
+<ng-template #paginationButtons>
+    <form class="d-flex justify-content-between mb-2" [formGroup]="paginationForm">
+        <button
+            class="btn btn-primary previous-btn"
+            type="button"
+            [disabled]="isOnFirstPage ?? true"
+            (click)="onRequestPage(this.spellsService.pageNumber - 1)"
+        >
+            Previous
+        </button>
+        <select class="form-control mx-2" formControlName="pageNumber" (change)="onChangePageNumber()">
+            <option [ngValue]="page" [selected]="isSelected(page)" *ngFor="let page of pageNumbers">{{ page }}</option>
+        </select>
+        <button
+            class="btn btn-primary next-btn"
+            type="button"
+            [disabled]="isOnLastPage ?? true"
+            (click)="onRequestPage(this.spellsService.pageNumber + 1)"
+        >
+            Next
+        </button>
+    </form>
+</ng-template>

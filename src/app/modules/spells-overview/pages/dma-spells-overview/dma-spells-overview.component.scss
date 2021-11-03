@@ -6,4 +6,21 @@
             flex-direction: row;
         }
     }
+
+    select[formControlName='pageNumber'] {
+        width: 3em;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .next-btn,
+    .previous-btn {
+        width: 6em;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
 }
