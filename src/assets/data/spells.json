@@ -22,7 +22,7 @@
                 "id": "description-2",
                 "order": 1,
                 "title": null,
-                "text": "This spells's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+                "text": "This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
             }
         ]
     },
@@ -103,7 +103,7 @@
                 "id": "description-8",
                 "order": 0,
                 "title": null,
-                "text": "You assume a different form. When you cast the spell, choose one of the following options, the ffects of which last for the duration of the spell. While the spell lasts, you can end one option as an action to gain the benefits of a different one."
+                "text": "You assume a different form. When you cast the spell, choose one of the following options, the effects of which last for the duration of the spell. While the spell lasts, you can end one option as an action to gain the benefits of a different one."
             },
             {
                 "id": "description-9",
