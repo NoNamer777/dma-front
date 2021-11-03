@@ -20,13 +20,13 @@ describe('SerializeInterceptor', () => {
 
     it(`should remove '_' from object attributes in the request's body`, () => {
         httpClient
-            .post(`${environment.baseApiUrl}/rest-resource-location`, {
+            .post(`${environment.baseUrl}/rest-resource-location`, {
                 _key: 'my-value',
                 otherKey: true,
             })
             .subscribe();
 
-        const request = httpTestController.expectOne(`${environment.baseApiUrl}/rest-resource-location`);
+        const request = httpTestController.expectOne(`${environment.baseUrl}/rest-resource-location`);
         request.flush({});
 
         expect(request.request.body).toEqual({
@@ -37,7 +37,7 @@ describe('SerializeInterceptor', () => {
 
     it('should serialize deeply', () => {
         httpClient
-            .post(`${environment.baseApiUrl}/rest-resource-location`, {
+            .post(`${environment.baseUrl}/rest-resource-location`, {
                 parent: {
                     child: {
                         _key: 1,
@@ -46,7 +46,7 @@ describe('SerializeInterceptor', () => {
             })
             .subscribe();
 
-        const request = httpTestController.expectOne(`${environment.baseApiUrl}/rest-resource-location`);
+        const request = httpTestController.expectOne(`${environment.baseUrl}/rest-resource-location`);
         request.flush({});
 
         expect(request.request.body).toEqual({
@@ -60,7 +60,7 @@ describe('SerializeInterceptor', () => {
 
     it('should serialize array values', () => {
         httpClient
-            .post(`${environment.baseApiUrl}/rest-resource-location`, {
+            .post(`${environment.baseUrl}/rest-resource-location`, {
                 parent: [
                     {
                         child: {
@@ -75,7 +75,7 @@ describe('SerializeInterceptor', () => {
             })
             .subscribe();
 
-        const request = httpTestController.expectOne(`${environment.baseApiUrl}/rest-resource-location`);
+        const request = httpTestController.expectOne(`${environment.baseUrl}/rest-resource-location`);
         request.flush({});
 
         expect(request.request.body).toEqual({

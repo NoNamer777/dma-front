@@ -31,7 +31,7 @@ export class DmaSpellsService {
     }
 
     private buildRequestUrl(options: SpellRequestOptions): string {
-        let url = `${environment.baseApiUrl}/api/spell`;
+        let url = `${environment.baseUrl}/api/spell`;
 
         for (const option in options) {
             if (options[option] === null) continue;
