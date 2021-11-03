@@ -27,7 +27,7 @@ export class DmaSpellsService {
     getSpells(options: SpellRequestOptions = {}): Observable<Pageable<Spell>> {
         return this.apiService
             .getPageableResource<Spell>(this.buildRequestUrl(options), 'Spell')
-            .pipe(tap((spellsPage) => this.updateData(spellsPage)));
+            .pipe(tap((spellsPage) => (this.spellsPage = spellsPage)));
     }
 
     private buildRequestUrl(options: SpellRequestOptions): string {
@@ -45,9 +45,5 @@ export class DmaSpellsService {
         }
 
         return url;
-    }
-
-    private updateData(spellsPage: Pageable<Spell>): void {
-        this.spellsPage = spellsPage;
     }
 }

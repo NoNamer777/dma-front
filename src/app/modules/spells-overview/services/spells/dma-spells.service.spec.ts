@@ -62,4 +62,22 @@ describe('DmaSpellsService', () => {
             },
         });
     });
+
+    it('should not add request parameters when their value is null', () => {
+        spellsService.getSpells({ page: null }).subscribe();
+
+        const request = httpTestingController.expectOne(`${environment.baseUrl}/api/spell`);
+        request.flush({});
+
+        expect(request.request.url).toBe(`${environment.baseUrl}/api/spell`);
+    });
+
+    it('should add request parameters when their value is not null', () => {
+        spellsService.getSpells({ page: 1, name: 'awesome spell' }).subscribe();
+
+        const request = httpTestingController.expectOne(`${environment.baseUrl}/api/spell?page=1&name=awesome spell`);
+        request.flush({});
+
+        expect(request.request.url).toBe(`${environment.baseUrl}/api/spell?page=1&name=awesome spell`);
+    });
 });
