@@ -41,6 +41,14 @@ form.ng-invalid {
     }
 }
 
+button,
+select,
+input {
+    &:focus {
+        box-shadow: none !important;
+    }
+}
+
 .dma-dialog {
     max-width: 90% !important;
     width: 90%;
