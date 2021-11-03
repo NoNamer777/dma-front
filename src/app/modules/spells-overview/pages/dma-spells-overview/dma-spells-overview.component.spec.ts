@@ -32,7 +32,7 @@ describe('DmaSpellsOverviewComponent', () => {
     ];
 
     function initialize(expectedResponse: Record<string, unknown>): void {
-        let expectedUrl = `${environment.baseApiUrl}/spell`;
+        let expectedUrl = `${environment.baseApiUrl}/api/spell`;
         const pageNumber = (expectedResponse.pageable as Record<string, unknown>).pageNumber;
 
         if (pageNumber !== 0) {
@@ -153,7 +153,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(previousBtn, new MouseEvent('click'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseApiUrl}/spell`).flush({
+        httpTestingController.expectOne(`${environment.baseApiUrl}/api/spell?page=0`).flush({
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
@@ -185,7 +185,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(nextBtn, new MouseEvent('click'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseApiUrl}/spell?page=1`).flush({
+        httpTestingController.expectOne(`${environment.baseApiUrl}/api/spell?page=1`).flush({
             content: [mockSpell1, mockSpell2],
             first: false,
             last: true,
@@ -218,7 +218,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(paginationSelect, new Event('change'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseApiUrl}/spell?page=1`).flush({
+        httpTestingController.expectOne(`${environment.baseApiUrl}/api/spell?page=1`).flush({
             content: [mockSpell1, mockSpell2],
             first: false,
             last: true,
@@ -252,7 +252,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(paginationSelect, new Event('change'));
         fixture.detectChanges();
 
-        httpTestingController.expectNone(`${environment.baseApiUrl}/spell`);
+        httpTestingController.expectNone(`${environment.baseApiUrl}/api/spell`);
 
         expect(element.querySelector('button.previous-btn').getAttribute('disabled')).toBe('');
         expect(element.querySelector('button.next-btn').getAttribute('disabled')).toBe(null);

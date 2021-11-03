@@ -37,7 +37,7 @@ describe('DmaSpellsService', () => {
             next: () => expect(spellsService.spellsPage).toEqual(spellPageMock),
         });
 
-        httpTestingController.expectOne(`${environment.baseApiUrl}/spell`).flush({
+        httpTestingController.expectOne(`${environment.baseApiUrl}/api/spell`).flush({
             content: [
                 {
                     id: 'spell-1',
@@ -57,7 +57,7 @@ describe('DmaSpellsService', () => {
             next: (spellsPage) => expect(spellsPage.pageable.pageNumber).toBe(2),
         });
 
-        httpTestingController.expectOne(`${environment.baseApiUrl}/spell?page=2`).flush({
+        httpTestingController.expectOne(`${environment.baseApiUrl}/api/spell?page=2`).flush({
             content: [],
             pageable: {
                 pageNumber: 2,
