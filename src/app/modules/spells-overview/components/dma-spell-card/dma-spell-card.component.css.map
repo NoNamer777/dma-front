@@ -1,1 +1,1 @@
-{"version":3,"sources":["dma-spell-card.component.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;AACJ;AACI;EAHJ;IAIQ,kBAAA;EAEN;EAAM;IACI,YAAA;IACA,aAAA;EAEV;AACF","file":"dma-spell-card.component.css"}
+{"version":3,"sourceRoot":"","sources":["dma-spell-card.component.scss"],"names":[],"mappings":"AAAA;EACI;EACA;;AAEA;EAJJ;IAKQ;;EAEA;IACI;IACA","file":"dma-spell-card.component.css"}

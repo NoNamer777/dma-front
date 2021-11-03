@@ -1,11 +1,13 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
 }
 :host dma-header {
-    flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 :host dma-center {
-    flex: 1 1 auto;
-} /*# sourceMappingURL=app.component.css.map */
+  flex: 1 1 auto;
+}
+
+/*# sourceMappingURL=app.component.css.map */
