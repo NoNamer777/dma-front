@@ -10,8 +10,8 @@ const icons: IconDefinition[] = [faBars, faTimes, faBook];
     exports: [FontAwesomeModule],
 })
 export class DmaFaIconsModule {
-    constructor(faLibrary: FaIconLibrary, faConfing: FaConfig) {
+    constructor(faLibrary: FaIconLibrary, faConfig: FaConfig) {
         faLibrary.addIcons(...icons);
-        faConfing.fixedWidth = true;
+        faConfig.fixedWidth = true;
     }
 }
