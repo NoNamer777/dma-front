@@ -51,9 +51,7 @@ describe('DmaSpellsService', () => {
     });
 
     it('should return a specific page of Spells', () => {
-        spellsService.pageNumber = 2;
-
-        spellsService.getSpells().subscribe({
+        spellsService.getSpells({ page: 2 }).subscribe({
             next: (spellsPage) => expect(spellsPage.pageable.pageNumber).toBe(2),
         });
 

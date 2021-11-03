@@ -6,13 +6,17 @@ import { environment } from '../../../../../environments/environment';
 import { Pageable } from '@dma-shared/models/pageable.model';
 import { Spell } from '@dma-shared/models/entities';
 
+export interface SpellRequestOptions {
+    name?: string;
+    page?: number;
+
+    [option: string]: unknown;
+}
+
 @Injectable({ providedIn: 'root' })
 export class DmaSpellsService {
     /** The current page with Spells. */
     spellsPage: Pageable<Spell>;
-
-    /** The current page number. */
-    pageNumber = 0;
 
     constructor(private apiService: DmaApiService) {}
 
@@ -20,20 +24,30 @@ export class DmaSpellsService {
      * Sends a GET request to get a page of Spells.
      * Optionally requests a specific page of Spells.
      */
-    getSpells(): Observable<Pageable<Spell>> {
-        if (this.pageNumber === 0) {
-            return this.apiService
-                .getPageableResource<Spell>(`${environment.baseApiUrl}/spell`, 'Spell')
-                .pipe(tap((spellsPage) => this.updateData(spellsPage)));
+    getSpells(options: SpellRequestOptions = {}): Observable<Pageable<Spell>> {
+        return this.apiService
+            .getPageableResource<Spell>(this.buildRequestUrl(options), 'Spell')
+            .pipe(tap((spellsPage) => this.updateData(spellsPage)));
+    }
+
+    private buildRequestUrl(options: SpellRequestOptions): string {
+        let url = `${environment.baseApiUrl}/api/spell`;
+
+        for (const option in options) {
+            if (options[option] === null) continue;
+            if (!url.includes('?')) {
+                url += '?';
+            }
+            if (!url.endsWith('?')) {
+                url += '&';
+            }
+            url += `${option}=${options[option]}`;
         }
 
-        return this.apiService
-            .getPageableResource<Spell>(`${environment.baseApiUrl}/spell?page=${this.pageNumber}`, 'Spell')
-            .pipe(tap((spellsPage) => this.updateData(spellsPage)));
+        return url;
     }
 
     private updateData(spellsPage: Pageable<Spell>): void {
         this.spellsPage = spellsPage;
-        this.pageNumber = spellsPage.pageable.pageNumber;
     }
 }

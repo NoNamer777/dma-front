@@ -24,23 +24,23 @@
 </ng-template>
 
 <ng-template #paginationButtons>
-    <form class="d-flex justify-content-between mb-2" [formGroup]="paginationForm">
+    <form class="d-flex justify-content-between mb-2" [formGroup]="spellQueryForm">
         <button
             class="btn btn-primary previous-btn"
             type="button"
             [disabled]="isOnFirstPage ?? true"
-            (click)="onRequestPage(this.spellsService.pageNumber - 1)"
+            (click)="onRequestPage(spellQueryForm.value.page - 1)"
         >
             Previous
         </button>
-        <select class="form-control mx-2" formControlName="pageNumber" (change)="onChangePageNumber()">
-            <option [ngValue]="page" [selected]="isSelected(page)" *ngFor="let page of pageNumbers">{{ page }}</option>
+        <select class="form-control mx-2" formControlName="page" (change)="onChangePageNumber()">
+            <option [ngValue]="page" *ngFor="let page of pageNumbers">{{ page }}</option>
         </select>
         <button
             class="btn btn-primary next-btn"
             type="button"
             [disabled]="isOnLastPage ?? true"
-            (click)="onRequestPage(this.spellsService.pageNumber + 1)"
+            (click)="onRequestPage((spellQueryForm.value.page ?? 0) + 1)"
         >
             Next
         </button>
