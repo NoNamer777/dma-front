@@ -30,7 +30,7 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
     pageNumbers: number[] = [];
 
     /** Reference to the error snackbar */
-    snackbarRef: MatSnackBarRef<TextOnlySnackBar>;
+    private snackbarRef: MatSnackBarRef<TextOnlySnackBar>;
 
     private destroyed$ = new Subject<void>();
 
@@ -69,7 +69,11 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
 
     /** When to be able to reset the query form. */
     get shouldEnableUndo(): boolean {
-        return JSON.stringify(this.route.snapshot.queryParams) === '{}';
+        for (const option in this.spellQueryForm.value as SpellRequestOptions) {
+            if (this.spellQueryForm.value[option] !== null) return true;
+        }
+
+        return false;
     }
 
     /** Whether to be able to send a query. */
@@ -126,15 +130,15 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
         this.requestSpells();
     }
 
-    /** Sends a GET request to get the Spells. */
+    /** Sends a GET request to fetch the Spells. */
     private requestSpells(options?: SpellRequestOptions): void {
         this.waitingForResponse = true;
-        this.spellQueryForm.controls.page.disable({ onlySelf: true });
+        this.spellQueryForm.disable();
 
         this.spellsService.getSpells(options).subscribe({
             next: () => {
                 this.waitingForResponse = false;
-                this.spellQueryForm.controls.page.enable({ onlySelf: true });
+                this.spellQueryForm.enable();
                 this.spellQueryForm.controls.page.patchValue(this.spellsService.spellsPage.pageable.pageNumber, {
                     onlySelf: true,
                 });
@@ -165,8 +169,6 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
      * @private
      */
     private getDataFromRoute(): void {
-        if (this.shouldEnableUndo) return;
-
         if (this.route.snapshot.queryParams.page !== undefined) {
             this.spellQueryForm.controls.page.patchValue(parseInt(this.route.snapshot.queryParams.page, 10));
         }
@@ -196,7 +198,10 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
             .afterDismissed()
             .pipe(takeUntil(this.destroyed$), take(1))
             .subscribe({
-                next: () => (this.snackbarRef = null),
+                next: () => {
+                    this.snackbarRef = null;
+                    this.spellQueryForm.controls.page.enable();
+                },
             });
         this.snackbarRef.dismiss();
     }
@@ -216,6 +221,7 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
         }
         if (!this.spellQueryForm.controls.name.hasError('pattern')) return;
 
+        this.spellQueryForm.controls.page.disable();
         this.snackbarRef = this.snackbar.open(INVALID_QUERY_INPUT_EXCEPTION, 'Dismiss', {
             panelClass: ['bg-danger', 'text-light', 'fw-bold'],
             horizontalPosition: 'start',

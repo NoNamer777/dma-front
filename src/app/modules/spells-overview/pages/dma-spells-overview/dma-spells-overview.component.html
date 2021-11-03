@@ -13,15 +13,17 @@
                 <div class="btn-group ms-2" role="group">
                     <button
                         class="btn btn-warning"
+                        id="reset-btn"
                         type="button"
                         [class.btn-sm]="shouldBeSm(topPaginationContainer)"
-                        [disabled]="shouldEnableUndo"
+                        [disabled]="!shouldEnableUndo"
                         (click)="onResetQueryForm()"
                     >
                         <fa-icon icon="undo"></fa-icon>
                     </button>
                     <button
                         class="btn btn-success"
+                        id="submit-query-btn"
                         type="submit"
                         [class.btn-sm]="shouldBeSm(topPaginationContainer)"
                         [disabled]="shouldEnableSubmitQuery"
@@ -58,7 +60,7 @@
         <button
             class="btn btn-primary previous-btn"
             type="button"
-            [disabled]="isOnFirstPage ?? true"
+            [disabled]="isOnFirstPage ?? true || spellQueryForm.invalid"
             (click)="onRequestPage(spellQueryForm.value.page - 1)"
         >
             Previous
@@ -69,7 +71,7 @@
         <button
             class="btn btn-primary next-btn"
             type="button"
-            [disabled]="isOnLastPage ?? true"
+            [disabled]="isOnLastPage ?? true || spellQueryForm.invalid"
             (click)="onRequestPage((spellQueryForm.value.page ?? 0) + 1)"
         >
             Next
