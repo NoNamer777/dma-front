@@ -1,10 +1,14 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { DmaSpellsService } from '@dma-spells-overview';
-import { Pageable, Spell } from '@dma-shared/models';
-import { FormControl, FormGroup } from '@angular/forms';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, take, takeUntil } from 'rxjs';
+
+import { DmaSpellsService, SpellRequestOptions } from '@dma-spells-overview';
+import { Pageable, Spell } from '@dma-shared/models';
+
+const INVALID_QUERY_INPUT_EXCEPTION = `You can only use letters (UPPER- and lowercase), and the following symbols: ' /`;
 
 @Component({
     selector: 'dma-spells-overview',
@@ -12,29 +16,45 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
     styleUrls: ['./dma-spells-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DmaSpellsOverviewComponent implements OnInit {
+export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
     /** Whether the page is currently waiting for a response. */
     waitingForResponse = false;
 
     /** Form for filtering Spells to fetch. */
     spellQueryForm = new FormGroup({
         page: new FormControl(),
+        name: new FormControl(null, Validators.pattern(/^[A-Za-z\/' ]+$/)),
     });
 
     /** A list of the number of pages. */
     pageNumbers: number[] = [];
+
+    /** Reference to the error snackbar */
+    snackbarRef: MatSnackBarRef<TextOnlySnackBar>;
+
+    private destroyed$ = new Subject<void>();
 
     constructor(
         public spellsService: DmaSpellsService,
         private changeDetectorRef: ChangeDetectorRef,
         private router: Router,
         private route: ActivatedRoute,
+        private snackbar: MatSnackBar,
     ) {}
 
     ngOnInit(): void {
         this.getDataFromRoute();
 
         this.requestSpells(this.spellQueryForm.value);
+
+        this.spellQueryForm.controls.name.valueChanges.pipe(takeUntil(this.destroyed$)).subscribe({
+            next: () => this.checkQueryInputForErrors(),
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.destroyed$.next();
+        this.destroyed$.complete();
     }
 
     /** If the pagination is showing the first page. */
@@ -50,6 +70,20 @@ export class DmaSpellsOverviewComponent implements OnInit {
     /** When to be able to reset the query form. */
     get shouldEnableUndo(): boolean {
         return JSON.stringify(this.route.snapshot.queryParams) === '{}';
+    }
+
+    /** Whether to be able to send a query. */
+    get shouldEnableSubmitQuery(): boolean {
+        return (
+            this.spellQueryForm.value.name === '' ||
+            this.spellQueryForm.value.name === null ||
+            this.spellQueryForm.controls.name.hasError('pattern')
+        );
+    }
+
+    /** When to make the elements smaller. */
+    shouldBeSm(topPaginationContainer: HTMLDivElement): boolean {
+        return getComputedStyle(topPaginationContainer).display === 'none';
     }
 
     /**
@@ -74,6 +108,14 @@ export class DmaSpellsOverviewComponent implements OnInit {
             return;
 
         this.onRequestPage(pageNumberValue);
+    }
+
+    /** Sends a request to find Spells that include the provided characters in the name of the Spell. */
+    onRequestSpellsByName(): void {
+        this.spellQueryForm.controls.page.patchValue(0);
+        this.router.navigate([], { queryParams: { name: this.spellQueryForm.value.name } });
+
+        this.requestSpells({ name: this.spellQueryForm.value.name });
     }
 
     /** Resets the query form. */
@@ -128,6 +170,9 @@ export class DmaSpellsOverviewComponent implements OnInit {
         if (this.route.snapshot.queryParams.page !== undefined) {
             this.spellQueryForm.controls.page.patchValue(parseInt(this.route.snapshot.queryParams.page, 10));
         }
+        if (this.route.snapshot.queryParams.name !== undefined) {
+            this.spellQueryForm.controls.name.patchValue(this.route.snapshot.queryParams.name);
+        }
     }
 
     /**
@@ -143,20 +188,38 @@ export class DmaSpellsOverviewComponent implements OnInit {
     }
 
     /**
-     * Gets the page number from the current route.
+     * Dismisses the snackbar and resets the reference.
      * @private
      */
-    private getPageNumberFromRoute(): void {
-        if (this.route.snapshot.queryParams.page === undefined) return;
-
-        this.spellsService.pageNumber = parseInt(this.route.snapshot.queryParams.page, 10);
+    private dismissSnackbar(): void {
+        this.snackbarRef
+            .afterDismissed()
+            .pipe(takeUntil(this.destroyed$), take(1))
+            .subscribe({
+                next: () => (this.snackbarRef = null),
+            });
+        this.snackbarRef.dismiss();
     }
 
-    private resetListOfPageNumbers(): void {
-        this.pageNumbers = [];
+    /**
+     * Opens a snackbar containing a error message when a User inputs an incorrect character
+     * into the Spell name query input.
+     * @private
+     */
+    private checkQueryInputForErrors(): void {
+        if (this.snackbarRef !== null && this.snackbarRef !== undefined) {
+            if (this.spellQueryForm.controls.name.valid) {
+                this.dismissSnackbar();
+            }
 
-        for (let page = 0; page < this.spellsService.spellsPage.totalPages; page++) {
-            this.pageNumbers.push(page);
+            return;
         }
+        if (!this.spellQueryForm.controls.name.hasError('pattern')) return;
+
+        this.snackbarRef = this.snackbar.open(INVALID_QUERY_INPUT_EXCEPTION, 'Dismiss', {
+            panelClass: ['bg-danger', 'text-light', 'fw-bold'],
+            horizontalPosition: 'start',
+            verticalPosition: 'bottom',
+        });
     }
 }

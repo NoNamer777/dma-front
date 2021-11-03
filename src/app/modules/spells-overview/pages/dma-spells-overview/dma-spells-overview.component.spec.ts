@@ -2,9 +2,11 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, Route } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 import { environment } from '../../../../../environments/environment';
 import { dispatchEvent } from '../../../../../../testing/fake-events';
@@ -12,7 +14,7 @@ import { DmaSpellsOverviewComponent } from './dma-spells-overview.component';
 import { DmaSpellCardComponent } from '@dma-spells-overview/components/dma-spell-card/dma-spell-card.component';
 import { Spell } from '@dma-shared/models';
 
-describe('DmaSpellsOverviewComponent', () => {
+fdescribe('DmaSpellsOverviewComponent', () => {
     let fixture: ComponentFixture<DmaSpellsOverviewComponent>;
     let element: HTMLElement;
 
@@ -65,7 +67,9 @@ describe('DmaSpellsOverviewComponent', () => {
         await TestBed.configureTestingModule({
             imports: [
                 HttpClientTestingModule,
+                FontAwesomeTestingModule,
                 MatDialogModule,
+                MatSnackBarModule,
                 NoopAnimationsModule,
                 ReactiveFormsModule,
                 RouterTestingModule.withRoutes(testRoutes),
@@ -210,11 +214,11 @@ describe('DmaSpellsOverviewComponent', () => {
             totalPages: 2,
         });
 
-        const paginationSelect = element.querySelector(`select[formControlName='pageNumber']`);
+        const paginationSelect = element.querySelector(`select[formControlName='page']`);
         dispatchEvent(paginationSelect, new MouseEvent('click'));
         fixture.detectChanges();
 
-        fixture.componentInstance.paginationForm.controls.pageNumber.setValue(1);
+        fixture.componentInstance.spellQueryForm.controls.page.setValue(1);
         dispatchEvent(paginationSelect, new Event('change'));
         fixture.detectChanges();
 
@@ -245,7 +249,7 @@ describe('DmaSpellsOverviewComponent', () => {
             totalPages: 2,
         });
 
-        const paginationSelect = element.querySelector(`select[formControlName='pageNumber']`);
+        const paginationSelect = element.querySelector(`select[formControlName='page']`);
         dispatchEvent(paginationSelect, new MouseEvent('click'));
         fixture.detectChanges();
 
