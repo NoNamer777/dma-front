@@ -1,16 +1,81 @@
 <article>
-    <h2 class="text-primary">Spells</h2>
-    <hr />
+    <div class="d-flex justify-content-between border-bottom mb-3">
+        <h2 class="text-primary">Spells</h2>
+        <div class="d-flex">
+            <form class="d-flex mb-2" [formGroup]="spellQueryForm" (ngSubmit)="onRequestSpellsByName()">
+                <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="Find a spell by name..."
+                    [class.form-control-sm]="shouldBeSm(topPaginationContainer)"
+                />
+                <div class="btn-group ms-2" role="group">
+                    <button
+                        class="btn btn-warning"
+                        id="reset-btn"
+                        type="button"
+                        [class.btn-sm]="shouldBeSm(topPaginationContainer)"
+                        [disabled]="!shouldEnableUndo"
+                        (click)="onResetQueryForm()"
+                    >
+                        <fa-icon icon="undo"></fa-icon>
+                    </button>
+                    <button
+                        class="btn btn-success"
+                        id="submit-query-btn"
+                        type="submit"
+                        [class.btn-sm]="shouldBeSm(topPaginationContainer)"
+                        [disabled]="!shouldEnableSubmitQuery"
+                    >
+                        <fa-icon icon="search"></fa-icon>
+                    </button>
+                </div>
+            </form>
+            <div class="d-none d-md-block ms-3" #topPaginationContainer>
+                <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
+            </div>
+        </div>
+    </div>
     <div
         id="spell-cards-container"
         class="d-flex flex-wrap justify-content-center"
         *ngIf="!waitingForResponse; else spinner"
     >
-        <dma-spell-card *ngFor="let spell of spellsService.spells" [spell]="spell"></dma-spell-card>
+        <dma-spell-card *ngFor="let spell of spellsService.spellsPage.content" [spell]="spell"></dma-spell-card>
     </div>
-    <ng-template #spinner>
-        <div class="d-flex justify-content-center mt-5">
-            <div class="spinner-border"></div>
-        </div>
-    </ng-template>
+    <dma-no-results *ngIf="!hasResults"></dma-no-results>
+    <div class="d-block d-md-none mx-1" *ngIf="!waitingForResponse && hasResults">
+        <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
+    </div>
 </article>
+
+<ng-template #spinner>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border"></div>
+    </div>
+</ng-template>
+
+<ng-template #paginationButtons>
+    <form class="d-flex justify-content-between mb-2" [formGroup]="spellQueryForm">
+        <button
+            class="btn btn-primary previous-btn"
+            type="button"
+            [disabled]="(isOnFirstPage ?? true) || spellQueryForm.invalid"
+            (click)="onRequestPage(spellQueryForm.value.page - 1)"
+        >
+            Previous
+        </button>
+        <select class="form-control mx-2" formControlName="page" (change)="onChangePageNumber()">
+            <option [ngValue]="page" *ngFor="let page of pageNumbers">{{ page }}</option>
+        </select>
+        <button
+            class="btn btn-primary next-btn"
+            type="button"
+            [disabled]="(isOnLastPage ?? true) || spellQueryForm.invalid"
+            (click)="onRequestPage((spellQueryForm.value.page ?? 0) + 1)"
+        >
+            Next
+        </button>
+    </form>
+</ng-template>

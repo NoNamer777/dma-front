@@ -19,8 +19,12 @@
         "lib": ["es2018", "dom"],
         "module": "es2020",
         "moduleResolution": "node",
+        "noImplicitAny": true,
         "noImplicitReturns": true,
+        "noImplicitThis": true,
         "noFallthroughCasesInSwitch": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
         "outDir": "./dist/out-tsc",
         "paths": {
             "@dma-core": ["src/app/modules/core"],
@@ -33,7 +37,9 @@
         "resolveJsonModule": true,
         "sourceMap": true,
         "strict": true,
+        "strictBindCallApply": true,
         "strictNullChecks": false,
+        "strictFunctionTypes": true,
         "target": "es2017"
     }
 }

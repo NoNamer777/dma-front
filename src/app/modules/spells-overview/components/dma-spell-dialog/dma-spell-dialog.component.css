@@ -1,1 +1,5 @@
-/*# sourceMappingURL=dma-spell-dialog.component.css.map */ /*# sourceMappingURL=dma-spell-dialog.component.css.map */
+:host h4[mat-dialog-title] {
+    margin: 0;
+}
+
+/*# sourceMappingURL=dma-spell-dialog.component.css.map */

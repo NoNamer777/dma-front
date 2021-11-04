@@ -1,4 +1,4 @@
-const finalHandler = require('finalHandler');
+const finalhandler = require('finalhandler');
 const serveStatic = require('serve-static');
 const http = require('http');
 
@@ -6,13 +6,20 @@ const serve = serveStatic('coverage/dma-front', {
     index: ['index.html', 'index.htm'],
 });
 
-const server = http.createServer(function onRequest(request, response) {
-    serve(request, response, finalHandler(request, response));
+const remoteServer = http.createServer(function onRequest(request, response) {
+    serve(request, response, finalhandler(request, response));
 });
 
-const port = 4200;
-const hostname = '192.168.178.94';
+const localServer = http.createServer(function onRequest(request, response) {
+    serve(request, response, finalhandler(request, response));
+});
 
-server.listen(port, hostname, function onServerCreated() {
-    console.log(`listening to http://${hostname}:${port}\n`);
+const port = 4300;
+
+remoteServer.listen(port, '0.0.0.0', function onServerCreated() {
+    console.log(`\nlistening to http://0.0.0.0:${port}`);
+});
+
+localServer.listen(port, 'localhost', function onServerCreated() {
+    console.log(`listening to http://localhost:${port}\n`);
 });

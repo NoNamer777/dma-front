@@ -4,6 +4,5 @@
     "quoteProps": "consistent",
     "trailingComma": "all",
     "tabWidth": 4,
-    "bracketSpacing": true,
-    "jsxBracketSameLine": false
+    "bracketSpacing": true
 }

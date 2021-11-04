@@ -736,26 +736,17 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     height: 0 !important;
 }
 
-@-webkit-keyframes cdk-text-field-autofill-start {
-    /*!*/
-}
-
 @keyframes cdk-text-field-autofill-start {
-    /*!*/
-}
-@-webkit-keyframes cdk-text-field-autofill-end {
     /*!*/
 }
 @keyframes cdk-text-field-autofill-end {
     /*!*/
 }
 .cdk-text-field-autofill-monitored:-webkit-autofill {
-    -webkit-animation: cdk-text-field-autofill-start 0s 1ms;
     animation: cdk-text-field-autofill-start 0s 1ms;
 }
 
 .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
-    -webkit-animation: cdk-text-field-autofill-end 0s 1ms;
     animation: cdk-text-field-autofill-end 0s 1ms;
 }
 
@@ -2043,12 +2034,6 @@ td.mat-footer-cell {
 .mat-input-element {
     caret-color: #1976d2;
 }
-.mat-input-element::-moz-placeholder {
-    color: rgba(0, 0, 0, 0.42);
-}
-.mat-input-element:-ms-input-placeholder {
-    color: rgba(0, 0, 0, 0.42);
-}
 .mat-input-element::placeholder {
     color: rgba(0, 0, 0, 0.42);
 }
@@ -2950,15 +2935,29 @@ body {
 }
 
 input.ng-invalid.ng-touched {
-    border-right: red 0.5rem solid;
+    border-right: 0.5rem solid #dc3545;
 }
 
 form.ng-invalid input.ng-touched:not(.ng-valid) {
-    border-right: red 0.5rem solid;
+    border-right: 0.5rem solid #dc3545;
+}
+
+button:focus,
+select:focus,
+input:focus {
+    box-shadow: none !important;
 }
 
 .dma-dialog {
     max-width: 90% !important;
     width: 90%;
     height: 85%;
-} /*# sourceMappingURL=styles.css.map */
+}
+@media (min-width: 768px) {
+    .dma-dialog {
+        width: 60%;
+        height: 75%;
+    }
+}
+
+/*# sourceMappingURL=styles.css.map */

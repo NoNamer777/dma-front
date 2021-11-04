@@ -5,4 +5,13 @@
     :host #spell-cards-container {
         flex-direction: row;
     }
-} /*# sourceMappingURL=dma-spells-overview.component.css.map */
+}
+:host select[formControlName='page'] {
+    width: 3em;
+}
+:host .next-btn,
+:host .previous-btn {
+    width: 6em;
+}
+
+/*# sourceMappingURL=dma-spells-overview.component.css.map */

@@ -6,4 +6,13 @@
             flex-direction: row;
         }
     }
+
+    select[formControlName='page'] {
+        width: 3em;
+    }
+
+    .next-btn,
+    .previous-btn {
+        width: 6em;
+    }
 }
