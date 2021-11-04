@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    baseUrl: '',
+    baseServerUrl: '',
 };
 // import 'zone.js/plugins/zone-error';

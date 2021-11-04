@@ -209,13 +209,13 @@ describe('DmaApiService', () => {
         expectedSpell.addDescription(description1);
         expectedSpell.addDescription(description2);
 
-        apiService.getResource<Spell>(`${environment.baseUrl}/api/spell/spell-2`, 'Spell').subscribe({
+        apiService.getResource<Spell>(`${environment.baseServerUrl}/api/spell/spell-2`, 'Spell').subscribe({
             next: (response) => {
                 expect(response).toEqual(expectedSpell);
             },
         });
 
-        httpTestingController.expectOne(`${environment.baseUrl}/api/spell/spell-2`).flush({
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell/spell-2`).flush({
             id: 'spell-2',
             name: 'Aid',
             level: 2,

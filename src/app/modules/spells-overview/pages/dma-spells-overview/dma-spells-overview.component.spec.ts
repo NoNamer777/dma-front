@@ -38,7 +38,7 @@ describe('DmaSpellsOverviewComponent', () => {
     ];
 
     function initialize(expectedResponse: Record<string, unknown>, filterOptions: SpellRequestOptions = {}): void {
-        let expectedUrl = `${environment.baseUrl}/api/spell`;
+        let expectedUrl = `${environment.baseServerUrl}/api/spell`;
 
         if (JSON.stringify(filterOptions) !== '{}') {
             expectedUrl += '?';
@@ -196,7 +196,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(previousBtn, new MouseEvent('click'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseUrl}/api/spell?page=0`).flush({
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell?page=0`).flush({
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
@@ -228,7 +228,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(nextBtn, new MouseEvent('click'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseUrl}/api/spell?page=1`).flush({
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell?page=1`).flush({
             content: [mockSpell1, mockSpell2],
             first: false,
             last: true,
@@ -261,7 +261,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(paginationSelect, new Event('change'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseUrl}/api/spell?page=1`).flush({
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell?page=1`).flush({
             content: [mockSpell1, mockSpell2],
             first: false,
             last: true,
@@ -295,7 +295,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(paginationSelect, new Event('change'));
         fixture.detectChanges();
 
-        httpTestingController.expectNone(`${environment.baseUrl}/api/spell`);
+        httpTestingController.expectNone(`${environment.baseServerUrl}/api/spell`);
 
         expect(element.querySelector('button.previous-btn').getAttribute('disabled')).toBe('');
         expect(element.querySelector('button.next-btn').getAttribute('disabled')).toBe(null);
@@ -324,7 +324,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(resetFormButton, new MouseEvent('click'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseUrl}/api/spell`).flush({
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell`).flush({
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
@@ -432,7 +432,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(submitBtn, new MouseEvent('click'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseUrl}/api/spell?name=awesome`).flush({
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell?name=awesome`).flush({
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
@@ -489,7 +489,7 @@ describe('DmaSpellsOverviewComponent', () => {
 
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseUrl}/api/spell`).flush(
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell`).flush(
             new HttpErrorResponse({
                 error: new Error('An unknown error has occurred.'),
                 status: 0,
