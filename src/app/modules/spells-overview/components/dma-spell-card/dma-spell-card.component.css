@@ -1,15 +1,15 @@
 :host {
-  margin-bottom: 1rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 @media (min-width: 768px) {
-  :host {
-    margin-right: 1rem;
-  }
-  :host .card {
-    width: 20rem;
-    height: 12rem;
-  }
+    :host {
+        margin-right: 1rem;
+    }
+    :host .card {
+        width: 20rem;
+        height: 12rem;
+    }
 }
 
 /*# sourceMappingURL=dma-spell-card.component.css.map */

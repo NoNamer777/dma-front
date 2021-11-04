@@ -9,7 +9,7 @@
                     formControlName="name"
                     placeholder="Find a spell by name..."
                     [class.form-control-sm]="shouldBeSm(topPaginationContainer)"
-                >
+                />
                 <div class="btn-group ms-2" role="group">
                     <button
                         class="btn btn-warning"
@@ -61,7 +61,7 @@
         <button
             class="btn btn-primary previous-btn"
             type="button"
-            [disabled]="isOnFirstPage ?? true || spellQueryForm.invalid"
+            [disabled]="(isOnFirstPage ?? true) || spellQueryForm.invalid"
             (click)="onRequestPage(spellQueryForm.value.page - 1)"
         >
             Previous
@@ -72,7 +72,7 @@
         <button
             class="btn btn-primary next-btn"
             type="button"
-            [disabled]="isOnLastPage ?? true || spellQueryForm.invalid"
+            [disabled]="(isOnLastPage ?? true) || spellQueryForm.invalid"
             (click)="onRequestPage((spellQueryForm.value.page ?? 0) + 1)"
         >
             Next
