@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
 
 @Component({
     selector: 'dma-home',
@@ -6,4 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./dma-home.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DmaHomeComponent {}
+export class DmaHomeComponent {
+    constructor(titleService: DmaTitleService) {
+        titleService.pageTitle = ' - Home';
+    }
+}

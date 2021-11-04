@@ -7,6 +7,7 @@ import { Subject, take, takeUntil } from 'rxjs';
 
 import { DmaSpellsService, SpellRequestOptions } from '@dma-spells-overview';
 import { Pageable, Spell } from '@dma-shared/models';
+import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
 
 const INVALID_QUERY_INPUT_EXCEPTION = `You can only use letters (UPPER- and lowercase), and the following symbols: ' /`;
 
@@ -40,7 +41,10 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
         private router: Router,
         private route: ActivatedRoute,
         private snackbar: MatSnackBar,
-    ) {}
+        titleService: DmaTitleService,
+    ) {
+        titleService.pageTitle = ' - Spells';
+    }
 
     ngOnInit(): void {
         this.getDataFromRoute();

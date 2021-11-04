@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
 
 export const DIRECTED_MESSAGE = 'a bit lost.';
 export const REDIRECTED_MESSAGE = 'trying to visit a part of the website that does not exist.';
@@ -19,7 +20,9 @@ export class DmaNotFoundComponent implements OnDestroy {
     }
     private _url = '';
 
-    constructor(private router: Router) {
+    constructor(private router: Router, titleService: DmaTitleService) {
+        titleService.pageTitle = ' - Not Found';
+
         this.router.events
             .pipe(takeUntil(this.destroyed$))
             .subscribe((routingEvent) => this.getNavigatedURL(routingEvent));

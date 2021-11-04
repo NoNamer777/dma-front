@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    baseUrl: 'http://localhost:8080',
+    baseServerUrl: 'http://localhost:8080',
+    baseTitle: 'DnD Mapp',
 };

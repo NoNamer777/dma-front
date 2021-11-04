@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
-    baseUrl: '',
+    baseServerUrl: '',
+    baseTitle: 'DnD Mapp',
 };
 // import 'zone.js/plugins/zone-error';
