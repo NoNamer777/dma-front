@@ -15,9 +15,6 @@ describe('DmaSpellsService', () => {
     spellMock.name = 'My Awesome Spell';
     const spellPageMock = {
         content: [spellMock],
-        pageable: {
-            pageNumber: 0,
-        },
     } as Pageable<Spell>;
 
     afterEach(() => httpTestingController.verify());
@@ -44,9 +41,6 @@ describe('DmaSpellsService', () => {
                     name: 'My Awesome Spell',
                 },
             ],
-            pageable: {
-                pageNumber: 0,
-            },
         });
     });
 
@@ -67,7 +61,7 @@ describe('DmaSpellsService', () => {
         spellsService.getSpells({ page: null }).subscribe();
 
         const request = httpTestingController.expectOne(`${environment.baseUrl}/api/spell`);
-        request.flush({});
+        request.flush({ content: [] });
 
         expect(request.request.url).toBe(`${environment.baseUrl}/api/spell`);
     });
@@ -76,7 +70,7 @@ describe('DmaSpellsService', () => {
         spellsService.getSpells({ page: 1, name: 'awesome spell' }).subscribe();
 
         const request = httpTestingController.expectOne(`${environment.baseUrl}/api/spell?page=1&name=awesome spell`);
-        request.flush({});
+        request.flush({ content: [] });
 
         expect(request.request.url).toBe(`${environment.baseUrl}/api/spell?page=1&name=awesome spell`);
     });
