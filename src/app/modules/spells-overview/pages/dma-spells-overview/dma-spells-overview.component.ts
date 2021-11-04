@@ -78,11 +78,17 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
 
     /** Whether to be able to send a query. */
     get shouldEnableSubmitQuery(): boolean {
+        const nameInputValue = this.spellQueryForm.value.name;
         return (
-            this.spellQueryForm.value.name === '' ||
-            this.spellQueryForm.value.name === null ||
-            this.spellQueryForm.controls.name.hasError('pattern')
+            nameInputValue !== '' &&
+            nameInputValue !== null &&
+            !this.spellQueryForm.controls.name.hasError('pattern') &&
+            nameInputValue !== this.route.snapshot.queryParams.name
         );
+    }
+
+    get hasResults(): boolean {
+        return this.spellsService.spellsPage?.content.length !== 0;
     }
 
     /** When to make the elements smaller. */

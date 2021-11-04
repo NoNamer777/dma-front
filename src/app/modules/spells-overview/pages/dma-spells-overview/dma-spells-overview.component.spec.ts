@@ -13,8 +13,10 @@ import { environment } from '../../../../../environments/environment';
 import { dispatchEvent } from '../../../../../../testing/fake-events';
 import { DmaSpellsOverviewComponent } from './dma-spells-overview.component';
 import { DmaSpellCardComponent } from '@dma-spells-overview/components/dma-spell-card/dma-spell-card.component';
+import { DmaNoResultsComponent } from '@dma-shared/components/no-results/dma-no-results.component';
 import { SpellRequestOptions } from '@dma-spells-overview';
 import { Spell } from '@dma-shared/models';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('DmaSpellsOverviewComponent', () => {
     let fixture: ComponentFixture<DmaSpellsOverviewComponent>;
@@ -91,7 +93,7 @@ describe('DmaSpellsOverviewComponent', () => {
                 ReactiveFormsModule,
                 RouterTestingModule.withRoutes(testRoutes),
             ],
-            declarations: [DmaSpellsOverviewComponent, DmaSpellCardComponent],
+            declarations: [DmaSpellsOverviewComponent, DmaSpellCardComponent, DmaNoResultsComponent],
         }).compileComponents();
     });
 
@@ -462,5 +464,41 @@ describe('DmaSpellsOverviewComponent', () => {
         );
 
         expect((element.querySelector(`input[formControlName='name']`) as HTMLInputElement).value).toBe('awesome');
+    });
+
+    it('should show the no results message when no results are found', () => {
+        initialize({
+            content: [],
+            first: true,
+            last: true,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 0,
+        });
+
+        expect(element.querySelector('dma-no-results')).not.toBe(null);
+    });
+
+    it('should show the no results message on error', () => {
+        httpTestingController = TestBed.inject(HttpTestingController);
+
+        fixture = TestBed.createComponent(DmaSpellsOverviewComponent);
+
+        element = fixture.nativeElement;
+
+        fixture.detectChanges();
+
+        httpTestingController.expectOne(`${environment.baseUrl}/api/spell`).flush(
+            new HttpErrorResponse({
+                error: new Error('An unknown error has occurred.'),
+                status: 0,
+                statusText: 'Unknown error',
+            }),
+        );
+
+        fixture.detectChanges();
+
+        expect(element.querySelector('dma-no-results')).not.toBe(null);
     });
 });

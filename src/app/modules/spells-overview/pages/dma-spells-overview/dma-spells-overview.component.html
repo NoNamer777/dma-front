@@ -26,7 +26,7 @@
                         id="submit-query-btn"
                         type="submit"
                         [class.btn-sm]="shouldBeSm(topPaginationContainer)"
-                        [disabled]="shouldEnableSubmitQuery"
+                        [disabled]="!shouldEnableSubmitQuery"
                     >
                         <fa-icon icon="search"></fa-icon>
                     </button>
@@ -44,7 +44,8 @@
     >
         <dma-spell-card *ngFor="let spell of spellsService.spellsPage.content" [spell]="spell"></dma-spell-card>
     </div>
-    <div class="d-block d-md-none mx-1" *ngIf="!waitingForResponse">
+    <dma-no-results *ngIf="!hasResults"></dma-no-results>
+    <div class="d-block d-md-none mx-1" *ngIf="!waitingForResponse && hasResults">
         <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
     </div>
 </article>
