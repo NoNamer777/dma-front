@@ -1,0 +1,21 @@
+<div class="card mb-2">
+    <div class="card-header">
+        <button
+            class="d-flex btn btn-link text-black text-decoration-none justify-content-between w-100"
+            data-bs-toggle="collapse"
+            data-bs-target="#card-content-list"
+            type="button"
+            aria-expanded="true"
+            aria-controls="card-content-list"
+            (click)="toggleCollapse()"
+        >
+            <ng-content select=".dma-card-header"></ng-content>
+            <fa-icon [icon]="collapsedIcon"></fa-icon>
+        </button>
+    </div>
+    <div id="card-content-list" class="collapse" #cardBodyElement>
+        <div class="card-body">
+           <ng-content select=".dma-card-body"></ng-content>
+        </div>
+    </div>
+</div>
