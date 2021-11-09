@@ -17,7 +17,7 @@ describe('DmaNotFoundComponent', () => {
 
     @Component({
         selector: 'dma-home-mock',
-        template: '<p>dma-home-mock works!</p>',
+        template: '<p>home-mock works!</p>',
     })
     class DmaHomeMockComponent {}
 
