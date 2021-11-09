@@ -1,7 +1,16 @@
 <aside class="container-fluid mt-2">
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a routerLink="spells" routerLinkActive="active" class="nav-link d-flex align-content-center text-dark">
+            <a
+                routerLink=""
+                routerLinkActive="fw-bold"
+                class="nav-link d-flex align-content-center text-dark"
+                [routerLinkActiveOptions]="{ exact: true }"
+            >
+                <fa-icon icon="home" size="2x" class="me-2"></fa-icon>
+                Home
+            </a>
+            <a routerLink="spells" routerLinkActive="fw-bold" class="nav-link d-flex align-content-center text-dark">
                 <fa-icon icon="book" size="2x" class="me-2"></fa-icon>
                 Spells
             </a>
