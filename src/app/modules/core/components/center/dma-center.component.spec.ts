@@ -6,8 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
-import { DmaHeaderComponent } from '../dma-header/dma-header.component';
-import { DmaSidebarComponent } from '../dma-sidebar/dma-sidebar.component';
+import { DmaHeaderComponent } from '../header/dma-header.component';
+import { DmaSidebarComponent } from '../sidebar/dma-sidebar.component';
 import { DmaCenterComponent } from './dma-center.component';
 
 describe('DmaCenterComponent', () => {
@@ -34,7 +34,7 @@ describe('DmaCenterComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AppMockComponent);
-        element = fixture.debugElement.query(By.css('dma-center')).nativeElement;
+        element = fixture.debugElement.query(By.css('center')).nativeElement;
 
         fixture.detectChanges();
     });
@@ -47,7 +47,7 @@ describe('DmaCenterComponent', () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
-        const sidebarElement = element.querySelector('dma-sidebar');
+        const sidebarElement = element.querySelector('sidebar');
 
         expect(sidebarElement.clientHeight).not.toBeLessThan(element.clientHeight);
     });
