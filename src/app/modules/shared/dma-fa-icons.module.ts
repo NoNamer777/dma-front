@@ -10,6 +10,7 @@ import {
     faHome,
     faInfoCircle,
     faSearch,
+    faShieldAlt,
     faTimes,
     faUndo,
 } from '@fortawesome/free-solid-svg-icons';
@@ -27,6 +28,7 @@ const icons: IconDefinition[] = [
     faHome,
     faInfoCircle,
     faGithub,
+    faShieldAlt,
 ];
 
 @NgModule({

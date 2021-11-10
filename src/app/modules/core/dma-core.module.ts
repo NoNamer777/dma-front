@@ -10,6 +10,7 @@ import { DmaHomeComponent } from './pages/home/dma-home.component';
 import { DmaNotFoundComponent } from './pages/not-found/dma-not-found.component';
 import { DmaFooterComponent } from './components/footer/dma-footer.component';
 import { DmaAboutComponent } from './pages/about/dma-about.component';
+import { DmaPrivacyPolicyComponent } from './pages/privacy-policy/dma-privacy-policy.component';
 
 import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/serialize.interceptor';
 
@@ -23,6 +24,7 @@ import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/
         DmaHomeComponent,
         DmaNotFoundComponent,
         DmaSidebarComponent,
+        DmaPrivacyPolicyComponent,
     ],
     exports: [
         DmaAboutComponent,
@@ -31,6 +33,7 @@ import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/
         DmaHeaderComponent,
         DmaHomeComponent,
         DmaNotFoundComponent,
+        DmaPrivacyPolicyComponent,
     ],
     providers: [SERIALIZE_INTERCEPTOR_PROVIDER],
 })
