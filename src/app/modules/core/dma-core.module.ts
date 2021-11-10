@@ -8,13 +8,27 @@ import { DmaSidebarComponent } from './components/sidebar/dma-sidebar.component'
 import { DmaRoutingModule } from './dma-routing.module';
 import { DmaHomeComponent } from './pages/home/dma-home.component';
 import { DmaNotFoundComponent } from './pages/not-found/dma-not-found.component';
+import { DmaFooterComponent } from './components/footer/dma-footer.component';
 
 import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/serialize.interceptor';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, DmaRoutingModule, DmaSharedModule],
-    declarations: [DmaCenterComponent, DmaHeaderComponent, DmaSidebarComponent, DmaHomeComponent, DmaNotFoundComponent],
-    exports: [DmaCenterComponent, DmaHeaderComponent, DmaHomeComponent, DmaNotFoundComponent],
+    declarations: [
+        DmaCenterComponent,
+        DmaFooterComponent,
+        DmaHeaderComponent,
+        DmaHomeComponent,
+        DmaNotFoundComponent,
+        DmaSidebarComponent,
+    ],
+    exports: [
+        DmaCenterComponent,
+        DmaFooterComponent,
+        DmaHeaderComponent,
+        DmaHomeComponent,
+        DmaNotFoundComponent,
+    ],
     providers: [SERIALIZE_INTERCEPTOR_PROVIDER],
 })
 export class DmaCoreModule {}
