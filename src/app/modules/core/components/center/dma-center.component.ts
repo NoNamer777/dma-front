@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { dmaCenterExpandAnimation } from '@dma-core/animations';
 import { DmaSidebarService } from '@dma-core/services/dma-sidebar/dma-sidebar.service';
 
 @Component({
@@ -7,15 +6,13 @@ import { DmaSidebarService } from '@dma-core/services/dma-sidebar/dma-sidebar.se
     templateUrl: './dma-center.component.html',
     styleUrls: ['./dma-center.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [dmaCenterExpandAnimation],
 })
 export class DmaCenterComponent {
     constructor(public sidebarService: DmaSidebarService) {}
 
     get headerHeight(): number {
-        const headerHeight = window.getComputedStyle(document.querySelector('dma-header')).height;
-        const centerMarginTop = window.getComputedStyle(document.querySelector('dma-center')).marginTop;
+        const fontsize = getComputedStyle(document.documentElement).fontSize.replace('px', '');
 
-        return parseInt(headerHeight.replace('px', '')) + parseInt(centerMarginTop.replace('px', ''));
+        return parseInt(fontsize, 10) * 4.7;
     }
 }
