@@ -34,7 +34,7 @@ describe('DmaCenterComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AppMockComponent);
-        element = fixture.debugElement.query(By.css('center')).nativeElement;
+        element = fixture.debugElement.query(By.css('dma-center')).nativeElement;
 
         fixture.detectChanges();
     });
@@ -47,7 +47,7 @@ describe('DmaCenterComponent', () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
-        const sidebarElement = element.querySelector('sidebar');
+        const sidebarElement = element.querySelector('dma-sidebar');
 
         expect(sidebarElement.clientHeight).not.toBeLessThan(element.clientHeight);
     });
