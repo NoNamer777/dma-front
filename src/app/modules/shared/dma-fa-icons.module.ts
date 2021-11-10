@@ -8,12 +8,26 @@ import {
     faChevronUp,
     faFile,
     faHome,
+    faInfoCircle,
     faSearch,
     faTimes,
     faUndo,
 } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-const icons: IconDefinition[] = [faBars, faTimes, faBook, faSearch, faUndo, faFile, faChevronDown, faChevronUp, faHome];
+const icons: IconDefinition[] = [
+    faBars,
+    faTimes,
+    faBook,
+    faSearch,
+    faUndo,
+    faFile,
+    faChevronDown,
+    faChevronUp,
+    faHome,
+    faInfoCircle,
+    faGithub,
+];
 
 @NgModule({
     imports: [FontAwesomeModule],

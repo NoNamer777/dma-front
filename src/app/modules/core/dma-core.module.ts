@@ -9,12 +9,14 @@ import { DmaRoutingModule } from './dma-routing.module';
 import { DmaHomeComponent } from './pages/home/dma-home.component';
 import { DmaNotFoundComponent } from './pages/not-found/dma-not-found.component';
 import { DmaFooterComponent } from './components/footer/dma-footer.component';
+import { DmaAboutComponent } from './pages/about/dma-about.component';
 
 import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/serialize.interceptor';
 
 @NgModule({
     imports: [BrowserModule, BrowserAnimationsModule, DmaRoutingModule, DmaSharedModule],
     declarations: [
+        DmaAboutComponent,
         DmaCenterComponent,
         DmaFooterComponent,
         DmaHeaderComponent,
@@ -23,6 +25,7 @@ import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/
         DmaSidebarComponent,
     ],
     exports: [
+        DmaAboutComponent,
         DmaCenterComponent,
         DmaFooterComponent,
         DmaHeaderComponent,

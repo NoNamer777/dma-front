@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DmaHomeComponent } from './pages/home/dma-home.component';
 import { DmaNotFoundComponent } from './pages/not-found/dma-not-found.component';
+import { DmaAboutComponent } from './pages/about/dma-about.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,10 @@ const routes: Routes = [
         path: 'spells',
         loadChildren: () =>
             import('@dma-spells-overview/dma-spells-overview.module').then((module) => module.DmaSpellsOverviewModule),
+    },
+    {
+        path: 'about',
+        component: DmaAboutComponent,
     },
     {
         path: 'not-found',
