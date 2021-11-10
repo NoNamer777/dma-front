@@ -1,0 +1,36 @@
+<aside class="container-fluid mt-2">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a
+                routerLink=""
+                routerLinkActive="fw-bold"
+                class="nav-link d-flex align-content-center text-white"
+                [routerLinkActiveOptions]="{ exact: true }"
+            >
+                <fa-icon icon="home" size="2x" class="me-2"></fa-icon>
+                Home
+            </a>
+        </li>
+        <li>
+            <a routerLink="spells" routerLinkActive="fw-bold" class="nav-link d-flex align-content-center text-white">
+                <fa-icon icon="book" size="2x" class="me-2"></fa-icon>
+                Spells
+            </a>
+        </li>
+        <li class="text-white">
+            <hr />
+        </li>
+        <li>
+            <a routerLink="about" routerLinkActive="fw-bold" class="nav-link d-flex align-content-center text-white">
+                <fa-icon icon="info-circle" size="2x" class="me-2"></fa-icon>
+                About
+            </a>
+        </li>
+        <li>
+            <a routerLink="privacy" routerLinkActive="fw-bold" class="nav-link d-flex align-content-center text-white">
+                <fa-icon icon="shield-alt" size="2x" class="me-2"></fa-icon>
+                Privacy Policy
+            </a>
+        </li>
+    </ul>
+</aside>

@@ -6,8 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
-import { DmaHeaderComponent } from '../dma-header/dma-header.component';
-import { DmaSidebarComponent } from '../dma-sidebar/dma-sidebar.component';
+import { DmaHeaderComponent } from '../header/dma-header.component';
+import { DmaSidebarComponent } from '../sidebar/dma-sidebar.component';
 import { DmaCenterComponent } from './dma-center.component';
 
 describe('DmaCenterComponent', () => {

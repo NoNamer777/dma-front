@@ -1,11 +1,12 @@
-<header [@openedCollapsed]="sidebarService.collapsed">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+<header>
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark" [class.shadow]="sidebarService.collapsed">
         <div class="container-fluid justify-content-center justify-content-md-between">
             <a
-                routerLink="/"
+                routerLink=""
                 routerLinkActive="active"
                 class="navbar-brand mx-auto"
                 [style.transform]="brandOffset()"
+                [routerLinkActiveOptions]="{ exact: true }"
                 (click)="sidebarService.toggle(this.isCollapsable && sidebarService.isSidebarOpened)"
             >
                 <img src="assets/images/map.png" alt="logo" class="d-inline align-text-top" />
@@ -14,7 +15,7 @@
 
             <button
                 type="button"
-                class="btn btn-light btn-lg d-block d-md-none"
+                class="btn btn-dark btn-lg d-block d-md-none"
                 id="collapse-button"
                 #toggleCollapseNavBtn
                 (click)="sidebarService.toggle()"
@@ -22,8 +23,18 @@
                 <fa-icon [icon]="toggleCollapseNavBtnIcon"></fa-icon>
             </button>
 
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse ms-0 ms-md-4">
                 <ul class="navbar-nav me-auto-mb-2-mb-md-0">
+                    <li class="nav-item">
+                        <a
+                            routerLink=""
+                            routerLinkActive="active"
+                            class="nav-link"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                        >
+                            Home
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a routerLink="spells" routerLinkActive="active" class="nav-link">Spells</a>
                     </li>

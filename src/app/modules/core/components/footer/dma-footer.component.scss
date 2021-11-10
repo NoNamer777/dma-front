@@ -1,0 +1,12 @@
+:host {
+    z-index: 2;
+
+    footer {
+        box-shadow: 0 -1rem 1rem rgba(0, 0, 0, 15%) !important;
+
+        img {
+            height: 2.4em;
+            width: 2.4em;
+        }
+    }
+}

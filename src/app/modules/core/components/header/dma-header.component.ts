@@ -7,7 +7,6 @@ import {
     HostListener,
     ViewChild,
 } from '@angular/core';
-import { dmaHeaderShadowAnimation } from '@dma-core/animations';
 import { DmaSidebarService } from '@dma-core/services/dma-sidebar/dma-sidebar.service';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
@@ -20,7 +19,6 @@ const BS_MD_BREAKPOINT = 768;
     templateUrl: './dma-header.component.html',
     styleUrls: ['./dma-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [dmaHeaderShadowAnimation],
 })
 export class DmaHeaderComponent implements AfterContentChecked {
     @ViewChild('toggleCollapseNavBtn', { static: true })

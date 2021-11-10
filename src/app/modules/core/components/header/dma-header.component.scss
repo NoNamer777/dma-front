@@ -1,6 +1,10 @@
 :host {
     display: block;
 
+    .fixed-top {
+        z-index: 4;
+    }
+
     a.navbar-brand {
         img {
             height: 2.4em;
