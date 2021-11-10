@@ -1,6 +1,8 @@
 {
     "name": "dma-front",
     "version": "0.0.0",
+    "license": "GPL-3.0-or-later",
+    "private": true,
     "scripts": {
         "serve": "ng serve",
         "serve:remote": "ng serve --host=0.0.0.0",
@@ -12,7 +14,6 @@
         "format:write": "prettier --write .",
         "check": "run-p format:check lint test:ci"
     },
-    "private": true,
     "dependencies": {
         "@angular/animations": "^12.2.4",
         "@angular/cdk": "^12.2.4",
