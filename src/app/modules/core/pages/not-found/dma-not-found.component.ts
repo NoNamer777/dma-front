@@ -9,7 +9,7 @@ export const REDIRECTED_MESSAGE = 'trying to visit a part of the website that do
 @Component({
     selector: 'dma-not-found',
     templateUrl: './dma-not-found.component.html',
-    styleUrls: ['./dma-not-found.component.scss'],
+    styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DmaNotFoundComponent implements OnDestroy {
