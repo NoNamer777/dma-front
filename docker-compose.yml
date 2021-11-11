@@ -1,0 +1,9 @@
+version: '2.3'
+
+services:
+    app:
+        hostname: 'localhost'
+        container_name: 'dnd-mapp-web-app'
+        build: dma-front
+        ports:
+            - '4000:80'
