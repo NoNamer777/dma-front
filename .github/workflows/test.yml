@@ -2,6 +2,10 @@
 
 name: test
 on:
+    workflow_call:
+        secrets:
+            token:
+                required: false
     pull_request:
         branches:
             - master
@@ -15,7 +19,7 @@ jobs:
               uses: actions/cache@v2
               with:
                   path: ~/yarn
-                  key: ${{ runner.os }}-node-${{ hashfiles("**/yarn.lock") }}
+                  key: ${{ runner.os }}-node-${{ hashfiles('**/yarn.lock') }}
                   restore-keys: |
                       ${{ runner.os }}-node-
             - name: Setup Node
