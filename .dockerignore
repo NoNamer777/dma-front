@@ -1,0 +1,9 @@
+# Dependencies
+node_modules
+
+# Builds
+dist
+
+# Git
+.git
+.gitignore

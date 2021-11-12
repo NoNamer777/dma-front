@@ -4,7 +4,7 @@ import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.se
 @Component({
     selector: 'dma-home',
     templateUrl: './dma-home.component.html',
-    styleUrls: ['./dma-home.component.scss'],
+    styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DmaHomeComponent {

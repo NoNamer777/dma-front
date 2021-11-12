@@ -12,7 +12,7 @@
                 "plugin:@angular-eslint/recommended",
                 "plugin:@angular-eslint/template/process-inline-templates",
                 "plugin:@typescript-eslint/recommended",
-                "prettier"
+                "plugin:prettier/recommended"
             ],
             "plugins": ["@typescript-eslint", "ban"],
             "rules": {
@@ -42,17 +42,26 @@
                         "prefix": "dma",
                         "style": "kebab-case"
                     }
-                ],
-                "@typescript-eslint/explicit-module-boundary-types": "off",
-                // Covered by Typescript itself
-                "@typescript-eslint/no-unused-vars": "off",
-                "no-unused-vars": "off"
+                ]
             }
         },
         {
             "files": ["*.html"],
             "extends": ["plugin:@angular-eslint/template/recommended"],
             "rules": {}
+        },
+        {
+            "files": ["*.html"],
+            "excludedFiles": ["*inline-template-*.component.html"],
+            "extends": ["plugin:prettier/recommended"],
+            "rules": {
+                "prettier/prettier": [
+                    "error",
+                    {
+                        "parser": "angular"
+                    }
+                ]
+            }
         }
     ]
 }
