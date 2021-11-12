@@ -5,7 +5,7 @@ name: release
 on:
     push:
         tags:
-            - "v*.*.*"
+            - 'v*.*.*'
 
 env:
     REGISTRY: ghcr.io
@@ -63,4 +63,4 @@ jobs:
                   mv /tmp/.docker-buildx-cache-new /tmp/.docker-buildx-cache
 
             - name: Digest image
-              run : echo ${{ steps.docker_build.outputs.digest }}
+              run: echo ${{ steps.docker_build.outputs.digest }}

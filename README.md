@@ -141,6 +141,7 @@ yarn run test:dev
 When writing GitHub Actions, you can also test them locally with [Act](https://github.com/nektos/act)
 before pushing them to the repo. Follow the installation process, described on their repository and
 then simply run the following command to test an Action:
+
 ```shell
 act -j <name of action>
 
