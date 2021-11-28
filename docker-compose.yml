@@ -1,9 +1,44 @@
-version: '2.3'
+# Example docker-compose file for a whole application stack to host DnD Mapp.
+# NOTE: The values used for the Spring datasource username and password need to be the same values
+# used for the database MySQL user and password.
+
+version: '2'
 
 services:
     app:
-        hostname: 'localhost'
-        container_name: 'dnd-mapp-web-app'
-        build: dma-front
+        image: 'ghcr.io/nonamer777/dma-front'
+        container_name: dma-front
         ports:
             - '4000:80'
+        links:
+            - 'server'
+        depends_on:
+            - 'server'
+        restart: unless-stopped
+    server:
+        image: 'ghcr.io/nonamer777/dma-server'
+        container_name: dma-server
+        environment:
+            - SPRING_DATASOURCE_URL=jbdc:mysql://<host>:<port>/<database>
+            - SPRING_DATASOURCE_USERNAME=<username>
+            - SPRING_DATASOURCE_PASSWORD=<password>
+        ports:
+            - '4001:8080'
+        links:
+            - 'db'
+        depends_on:
+            - 'db'
+        restart: unless-stopped
+    db:
+        image: 'jc21/mariadb-aria'
+        container_name: dma-mariadb
+        environment:
+            - MYSQL_DATABASE=<database>
+            - MYSQL_ROOT_PASSWORD=<root_password>
+            - MYSQL_USER=<username>
+            - MYSQL_PASSWORD=<password>
+        ports:
+            - '3306:3306'
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        restart: unless-stopped
