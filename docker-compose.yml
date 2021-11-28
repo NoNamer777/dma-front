@@ -27,7 +27,7 @@ services:
         links:
             - 'db'
         depends_on:
-            -   'db'
+            - 'db'
         restart: unless-stopped
     db:
         image: 'jc21/mariadb-aria'
@@ -40,5 +40,5 @@ services:
         ports:
             - '3306:3306'
         volumes:
-            -   ./data/mysql:/var/lib/mysql
+            - ./data/mysql:/var/lib/mysql
         restart: unless-stopped
