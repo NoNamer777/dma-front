@@ -4,7 +4,7 @@ export class Entity {
     public get id(): string {
         return this._id;
     }
-    private _id: string;
+    private readonly _id: string;
 
     constructor(id: string = null) {
         this._id = coerceStringProperty(id);

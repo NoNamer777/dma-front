@@ -1,8 +1,9 @@
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+
 import { MagicSchool, SpellComponent } from '../enums';
 import { NamedEntity } from '../named-entity.model';
 import { Description } from './description.model';
-import { MaterialComponent } from './material-component.model';
+import { SpellMaterial } from './spell-material.model';
 
 export class Spell extends NamedEntity {
     public get level(): number {
@@ -50,10 +51,10 @@ export class Spell extends NamedEntity {
     }
     private _components: SpellComponent[] = [];
 
-    get materials(): MaterialComponent[] {
+    get materials(): SpellMaterial[] {
         return this._materials;
     }
-    private _materials: MaterialComponent[] = [];
+    private _materials: SpellMaterial[] = [];
 
     public get concentration(): boolean {
         return this._concentration;
@@ -116,15 +117,16 @@ export class Spell extends NamedEntity {
     }
 
     get formattedMaterials(): string {
+        this.materials.sort((m1, m2) => m1.order - m2.order);
         let value = '';
 
         for (let idx = 0; idx < this.materials.length; idx++) {
-            const material = this.materials[idx];
+            const spellMaterial = this.materials[idx];
 
             if (idx == this.materials.length - 1 && this.materials.length > 1) {
                 value += 'and ';
             }
-            value += `${material.name}, `;
+            value += `${spellMaterial.material.description}, `;
         }
         return value.charAt(0).toUpperCase() + value.substring(1, value.length - 2) + '.';
     }
@@ -163,11 +165,11 @@ export class Spell extends NamedEntity {
         this._components = [];
     }
 
-    requiresMaterial(material: MaterialComponent): boolean {
+    requiresMaterial(material: SpellMaterial): boolean {
         return this.materials.includes(material);
     }
 
-    addMaterial(material: MaterialComponent): boolean {
+    addMaterial(material: SpellMaterial): boolean {
         if (!this.requiresMaterials) return false;
         if (this.requiresMaterial(material)) return false;
 
@@ -176,7 +178,7 @@ export class Spell extends NamedEntity {
         return true;
     }
 
-    removeMaterial(material: MaterialComponent): boolean {
+    removeMaterial(material: SpellMaterial): boolean {
         if (!this.requiresMaterials) return false;
         if (!this.requiresMaterial(material)) return false;
 

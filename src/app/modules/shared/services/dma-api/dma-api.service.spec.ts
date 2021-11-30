@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { DmaApiService } from '@dma-shared';
-import { Description, MaterialComponent, NamedEntity, Pageable, Spell } from '@dma-shared/models';
+import { Description, Material, NamedEntity, Pageable, Spell, SpellMaterial } from '@dma-shared/models';
 import { environment } from '../../../../../environments/environment';
 import { MagicSchool, SpellComponent } from '@dma-shared/models/enums';
 
@@ -179,10 +179,14 @@ describe('DmaApiService', () => {
     });
 
     it('should fully type an object to an Entity', () => {
-        const spellComponent = new MaterialComponent('material-1');
-        spellComponent.name = 'a tiny strip of white cloth';
-        spellComponent.consumedBySpell = false;
-        spellComponent.cost = 0.0;
+        const spellComponent = new Material('material-1');
+        spellComponent.description = 'a tiny strip of white cloth';
+
+        const spellMaterial = new SpellMaterial();
+        spellMaterial.material = spellComponent;
+        spellMaterial.consumed = false;
+        spellMaterial.cost = 0.0;
+        spellMaterial.order = 0;
 
         const description1 = new Description('description-3');
         description1.order = 0;
@@ -203,7 +207,7 @@ describe('DmaApiService', () => {
         expectedSpell.addComponent(SpellComponent.Vocal);
         expectedSpell.addComponent(SpellComponent.Somatic);
         expectedSpell.addComponent(SpellComponent.Material);
-        expectedSpell.addMaterial(spellComponent);
+        expectedSpell.addMaterial(spellMaterial);
         expectedSpell.concentration = false;
         expectedSpell.duration = '8 hours';
         expectedSpell.addDescription(description1);
@@ -226,8 +230,10 @@ describe('DmaApiService', () => {
             components: ['Vocal', 'Somatic', 'Material'],
             materials: [
                 {
-                    id: 'material-1',
-                    name: 'a tiny strip of white cloth',
+                    material: {
+                        id: 'material-1',
+                        description: 'a tiny strip of white cloth',
+                    },
                     cost: 0.0,
                     consumedBySpell: false,
                 },

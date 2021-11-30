@@ -1,6 +1,6 @@
 export * from './entities';
 
-export * from './pageable.model';
+export { Pageable, PageableSort, PageableContent } from './pageable.model';
 
-export * from './entity.model';
-export * from './named-entity.model';
+export { Entity } from './entity.model';
+export { NamedEntity } from './named-entity.model';

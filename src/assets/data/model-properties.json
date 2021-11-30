@@ -29,17 +29,12 @@
             }
         ]
     },
-    "MaterialComponent": {
-        "extends": "NamedEntity",
+    "Material": {
+        "extends": "Entity",
         "properties": [
             {
-                "name": "cost",
-                "type": "number",
-                "collection": false
-            },
-            {
-                "name": "consumedBySpell",
-                "type": "boolean",
+                "name": "description",
+                "type": "string",
                 "collection": false
             }
         ]
@@ -84,7 +79,7 @@
             },
             {
                 "name": "materials",
-                "type": "MaterialComponent",
+                "type": "SpellMaterial",
                 "collection": true
             },
             {
@@ -104,6 +99,31 @@
             },
             {
                 "name": "ritual",
+                "type": "boolean",
+                "collection": false
+            }
+        ]
+    },
+    "SpellMaterial": {
+        "extends": null,
+        "properties": [
+            {
+                "name": "material",
+                "type": "Material",
+                "collection": false
+            },
+            {
+                "name": "order",
+                "type": "number",
+                "collection": false
+            },
+            {
+                "name": "cost",
+                "type": "number",
+                "collection": false
+            },
+            {
+                "name": "consumed",
                 "type": "boolean",
                 "collection": false
             }
