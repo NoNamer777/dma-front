@@ -15,7 +15,13 @@ let uniqueIds = 0;
  * Creates a browser MouseEvent with the specified options.
  * @docs-private
  */
-export function createMouseEvent(type: string, clientX = 0, clientY = 0, button = 0, modifiers: ModifierKeys = {}) {
+export function createMouseEvent(
+    type: string,
+    clientX = 0,
+    clientY = 0,
+    button = 0,
+    modifiers: ModifierKeys = {},
+): MouseEvent {
     // Note: We cannot determine the position of the mouse event based on the screen
     // because the dimensions and position of the browser window are not available
     // To provide reasonable `screenX` and `screenY` coordinates, we simply use the
@@ -64,7 +70,7 @@ export function createPointerEvent(
     clientX = 0,
     clientY = 0,
     options: PointerEventInit = { isPrimary: true },
-) {
+): PointerEvent {
     return new PointerEvent(type, {
         bubbles: true,
         cancelable: true,
@@ -79,13 +85,14 @@ export function createPointerEvent(
  * Creates a browser TouchEvent with the specified pointer coordinates.
  * @docs-private
  */
-export function createTouchEvent(type: string, pageX = 0, pageY = 0, clientX = 0, clientY = 0) {
+export function createTouchEvent(type: string, pageX = 0, pageY = 0, clientX = 0, clientY = 0): UIEvent {
     // We cannot use the `TouchEvent` or `Touch` because Firefox and Safari lack support.
     // TODO: Switch to the constructor API when it is available for Firefox and Safari.
     const event = document.createEvent('UIEvent');
     const touchDetails = { pageX, pageY, clientX, clientY, identifier: uniqueIds++ };
 
     // TS3.6 removes the initUIEvent method and suggests porting to "new UIEvent()".
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     event.initUIEvent(type, true, true, window, 0);
 
@@ -102,7 +109,7 @@ export function createTouchEvent(type: string, pageX = 0, pageY = 0, clientX = 0
  * Creates a keyboard event with the specified key and modifiers.
  * @docs-private
  */
-export function createKeyboardEvent(type: string, keyCode = 0, key = '', modifiers: ModifierKeys = {}) {
+export function createKeyboardEvent(type: string, keyCode = 0, key = '', modifiers: ModifierKeys = {}): KeyboardEvent {
     return new KeyboardEvent(type, {
         bubbles: true,
         cancelable: true,
@@ -120,7 +127,7 @@ export function createKeyboardEvent(type: string, keyCode = 0, key = '', modifie
  * Creates a fake event object with any desired event type.
  * @docs-private
  */
-export function createFakeEvent(type: string, bubbles = false, cancelable = true) {
+export function createFakeEvent(type: string, bubbles = false, cancelable = true): Event {
     return new Event(type, { bubbles, cancelable });
 }
 
@@ -128,6 +135,6 @@ export function createFakeEvent(type: string, bubbles = false, cancelable = true
  * Defines a readonly property on the given event object. Readonly properties on an event object
  * are always set as configurable as that matches default readonly properties for DOM event objects.
  */
-function defineReadonlyEventProperty(event: Event, propertyName: string, value: unknown) {
+function defineReadonlyEventProperty(event: Event, propertyName: string, value: unknown): void {
     Object.defineProperty(event, propertyName, { get: () => value, configurable: true });
 }
