@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, Route } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
@@ -56,7 +56,7 @@ describe('DmaSpellsOverviewComponent', () => {
             TestBed.overrideProvider(ActivatedRoute, {
                 useValue: {
                     snapshot: {
-                        queryParams: filterOptions,
+                        queryParamMap: convertToParamMap(filterOptions),
                     },
                 },
             });
@@ -196,7 +196,7 @@ describe('DmaSpellsOverviewComponent', () => {
         dispatchEvent(previousBtn, new MouseEvent('click'));
         fixture.detectChanges();
 
-        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell?page=0`).flush({
+        httpTestingController.expectOne(`${environment.baseServerUrl}/api/spell`).flush({
             content: [mockSpell1, mockSpell2],
             first: true,
             last: false,
@@ -299,6 +299,36 @@ describe('DmaSpellsOverviewComponent', () => {
 
         expect(element.querySelector('button.previous-btn').getAttribute('disabled')).toBe('');
         expect(element.querySelector('button.next-btn').getAttribute('disabled')).toBe(null);
+    });
+
+    it('should be able to reset the spells form when the name input has a different value', () => {
+        initialize(
+            {
+                content: [mockSpell1, mockSpell2],
+                first: false,
+                last: true,
+                pageable: {
+                    pageNumber: 1,
+                },
+                totalPages: 2,
+            },
+            {
+                name: 'hello',
+            },
+        );
+
+        const nameInput = element.querySelector(`input[formControlName='name']`) as HTMLInputElement;
+        const resetBtn = element.querySelector('button#reset-btn') as HTMLButtonElement;
+
+        expect(resetBtn.disabled).toBe(false);
+        expect(nameInput.value).toBe('hello');
+
+        nameInput.value = 'hello there';
+        dispatchEvent(nameInput, new Event('input'));
+        fixture.detectChanges();
+
+        expect(nameInput.value).toBe('hello there');
+        expect(resetBtn.disabled).toBe(false);
     });
 
     it('should reset the Spells when not on the first page', () => {
@@ -500,5 +530,24 @@ describe('DmaSpellsOverviewComponent', () => {
         fixture.detectChanges();
 
         expect(element.querySelector('dma-no-results')).not.toBe(null);
+    });
+
+    it('should not send request spells by name when input should be disabled when pressing enter', () => {
+        initialize({
+            content: [],
+            first: true,
+            last: true,
+            pageable: {
+                pageNumber: 0,
+            },
+            totalPages: 0,
+        });
+
+        const nameInput = element.querySelector(`input[formControlName='name']`) as HTMLInputElement;
+
+        dispatchEvent(nameInput, new KeyboardEvent('keyup', { key: 'enter' }));
+
+        httpTestingController.expectNone(`${environment.baseServerUrl}/spell?name=`);
+        expect(nameInput.value).toBe('');
     });
 });

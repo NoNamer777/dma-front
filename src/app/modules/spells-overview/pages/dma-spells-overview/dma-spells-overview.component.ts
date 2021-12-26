@@ -1,4 +1,3 @@
-import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
@@ -8,6 +7,7 @@ import { Subject, take, takeUntil } from 'rxjs';
 import { DmaSpellsService, SpellRequestOptions } from '@dma-spells-overview';
 import { Pageable, Spell } from '@dma-shared/models';
 import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
+import { extractQueryParam } from '@dma-shared';
 
 const INVALID_QUERY_INPUT_EXCEPTION = `You can only use letters (UPPER- and lowercase), and the following symbols: ' /`;
 
@@ -23,8 +23,8 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
 
     /** Form for filtering Spells to fetch. */
     spellQueryForm = new FormGroup({
-        page: new FormControl(),
-        name: new FormControl(null, Validators.pattern(/^[A-Za-z\/' ]+$/)),
+        page: new FormControl(0),
+        name: new FormControl('', Validators.pattern(/^[A-Za-z\/' ]+$/)),
     });
 
     /** A list of the number of pages. */
@@ -47,7 +47,7 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.getDataFromRoute();
+        this.updateFormFromQueryParams();
 
         this.requestSpells(this.spellQueryForm.value);
 
@@ -72,22 +72,22 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
     }
 
     /** When to be able to reset the query form. */
-    get shouldEnableUndo(): boolean {
-        for (const option in this.spellQueryForm.value as SpellRequestOptions) {
-            if (this.spellQueryForm.value[option] !== null) return true;
-        }
+    get shouldDisableReset(): boolean {
+        const queryParamSpellName = this.route.snapshot.queryParamMap.get('name');
 
-        return false;
+        if (queryParamSpellName !== null && this.spellQueryForm.controls.name.value !== queryParamSpellName) {
+            return false;
+        }
+        return this.spellQueryForm.controls.name.value === '' && this.spellQueryForm.controls.page.value === 0;
     }
 
     /** Whether to be able to send a query. */
-    get shouldEnableSubmitQuery(): boolean {
-        const nameInputValue = this.spellQueryForm.value.name;
+    get shouldDisableSubmitQuery(): boolean {
         return (
-            nameInputValue !== '' &&
-            nameInputValue !== null &&
-            !this.spellQueryForm.controls.name.hasError('pattern') &&
-            nameInputValue !== this.route.snapshot.queryParams.name
+            this.spellQueryForm.controls.name.invalid ||
+            this.spellQueryForm.controls.name.pristine ||
+            this.spellQueryForm.controls.name.value === '' ||
+            this.spellQueryForm.controls.name.value === this.route.snapshot.queryParamMap.get('name')
         );
     }
 
@@ -106,26 +106,26 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
      */
     onRequestPage(page: number): void {
         this.spellQueryForm.controls.page.patchValue(page);
-        this.router.navigate([], { queryParams: { page: page }, queryParamsHandling: 'merge' });
+        this.router.navigate([], page === 0 ? {} : { queryParams: { page: page }, queryParamsHandling: 'merge' });
 
         this.requestSpells(this.spellQueryForm.value);
     }
 
     /** Sends a request of a specific Spell page. */
     onChangePageNumber(): void {
-        const pageNumberValue = coerceNumberProperty(this.spellQueryForm.value.page);
+        const currentSpellPageNumber = this.spellQueryForm.controls.page.value;
+        const spellPageQueryParam = extractQueryParam<number>(this.route.snapshot, 'page', 'number') ?? 0;
 
-        if (
-            this.spellQueryForm.value.page === null ||
-            parseInt(this.route.snapshot.queryParams.page ?? 0, 10) === pageNumberValue
-        )
+        if (spellPageQueryParam === currentSpellPageNumber) {
             return;
-
-        this.onRequestPage(pageNumberValue);
+        }
+        this.onRequestPage(currentSpellPageNumber);
     }
 
     /** Sends a request to find Spells that include the provided characters in the name of the Spell. */
     onRequestSpellsByName(): void {
+        if (this.shouldDisableSubmitQuery) return;
+
         this.spellQueryForm.controls.page.patchValue(0);
         this.router.navigate([], { queryParams: { name: this.spellQueryForm.value.name } });
 
@@ -134,7 +134,7 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
 
     /** Resets the query form. */
     onResetQueryForm(): void {
-        this.spellQueryForm.reset();
+        this.spellQueryForm.reset({ page: 0, name: '' });
         this.router.navigate([]);
 
         this.requestSpells();
@@ -175,16 +175,14 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Gets data from the current route.
+     * Updates the form from the current query params.
      * @private
      */
-    private getDataFromRoute(): void {
-        if (this.route.snapshot.queryParams.page !== undefined) {
-            this.spellQueryForm.controls.page.patchValue(parseInt(this.route.snapshot.queryParams.page, 10));
-        }
-        if (this.route.snapshot.queryParams.name !== undefined) {
-            this.spellQueryForm.controls.name.patchValue(this.route.snapshot.queryParams.name);
-        }
+    private updateFormFromQueryParams(): void {
+        this.spellQueryForm.controls.page.patchValue(
+            extractQueryParam<number>(this.route.snapshot, 'page', 'number') ?? 0,
+        );
+        this.spellQueryForm.controls.name.patchValue(extractQueryParam(this.route.snapshot, 'name', 'string') ?? '');
     }
 
     /**
@@ -217,7 +215,7 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Opens a snackbar containing a error message when a User inputs an incorrect character
+     * Opens a snackbar containing an error message when a User inputs an incorrect character
      * into the Spell name query input.
      * @private
      */
