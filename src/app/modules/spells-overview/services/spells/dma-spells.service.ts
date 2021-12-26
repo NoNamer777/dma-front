@@ -35,12 +35,11 @@ export class DmaSpellsService {
 
         for (const option in options) {
             if (options[option] === null) continue;
-            if (!url.includes('?')) {
-                url += '?';
-            }
-            if (!url.endsWith('?')) {
-                url += '&';
-            }
+            if (option === 'page' && options[option] === 0) continue;
+            if (option === 'name' && options[option] === '') continue;
+            if (!url.includes('?')) url += '?';
+            if (!url.endsWith('?')) url += '&';
+
             url += `${option}=${options[option]}`;
         }
 
