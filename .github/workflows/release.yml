@@ -24,6 +24,9 @@ jobs:
               run: |
                   echo "${{ secrets.PROD_ENV }}" > src/environments/environment.prod.ts
 
+            - name: Set up QEMU dependency
+              uses: docker/setup-qemu-action@v1
+
             - name: Set up Docker Buildx
               id: docker_buildx
               uses: docker/setup-buildx-action@v1
@@ -59,7 +62,7 @@ jobs:
                   context: ./
                   file: ./Dockerfile
                   labels: ${{ steps.meta.outputs.labels }}
-                  platforms: ${{ env.TARGET_PLATFORMS }}
+                  platforms: ${{ env.TARGET_PLATFORM }}
                   push: true
                   tags: ${{ steps.meta.outputs.tags }}
             - name: Move cache
