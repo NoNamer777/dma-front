@@ -44,9 +44,9 @@
         *ngIf="!waitingForResponse; else spinner"
     >
         <dma-spell-card *ngFor="let spell of spellsService.spellsPage.content" [spell]="spell"></dma-spell-card>
+        <dma-no-results *ngIf="!hasResults"></dma-no-results>
     </div>
-    <dma-no-results *ngIf="!hasResults"></dma-no-results>
-    <div class="d-block d-md-none mx-1" *ngIf="!waitingForResponse && hasResults">
+    <div class="d-block d-md-none mx-1" *ngIf="!waitingForResponse">
         <ng-container *ngTemplateOutlet="paginationButtons"></ng-container>
     </div>
 </article>

@@ -1,8 +1,7 @@
 :host {
     display: flex;
     flex-direction: column;
-    //noinspection CssInvalidPropertyValue
-    height: -webkit-fill-available;
+    height: inherit;
 
     dma-header {
         flex: 0 0 auto;
