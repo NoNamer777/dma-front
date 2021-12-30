@@ -49,6 +49,10 @@ input {
     }
 }
 
+.mat-dialog-container {
+    overflow: hidden !important;
+}
+
 .dma-dialog {
     max-width: 90% !important;
     width: 90%;
