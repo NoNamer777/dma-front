@@ -5,12 +5,13 @@
     "private": true,
     "scripts": {
         "build": "ng build",
+        "build:dev": "ng build --watch=true --base-href=.",
         "check": "run-p format:check lint test",
         "format:check": "prettier -l .",
         "format:write": "prettier --write .",
         "lint": "ng lint",
         "serve": "ng serve",
-        "serve:remote": "ng serve --host=0.0.0.0",
+        "serve:remote": "ng serve --host=0.0.0.0 --configuration=production",
         "serve:coverage": "node serve-coverage.js",
         "test": "ng test --watch=false --browsers=ChromeHeadlessCI",
         "test:dev": "ng test --watch=true --browsers=ChromeHeadless"
