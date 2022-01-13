@@ -4,8 +4,9 @@
             <a
                 routerLink=""
                 routerLinkActive="active"
-                class="navbar-brand mx-auto"
-                [style.transform]="brandOffset()"
+                class="navbar-brand"
+                [class.collapsing-navbar]="isCollapsable"
+                [style.margin-right]="btnOffset"
                 [routerLinkActiveOptions]="{ exact: true }"
                 (click)="sidebarService.toggle(this.isCollapsable && sidebarService.isSidebarOpened)"
             >
@@ -15,7 +16,7 @@
 
             <button
                 type="button"
-                class="btn btn-dark btn-lg d-block d-md-none"
+                class="btn btn-dark btn-lg d-block ms-auto d-md-none"
                 id="collapse-button"
                 #toggleCollapseNavBtn
                 (click)="sidebarService.toggle()"

@@ -6,6 +6,10 @@
     }
 
     a.navbar-brand {
+        &.collapsing-navbar {
+            margin-left: auto;
+        }
+
         img {
             height: 2.4em;
             width: 2.4em;
