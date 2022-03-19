@@ -27,6 +27,8 @@
         "noUnusedLocals": true,
         "outDir": "./dist/out-tsc",
         "paths": {
+            "@dma-environment": ["/src/environments"],
+            "@dma-environment/*": ["/src/environments/*"],
             "@dma-testing": ["/src/testing"],
             "@dma-testing/*": ["/src/testing/*"],
             "@dma-core": ["src/app/modules/core"],
