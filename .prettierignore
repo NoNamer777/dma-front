@@ -32,4 +32,5 @@ node_modules/
 
 ## Output directories
 dist/
+.angular/
 .Ds_Store

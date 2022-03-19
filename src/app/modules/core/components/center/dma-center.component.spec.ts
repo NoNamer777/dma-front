@@ -4,8 +4,7 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-
-import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
+import { DmaFaIconsModule } from '@dma-shared';
 import { DmaHeaderComponent } from '../header/dma-header.component';
 import { DmaSidebarComponent } from '../sidebar/dma-sidebar.component';
 import { DmaCenterComponent } from './dma-center.component';

@@ -1,10 +1,9 @@
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-
 import { DmaSidebarService } from '@dma-core';
-import { dispatchMouseEvent } from 'testing/fake-events';
+import { dispatchMouseEvent } from '@dma-testing';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { DmaHeaderComponent } from './dma-header.component';
 
 describe('DmaHeaderComponent', () => {

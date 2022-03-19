@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
 import { DmaCoreModule } from '@dma-core';
+import { AppComponent } from './app.component';
 
 @NgModule({
     declarations: [AppComponent],

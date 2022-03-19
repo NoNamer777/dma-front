@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '@dma-environment';
 
 @Injectable({ providedIn: 'any' })
 export class DmaTitleService {

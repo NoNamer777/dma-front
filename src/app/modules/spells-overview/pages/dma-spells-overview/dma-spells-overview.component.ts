@@ -2,12 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, take, takeUntil } from 'rxjs';
-
+import { DmaTitleService, extractQueryParam, Pageable, Spell } from '@dma-shared';
 import { DmaSpellsService, SpellRequestOptions } from '@dma-spells-overview';
-import { Pageable, Spell } from '@dma-shared/models';
-import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
-import { extractQueryParam } from '@dma-shared';
+import { Subject, take, takeUntil } from 'rxjs';
 
 const INVALID_QUERY_INPUT_EXCEPTION = `You can only use letters (UPPER- and lowercase), and the following symbols: ' /`;
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
-import { DmaSidebarService } from '@dma-core';
+import { DmaSidebarService } from '@dma-core/services/dma-sidebar/dma-sidebar.service';
 import { findParentElement } from '@dma-shared';
 
 @Component({

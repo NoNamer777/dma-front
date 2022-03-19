@@ -1,8 +1,7 @@
 import { inject, TestBed } from '@angular/core/testing';
-
-import { DmaTitleService } from './dma-title.service';
 import { Title } from '@angular/platform-browser';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '@dma-environment';
+import { DmaTitleService } from './dma-title.service';
 
 describe('TitleService', () => {
     let titleService: DmaTitleService;

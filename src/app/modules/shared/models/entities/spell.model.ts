@@ -1,5 +1,4 @@
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-
 import { MagicSchool, SpellComponent } from '../enums';
 import { NamedEntity } from '../named-entity.model';
 import { Description } from './description.model';

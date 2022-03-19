@@ -27,6 +27,12 @@
         "noUnusedLocals": true,
         "outDir": "./dist/out-tsc",
         "paths": {
+            "@dma-environment": ["src/environments"],
+            "@dma-environment/*": ["src/environments/*"],
+            "@dma-assets": ["src/assets"],
+            "@dma-assets/*": ["src/assets/*"],
+            "@dma-testing": ["src/testing"],
+            "@dma-testing/*": ["src/testing/*"],
             "@dma-core": ["src/app/modules/core"],
             "@dma-core/*": ["src/app/modules/core/*"],
             "@dma-shared": ["src/app/modules/shared"],
@@ -40,6 +46,6 @@
         "strictBindCallApply": true,
         "strictNullChecks": false,
         "strictFunctionTypes": true,
-        "target": "es2017"
+        "target": "ES2020"
     }
 }

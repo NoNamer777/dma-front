@@ -1,8 +1,8 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { environment } from '@dma-environment/environment';
 import { DmaApiService } from '@dma-shared';
 import { Description, Material, NamedEntity, Pageable, Spell, SpellMaterial } from '@dma-shared/models';
-import { environment } from '../../../../../environments/environment';
 import { MagicSchool, SpellComponent } from '@dma-shared/models/enums';
 
 describe('DmaApiService', () => {

@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import ModelsPropertiesMap from '@dma-assets/data/model-properties.json';
+import * as ModelsModule from '@dma-shared';
+import { Entity, Pageable } from '@dma-shared';
 import { map, Observable } from 'rxjs';
-
-import ModelsPropertiesMap from '../../../../../assets/data/model-properties.json';
-import * as ModelsModule from '@dma-shared/models';
-import { Entity } from '@dma-shared/models';
-import { Pageable } from '@dma-shared/models';
 
 type MappedModelType = keyof typeof ModelsPropertiesMap;
 
@@ -95,9 +93,9 @@ export class DmaApiService {
     private typeEntity<T>(data: MappedObject | T, type: MappedModelType): T {
         if (SIMPLE_VALUE_TYPES.includes(typeof data) || SIMPLE_VALUE_TYPES.includes(type)) return data as T;
 
-        const typedEntity = new ((ModelsModule as MappedObjectCallableFunctions)[type] as ConstructorFunction)(
-            (data as MappedObject)['id'] as string,
-        );
+        const typedEntity = new ((ModelsModule as unknown as MappedObjectCallableFunctions)[
+            type
+        ] as ConstructorFunction)((data as MappedObject)['id'] as string);
         const properties = this.getEntityProperties(type);
 
         for (const property of properties) {

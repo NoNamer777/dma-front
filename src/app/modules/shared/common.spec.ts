@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { coerceStringProperty, extractQueryParam, findParentElement } from '@dma-shared';
 
 interface PreparedDocument {

@@ -4,10 +4,9 @@ import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
-import { Spell } from '@dma-shared/models';
+import { DmaFaIconsModule, Spell } from '@dma-shared';
 import { MagicSchool, SpellComponent } from '@dma-shared/models/enums';
-import { dispatchMouseEvent } from 'testing/fake-events';
+import { dispatchMouseEvent } from '@dma-testing';
 import { DmaSpellDialogComponent } from '../dma-spell-dialog/dma-spell-dialog.component';
 import { DmaSpellCardComponent } from './dma-spell-card.component';
 

@@ -116,7 +116,7 @@
                             "src/app/modules/shared/models/**",
                             "src/app/**/*.module.ts",
                             "src/test.ts",
-                            "testing/**"
+                            "src/testing/**"
                         ]
                     }
                 },

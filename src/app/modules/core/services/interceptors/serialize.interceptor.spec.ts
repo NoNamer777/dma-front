@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { SERIALIZE_INTERCEPTOR_PROVIDER } from '@dma-core/services/interceptors/serialize.interceptor';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '@dma-environment';
 
 describe('SerializeInterceptor', () => {
     let httpTestController: HttpTestingController;

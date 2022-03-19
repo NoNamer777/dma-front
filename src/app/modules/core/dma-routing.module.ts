@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DmaAboutComponent } from './pages/about/dma-about.component';
 import { DmaHomeComponent } from './pages/home/dma-home.component';
 import { DmaNotFoundComponent } from './pages/not-found/dma-not-found.component';
-import { DmaAboutComponent } from './pages/about/dma-about.component';
 import { DmaPrivacyPolicyComponent } from './pages/privacy-policy/dma-privacy-policy.component';
 
 const routes: Routes = [

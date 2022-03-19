@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { dispatchEvent } from '@dma-testing';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-
 import { DmaCollapsingCardComponent } from './dma-collapsing-card.component';
-import { dispatchEvent } from 'testing/fake-events';
 
 describe('DmaCollapsingCardComponent', () => {
     let fixture: ComponentFixture<CollapsingCardMockComponent>;

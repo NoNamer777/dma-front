@@ -1,10 +1,9 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
+import { environment } from '@dma-environment';
+import { DmaTitleService } from '@dma-shared';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-
-import { environment } from '../../../../../environments/environment';
-import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
-import { DmaAboutComponent } from '@dma-core/pages/about/dma-about.component';
+import { DmaAboutComponent } from './dma-about.component';
 
 describe('DmaAboutComponent', () => {
     beforeEach(async () => {

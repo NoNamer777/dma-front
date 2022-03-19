@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DmaNotFoundComponent, REDIRECTED_MESSAGE, DIRECTED_MESSAGE } from './dma-not-found.component';
+import { DIRECTED_MESSAGE, DmaNotFoundComponent, REDIRECTED_MESSAGE } from './dma-not-found.component';
 
 describe('DmaNotFoundComponent', () => {
     let fixture: ComponentFixture<DmaCenterMockComponent>;
