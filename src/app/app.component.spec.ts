@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DmaCoreModule } from '@dma-core';
-
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
