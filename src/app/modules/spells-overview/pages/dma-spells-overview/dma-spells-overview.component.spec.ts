@@ -1,4 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -7,16 +8,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, convertToParamMap, Route } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-
-import { environment } from '../../../../../environments/environment';
-import { dispatchEvent } from '../../../../../../testing/fake-events';
-import { DmaSpellsOverviewComponent } from './dma-spells-overview.component';
-import { DmaSpellCardComponent } from '@dma-spells-overview/components/dma-spell-card/dma-spell-card.component';
+import { environment } from '@dma-environment/environment';
 import { DmaNoResultsComponent } from '@dma-shared/components/no-results/dma-no-results.component';
-import { SpellRequestOptions } from '@dma-spells-overview';
 import { Spell } from '@dma-shared/models';
-import { HttpErrorResponse } from '@angular/common/http';
+import { SpellRequestOptions } from '@dma-spells-overview';
+import { DmaSpellCardComponent } from '@dma-spells-overview/components/dma-spell-card/dma-spell-card.component';
+import { dispatchEvent } from '@dma-testing';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { DmaSpellsOverviewComponent } from './dma-spells-overview.component';
 
 describe('DmaSpellsOverviewComponent', () => {
     let fixture: ComponentFixture<DmaSpellsOverviewComponent>;

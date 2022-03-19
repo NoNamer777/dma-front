@@ -7,7 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
 import { Spell } from '@dma-shared/models';
 import { MagicSchool, SpellComponent } from '@dma-shared/models/enums';
-import { dispatchMouseEvent } from 'testing/fake-events';
+import { dispatchMouseEvent } from 'src/testing/fake-events';
 import { DmaSpellDialogComponent } from '../dma-spell-dialog/dma-spell-dialog.component';
 import { DmaSpellCardComponent } from './dma-spell-card.component';
 

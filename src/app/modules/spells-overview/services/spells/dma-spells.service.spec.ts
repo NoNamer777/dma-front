@@ -1,10 +1,9 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-
-import { environment } from '../../../../../environments/environment';
-import { DmaSpellsService } from './dma-spells.service';
-import { Pageable } from '@dma-shared/models/pageable.model';
+import { environment } from '@dma-environment/environment';
 import { Spell } from '@dma-shared/models';
+import { Pageable } from '@dma-shared/models/pageable.model';
+import { DmaSpellsService } from './dma-spells.service';
 
 describe('DmaSpellsService', () => {
     let spellsService: DmaSpellsService;

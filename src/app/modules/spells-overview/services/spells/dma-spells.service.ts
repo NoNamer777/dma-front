@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
+import { environment } from '@dma-environment/environment';
 import { DmaApiService } from '@dma-shared';
-import { Observable, tap } from 'rxjs';
-
-import { environment } from '../../../../../environments/environment';
-import { Pageable } from '@dma-shared/models/pageable.model';
 import { Spell } from '@dma-shared/models/entities';
+import { Pageable } from '@dma-shared/models/pageable.model';
+import { Observable, tap } from 'rxjs';
 
 export interface SpellRequestOptions {
     name?: string;

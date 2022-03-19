@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DmaSpellDialogComponent } from '../dma-spell-dialog/dma-spell-dialog.component';
 import { Spell } from '@dma-shared/models';
+import { DmaSpellDialogComponent } from '../dma-spell-dialog/dma-spell-dialog.component';
 
 @Component({
     selector: 'dma-spell-card',
