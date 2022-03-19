@@ -1,8 +1,8 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { DmaPrivacyPolicyComponent } from '@dma-core/pages/privacy-policy/dma-privacy-policy.component';
-import { environment } from '@dma-environment/environment';
-import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
+import { environment } from '@dma-environment';
+import { DmaTitleService } from '@dma-shared';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 describe('DmaPrivacyPolicyComponent', () => {

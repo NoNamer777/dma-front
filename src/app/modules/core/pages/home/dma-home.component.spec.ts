@@ -1,10 +1,9 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
-import { DmaHomeComponent } from '@dma-core/pages/home/dma-home.component';
-import { environment } from '@dma-environment/environment';
-import { DmaCollapsingCardComponent } from '@dma-shared/components/collapsing-card/dma-collapsing-card.component';
-import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
+import { environment } from '@dma-environment';
+import { DmaCollapsingCardComponent, DmaTitleService } from '@dma-shared';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { DmaHomeComponent } from './dma-home.component';
 
 describe('DmaHomeComponent', () => {
     beforeEach(async () => {

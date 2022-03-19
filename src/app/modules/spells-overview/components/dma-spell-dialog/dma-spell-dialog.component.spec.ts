@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DmaFaIconsModule } from '@dma-shared/dma-fa-icons.module';
-import { Spell } from '@dma-shared/models';
+import { DmaFaIconsModule, Spell } from '@dma-shared';
 import { MagicSchool, SpellComponent } from '@dma-shared/models/enums';
-import { dispatchMouseEvent } from 'src/testing/fake-events';
+import { dispatchMouseEvent } from '@dma-testing';
 import { DmaSpellDialogComponent } from './dma-spell-dialog.component';
 
 describe('DmaSpellDialogComponent', () => {

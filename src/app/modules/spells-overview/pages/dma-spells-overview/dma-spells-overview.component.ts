@@ -2,9 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { extractQueryParam } from '@dma-shared';
-import { Pageable, Spell } from '@dma-shared/models';
-import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
+import { DmaTitleService, extractQueryParam, Pageable, Spell } from '@dma-shared';
 import { DmaSpellsService, SpellRequestOptions } from '@dma-spells-overview';
 import { Subject, take, takeUntil } from 'rxjs';
 

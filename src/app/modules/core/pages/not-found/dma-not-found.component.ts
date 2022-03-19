@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
+import { DmaTitleService } from '@dma-shared';
 import { Subject, takeUntil } from 'rxjs';
 
 export const DIRECTED_MESSAGE = 'a bit lost.';

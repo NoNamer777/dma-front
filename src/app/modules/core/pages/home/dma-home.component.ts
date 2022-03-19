@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { DmaTitleService } from '@dma-shared/services/title-service/dma-title.service';
+import { DmaTitleService } from '@dma-shared';
 
 @Component({
     selector: 'dma-home',
