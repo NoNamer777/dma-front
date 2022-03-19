@@ -1,5 +1,4 @@
 import { coerceStringProperty } from '@dma-shared';
-
 import { Entity } from './entity.model';
 
 export class NamedEntity extends Entity {

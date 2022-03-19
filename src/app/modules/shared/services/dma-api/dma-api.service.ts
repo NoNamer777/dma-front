@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-
-import ModelsPropertiesMap from '../../../../../assets/data/model-properties.json';
+import ModelsPropertiesMap from '@dma-assets/data/model-properties.json';
 import * as ModelsModule from '@dma-shared/models';
-import { Entity } from '@dma-shared/models';
-import { Pageable } from '@dma-shared/models';
+import { Entity, Pageable } from '@dma-shared/models';
+import { map, Observable } from 'rxjs';
 
 type MappedModelType = keyof typeof ModelsPropertiesMap;
 

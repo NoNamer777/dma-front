@@ -1,5 +1,4 @@
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-
 import { Material } from './material.model';
 
 export class SpellMaterial {

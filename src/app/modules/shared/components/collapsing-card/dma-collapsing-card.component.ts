@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 type CollapsedIcon = 'chevron-down' | 'chevron-up';
 
