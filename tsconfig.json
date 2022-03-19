@@ -29,6 +29,8 @@
         "paths": {
             "@dma-environment": ["/src/environments"],
             "@dma-environment/*": ["/src/environments/*"],
+            "@dma-assets": ["/src/assets"],
+            "@dma-assets/*": ["/src/assets/*"],
             "@dma-testing": ["/src/testing"],
             "@dma-testing/*": ["/src/testing/*"],
             "@dma-core": ["src/app/modules/core"],
