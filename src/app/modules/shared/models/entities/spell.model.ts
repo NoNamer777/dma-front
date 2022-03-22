@@ -1,4 +1,4 @@
-import { Description, MagicSchool, Spell, SpellComponent, SpellMaterial, SPELL_COMPONENT_MATERIAL } from '@dma-shared';
+import { Description, MagicSchool, Spell, SpellComponent, SpellMaterial } from '@dma-shared';
 
 export class SpellModel implements Spell {
     id: string = null;
@@ -30,7 +30,7 @@ export class SpellModel implements Spell {
     }
 
     get requiresMaterials(): boolean {
-        return this.components.includes(SPELL_COMPONENT_MATERIAL);
+        return this.components.includes('Material');
     }
 
     get formattedSpellSchoolAndLevel(): string {
@@ -88,7 +88,7 @@ export class SpellModel implements Spell {
 
         this.components.push(component);
 
-        if (component === SPELL_COMPONENT_MATERIAL) {
+        if (component === 'Material') {
             this.materials = [];
         }
 
@@ -100,14 +100,14 @@ export class SpellModel implements Spell {
 
         this.components.splice(this.components.indexOf(component), 1);
 
-        if (component === SPELL_COMPONENT_MATERIAL) {
+        if (component === 'Material') {
             this.clearMaterials();
         }
         return true;
     }
 
     clearComponents(): void {
-        if (this.requiresComponent(SPELL_COMPONENT_MATERIAL)) {
+        if (this.requiresComponent('Material')) {
             this.clearMaterials();
         }
         this.components = [];
