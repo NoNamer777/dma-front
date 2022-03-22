@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DmaTitleService, extractQueryParam, Pageable, Spell } from '@dma-shared';
+import { DmaTitleService, extractQueryParam, Pageable, SpellModel } from '@dma-shared';
 import { DmaSpellsService, SpellRequestOptions } from '@dma-spells-overview';
 import { Subject, take, takeUntil } from 'rxjs';
 
@@ -164,7 +164,7 @@ export class DmaSpellsOverviewComponent implements OnInit, OnDestroy {
                     totalPages: 0,
                     first: true,
                     last: true,
-                } as Pageable<Spell>;
+                } as Pageable<SpellModel>;
 
                 this.changeDetectorRef.markForCheck();
             },

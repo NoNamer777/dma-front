@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { environment } from '@dma-environment';
-import { Pageable, Spell } from '@dma-shared';
+import { Pageable, Spell, SpellModel } from '@dma-shared';
 import { DmaSpellsService } from './dma-spells.service';
 
 describe('DmaSpellsService', () => {
@@ -9,11 +9,11 @@ describe('DmaSpellsService', () => {
 
     let httpTestingController: HttpTestingController;
 
-    const spellMock = new Spell('spell-1');
+    const spellMock: Spell = new SpellModel({ id: 'spell-1' } as Spell);
     spellMock.name = 'My Awesome Spell';
     const spellPageMock = {
         content: [spellMock],
-    } as Pageable<Spell>;
+    } as Pageable<SpellModel>;
 
     afterEach(() => httpTestingController.verify());
 

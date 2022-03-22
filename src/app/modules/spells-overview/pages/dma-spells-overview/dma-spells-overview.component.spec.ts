@@ -9,7 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, convertToParamMap, Route } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { environment } from '@dma-environment';
-import { DmaNoResultsComponent, Spell } from '@dma-shared';
+import { DmaNoResultsComponent, Spell, SpellModel } from '@dma-shared';
 import { SpellRequestOptions } from '@dma-spells-overview';
 import { DmaSpellCardComponent } from '@dma-spells-overview/components/dma-spell-card/dma-spell-card.component';
 import { dispatchEvent } from '@dma-testing';
@@ -22,11 +22,14 @@ describe('DmaSpellsOverviewComponent', () => {
 
     let httpTestingController: HttpTestingController;
 
-    const mockSpell1 = new Spell('spell-1');
-    mockSpell1.name = 'My Awesome Spell 1';
-
-    const mockSpell2 = new Spell('spell-2');
-    mockSpell2.name = 'My Awesome Spell 2';
+    const mockSpell1 = new SpellModel({
+        id: 'spell-1',
+        name: 'My Awesome Spell 1',
+    } as Spell);
+    const mockSpell2 = new SpellModel({
+        id: 'spell-2',
+        name: 'My Awesome Spell 2',
+    } as Spell);
 
     const testRoutes: Route[] = [
         {

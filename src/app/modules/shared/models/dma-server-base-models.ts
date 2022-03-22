@@ -1,5 +1,10 @@
-import { Entity } from '@dma-shared/models/entity.model';
+export interface Entity {
+    id: string;
+}
 
+export interface NamedEntity extends Entity {
+    name: string;
+}
 export interface PageableSort {
     sorted: boolean;
     unsorted: boolean;
@@ -15,8 +20,8 @@ export interface PageableContent {
     unpaged: boolean;
 }
 
-export interface Pageable<E extends Entity> {
-    content: E[];
+export interface Pageable<T> {
+    content: T[];
     pageable: PageableContent;
     first: boolean;
     last: boolean;

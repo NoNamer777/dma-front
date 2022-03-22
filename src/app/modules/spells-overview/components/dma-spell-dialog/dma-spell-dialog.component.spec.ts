@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DmaFaIconsModule, Spell } from '@dma-shared';
-import { MagicSchool, SpellComponent } from '@dma-shared/models/enums';
+import { DmaFaIconsModule, Spell, SpellModel } from '@dma-shared';
 import { dispatchMouseEvent } from '@dma-testing';
 import { DmaSpellDialogComponent } from './dma-spell-dialog.component';
 
@@ -11,16 +10,18 @@ describe('DmaSpellDialogComponent', () => {
     let component: DmaSpellDialogComponent;
     let element: HTMLElement;
 
-    const mockSpell = new Spell('spell-1');
-    mockSpell.name = 'My Awesome Spell';
-    mockSpell.castingTime = 'very long';
-    mockSpell.duration = 'too short';
-    mockSpell.range = 'always just out of range';
-    mockSpell.concentration = true;
-    mockSpell.ritual = true;
-    mockSpell.level = 4;
-    mockSpell.magicSchool = MagicSchool.CONJURATION;
-    mockSpell.addComponent(SpellComponent.Vocal);
+    const mockSpell = new SpellModel({
+        id: 'spell-1',
+        name: 'My Awesome Spell',
+        magicSchool: 'Conjuration',
+        castingTime: 'very long',
+        duration: 'too short',
+        range: 'always just out of range',
+        concentration: true,
+        ritual: true,
+        level: 4,
+        components: ['Vocal'],
+    } as Spell);
 
     class MatDialogRefMock {
         opened = true;

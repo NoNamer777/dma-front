@@ -1,4 +1,4 @@
-export * from './entities';
-export { Entity } from './entity.model';
-export { NamedEntity } from './named-entity.model';
-export { Pageable, PageableContent, PageableSort } from './pageable.model';
+export { Description, Material, Spell, SpellMaterial } from './dma-entities';
+export { MagicSchool, SpellComponent } from './dma-enums';
+export { Entity, NamedEntity, Pageable, PageableContent, PageableSort } from './dma-server-base-models';
+export { SpellModel } from './entities';

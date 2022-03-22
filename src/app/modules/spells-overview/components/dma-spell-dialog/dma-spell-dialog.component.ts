@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Spell } from '@dma-shared';
+import { SpellModel } from '@dma-shared';
 
 @Component({
     selector: 'dma-spell-dialog',
@@ -10,7 +10,7 @@ import { Spell } from '@dma-shared';
 export class DmaSpellDialogComponent {
     constructor(
         private dialogRef: MatDialogRef<DmaSpellDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public spell: Spell,
+        @Inject(MAT_DIALOG_DATA) public spell: SpellModel,
     ) {}
 
     onCloseDialog(): void {

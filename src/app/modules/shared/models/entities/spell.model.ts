@@ -1,87 +1,36 @@
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-import { MagicSchool, SpellComponent } from '../enums';
-import { NamedEntity } from '../named-entity.model';
-import { Description } from './description.model';
-import { SpellMaterial } from './spell-material.model';
+import { Description, MagicSchool, Spell, SpellComponent, SpellMaterial } from '@dma-shared';
 
-export class Spell extends NamedEntity {
-    public get level(): number {
-        return coerceNumberProperty(this._level);
-    }
-    public set level(value: number) {
-        this._level = coerceNumberProperty(value, 0);
-    }
-    private _level = 0;
+export class SpellModel implements Spell {
+    id: string = null;
+    name: string;
+    level = 0;
+    magicSchool: MagicSchool;
+    ritual = false;
+    castingTime: string;
+    range: string;
+    concentration = false;
+    duration: string;
+    components: SpellComponent[] = [];
+    materials: SpellMaterial[] = [];
+    descriptions: Description[] = [];
 
-    public get magicSchool(): MagicSchool {
-        return this._magicSchool;
-    }
-    public set magicSchool(value: MagicSchool) {
-        this._magicSchool = value;
-    }
-    private _magicSchool: MagicSchool;
-
-    public get ritual(): boolean {
-        return this._ritual;
-    }
-    public set ritual(ritual: boolean) {
-        this._ritual = coerceBooleanProperty(ritual);
-    }
-    private _ritual = false;
-
-    public get castingTime(): string {
-        return this._castingTime;
-    }
-    public set castingTime(castingTime: string) {
-        this._castingTime = castingTime;
-    }
-    private _castingTime: string;
-
-    public get range(): string {
-        return this._range;
-    }
-    public set range(range: string) {
-        this._range = range;
-    }
-    private _range: string;
-
-    get components(): SpellComponent[] {
-        return this._components;
-    }
-    private _components: SpellComponent[] = [];
-
-    get materials(): SpellMaterial[] {
-        return this._materials;
-    }
-    private _materials: SpellMaterial[] = [];
-
-    public get concentration(): boolean {
-        return this._concentration;
-    }
-    public set concentration(concentration: boolean) {
-        this._concentration = coerceBooleanProperty(concentration);
-    }
-    private _concentration = false;
-
-    public get duration(): string {
-        return this._duration;
-    }
-    public set duration(duration: string) {
-        this._duration = duration;
-    }
-    private _duration: string;
-
-    get descriptions(): Description[] {
-        return this._descriptions;
-    }
-    private _descriptions: Description[] = [];
-
-    constructor(id?: string) {
-        super(id);
+    constructor(properties: Spell) {
+        this.id = properties.id;
+        this.name = properties.name;
+        this.level = properties.level ?? 0;
+        this.magicSchool = properties.magicSchool;
+        this.ritual = properties.ritual ?? false;
+        this.castingTime = properties.castingTime;
+        this.range = properties.range;
+        this.concentration = properties.concentration ?? false;
+        this.duration = properties.duration;
+        this.components = properties.components ?? [];
+        this.materials = properties.materials ?? [];
+        this.descriptions = properties.descriptions ?? [];
     }
 
     get requiresMaterials(): boolean {
-        return this.components.includes(SpellComponent.Material);
+        return this.components.includes('Material');
     }
 
     get formattedSpellSchoolAndLevel(): string {
@@ -139,8 +88,8 @@ export class Spell extends NamedEntity {
 
         this.components.push(component);
 
-        if (component === SpellComponent.Material) {
-            this._materials = [];
+        if (component === 'Material') {
+            this.materials = [];
         }
 
         return true;
@@ -151,17 +100,17 @@ export class Spell extends NamedEntity {
 
         this.components.splice(this.components.indexOf(component), 1);
 
-        if (component === SpellComponent.Material) {
+        if (component === 'Material') {
             this.clearMaterials();
         }
         return true;
     }
 
     clearComponents(): void {
-        if (this.requiresComponent(SpellComponent.Material)) {
+        if (this.requiresComponent('Material')) {
             this.clearMaterials();
         }
-        this._components = [];
+        this.components = [];
     }
 
     requiresMaterial(material: SpellMaterial): boolean {
@@ -187,7 +136,7 @@ export class Spell extends NamedEntity {
     }
 
     clearMaterials(): void {
-        this._materials = [];
+        this.materials = [];
     }
 
     hasDescription(id: string): boolean {
@@ -211,6 +160,6 @@ export class Spell extends NamedEntity {
     }
 
     clearDescriptions(): void {
-        this._descriptions = [];
+        this.descriptions = [];
     }
 }
