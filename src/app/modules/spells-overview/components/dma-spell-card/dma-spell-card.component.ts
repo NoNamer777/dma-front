@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Spell } from '@dma-shared';
+import { SpellModel } from '@dma-shared';
 import { DmaSpellDialogComponent } from '@dma-spells-overview/components/dma-spell-dialog/dma-spell-dialog.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { DmaSpellDialogComponent } from '@dma-spells-overview/components/dma-spe
 })
 export class DmaSpellCardComponent {
     @Input()
-    spell: Spell = null;
+    spell: SpellModel = null;
 
     constructor(private dialog: MatDialog) {}
 
