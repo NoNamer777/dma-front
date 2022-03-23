@@ -30,6 +30,8 @@ export class SpellModel implements Spell {
         this.addAllDescriptions(properties.descriptions ?? []);
     }
 
+    get isCantrip(): boolean {
+        return this.level === 0;
     }
 
     get formattedSpellSchoolAndLevel(): string {
@@ -90,10 +92,6 @@ export class SpellModel implements Spell {
 
         this.components.push(component);
 
-        if (component === 'Material') {
-            this.materials = [];
-        }
-
         return true;
     }
 
@@ -116,7 +114,8 @@ export class SpellModel implements Spell {
     }
 
     requiresMaterial(material: SpellMaterial): boolean {
-        return this.materials.includes(material);
+        return this.materials.some((listedMaterial) => listedMaterial.material.id === material.material.id);
+    }
 
     addAllMaterials(materials: SpellMaterial[]): void {
         materials.forEach((material) => this.addMaterial(material));
@@ -146,14 +145,15 @@ export class SpellModel implements Spell {
     }
 
     hasDescription(id: string): boolean {
-        return !!this.descriptions.find((description) => description.id === id);
+        return this.descriptions.some((description) => description.id === id);
+    }
 
     addAllDescriptions(descriptions: Description[]): void {
         descriptions.forEach((description) => this.addDescription(description));
     }
 
     addDescription(description: Description): boolean {
-        if (description.id !== null && this.hasDescription(description.id)) return false;
+        if (!description.id || this.hasDescription(description.id)) return false;
 
         this.descriptions.push(description);
         this.descriptions = this.descriptions.sort((d1, d2) => d1.order - d2.order);
@@ -162,9 +162,11 @@ export class SpellModel implements Spell {
     }
 
     removeDescription(description: Description): boolean {
-        if (!this.hasDescription(description.id)) return false;
+        if (!description.id || !this.hasDescription(description.id)) return false;
 
-        this.descriptions.splice(this.descriptions.indexOf(description), 1);
+        const foundDescription = this.descriptions.find((listedDescription) => description.id === listedDescription.id);
+
+        this.descriptions.splice(this.descriptions.indexOf(foundDescription), 1);
 
         return true;
     }
