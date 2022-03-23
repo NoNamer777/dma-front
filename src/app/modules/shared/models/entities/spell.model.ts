@@ -14,7 +14,7 @@ export class SpellModel implements Spell {
     materials: SpellMaterial[] = [];
     descriptions: Description[] = [];
 
-    constructor(properties: Spell) {
+    constructor(properties = {} as Spell) {
         this.id = properties.id;
         this.name = properties.name;
         this.level = properties.level ?? 0;
@@ -24,13 +24,14 @@ export class SpellModel implements Spell {
         this.range = properties.range;
         this.concentration = properties.concentration ?? false;
         this.duration = properties.duration;
+
         this.components = properties.components ?? [];
-        this.materials = properties.materials ?? [];
-        this.descriptions = properties.descriptions ?? [];
+        this.addAllMaterials(properties.materials ?? []);
+        this.addAllDescriptions(properties.descriptions ?? []);
     }
 
-    get requiresMaterials(): boolean {
-        return this.components.includes('Material');
+    get isCantrip(): boolean {
+        return this.level === 0;
     }
 
     get formattedSpellSchoolAndLevel(): string {
@@ -65,7 +66,6 @@ export class SpellModel implements Spell {
     }
 
     get formattedMaterials(): string {
-        this.materials.sort((m1, m2) => m1.order - m2.order);
         let value = '';
 
         for (let idx = 0; idx < this.materials.length; idx++) {
@@ -79,6 +79,10 @@ export class SpellModel implements Spell {
         return value.charAt(0).toUpperCase() + value.substring(1, value.length - 2) + '.';
     }
 
+    get requiresMaterials(): boolean {
+        return this.components.includes('Material');
+    }
+
     requiresComponent(component: SpellComponent): boolean {
         return this.components.includes(component);
     }
@@ -87,10 +91,6 @@ export class SpellModel implements Spell {
         if (this.requiresComponent(component)) return false;
 
         this.components.push(component);
-
-        if (component === 'Material') {
-            this.materials = [];
-        }
 
         return true;
     }
@@ -114,7 +114,11 @@ export class SpellModel implements Spell {
     }
 
     requiresMaterial(material: SpellMaterial): boolean {
-        return this.materials.includes(material);
+        return this.materials.some((listedMaterial) => listedMaterial.material.id === material.material.id);
+    }
+
+    addAllMaterials(materials: SpellMaterial[]): void {
+        materials.forEach((material) => this.addMaterial(material));
     }
 
     addMaterial(material: SpellMaterial): boolean {
@@ -122,6 +126,7 @@ export class SpellModel implements Spell {
         if (this.requiresMaterial(material)) return false;
 
         this.materials.push(material);
+        this.materials = this.materials.sort((m1, m2) => m1.order - m2.order);
 
         return true;
     }
@@ -140,21 +145,28 @@ export class SpellModel implements Spell {
     }
 
     hasDescription(id: string): boolean {
-        return !!this.descriptions.find((description) => description.id === id);
+        return this.descriptions.some((description) => description.id === id);
+    }
+
+    addAllDescriptions(descriptions: Description[]): void {
+        descriptions.forEach((description) => this.addDescription(description));
     }
 
     addDescription(description: Description): boolean {
-        if (description.id !== null && this.hasDescription(description.id)) return false;
+        if (!description.id || this.hasDescription(description.id)) return false;
 
         this.descriptions.push(description);
+        this.descriptions = this.descriptions.sort((d1, d2) => d1.order - d2.order);
 
         return true;
     }
 
     removeDescription(description: Description): boolean {
-        if (!this.hasDescription(description.id)) return false;
+        if (!description.id || !this.hasDescription(description.id)) return false;
 
-        this.descriptions.splice(this.descriptions.indexOf(description), 1);
+        const foundDescription = this.descriptions.find((listedDescription) => description.id === listedDescription.id);
+
+        this.descriptions.splice(this.descriptions.indexOf(foundDescription), 1);
 
         return true;
     }

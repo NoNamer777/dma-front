@@ -113,7 +113,6 @@
                         "codeCoverage": true,
                         "codeCoverageExclude": [
                             "src/environments/**",
-                            "src/app/modules/shared/models/**",
                             "src/app/**/*.module.ts",
                             "src/test.ts",
                             "src/testing/**"
