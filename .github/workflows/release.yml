@@ -13,7 +13,7 @@ env:
 
 jobs:
     test:
-        uses: nonamer777/dma-front/.github/workflows/test.yml@master
+        uses: nonamer777/dma-front/.github/workflows/build.yml@master
     release-and-build:
         runs-on: ubuntu-latest
         steps:

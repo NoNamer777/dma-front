@@ -1,0 +1,30 @@
+# This workflow will run the tests and make a build.
+
+name: build
+on:
+    workflow_call:
+        secrets:
+            token:
+                required: false
+    pull_request:
+        branches:
+            - master
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+
+            - name: Cache Node modules
+              uses: bahmutov/npm-install@v1
+
+            - name: Run tests & build
+              run: |
+                  yarn run check
+                  yarn run build
