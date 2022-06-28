@@ -24,7 +24,7 @@ jobs:
             - name: Cache Node modules
               uses: bahmutov/npm-install@v1
 
-            - name: Run tests
+            - name: Run tests & build
               run: |
                   yarn run check
                   yarn run build
