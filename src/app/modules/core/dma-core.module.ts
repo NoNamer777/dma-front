@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DmaAuthenticationModule } from '@dma-core/authentication';
 import { DmaSharedModule } from '@dma-shared';
 import { DmaCenterComponent } from './components/center/dma-center.component';
 import { DmaFooterComponent } from './components/footer/dma-footer.component';
@@ -14,7 +15,7 @@ import { DmaPrivacyPolicyComponent } from './pages/privacy-policy/dma-privacy-po
 import { SERIALIZE_INTERCEPTOR_PROVIDER } from './services/interceptors/serialize.interceptor';
 
 @NgModule({
-    imports: [BrowserModule, BrowserAnimationsModule, DmaRoutingModule, DmaSharedModule],
+    imports: [BrowserModule, BrowserAnimationsModule, DmaAuthenticationModule, DmaRoutingModule, DmaSharedModule],
     declarations: [
         DmaAboutComponent,
         DmaCenterComponent,
