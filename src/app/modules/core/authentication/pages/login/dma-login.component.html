@@ -1,0 +1,38 @@
+<article class="container">
+    <h2 class="text-primary fw-bold">Login</h2>
+    <hr />
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label>Email Address</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <fa-icon icon="envelope"></fa-icon>
+            </span>
+            <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+        </div>
+        <p class="text-danger" [ngClass]="shouldShowError('email')">
+            <span *ngIf="controlHasError('email', 'required')">
+                Your email address is required in order to login<br />
+            </span>
+            <span *ngIf="controlHasError('email', 'email')">The provided email address has an invalid format</span>
+        </p>
+        <label>Password</label>
+        <div class="input-group">
+            <span class="input-group-text">
+                <fa-icon icon="lock"></fa-icon>
+            </span>
+            <input type="password" class="form-control" placeholder="Password" formControlName="password" />
+        </div>
+        <p class="text-danger" [ngClass]="shouldShowError('password')">
+            <span *ngIf="controlHasError('password', 'required')">Your password is required in order to login</span>
+        </p>
+        <p class="small">Don't have an account yet? Please register <a>Here!</a></p>
+        <div class="d-flex justify-content-end align-items-center">
+            <ng-container [ngSwitch]="state">
+                <p class="text-danger" *ngSwitchCase="'error'"><span>Invalid email/ password</span></p>
+                <span class="spinner-border me-2" *ngSwitchCase="'busy'"></span>
+                <fa-icon class="text-success fa-2x" icon="check" *ngSwitchCase="'success'"></fa-icon>
+            </ng-container>
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </div>
+    </form>
+</article>
