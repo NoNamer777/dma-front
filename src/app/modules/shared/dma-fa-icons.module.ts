@@ -5,11 +5,14 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
     faBars,
     faBook,
+    faCheck,
     faChevronDown,
     faChevronUp,
+    faEnvelope,
     faFile,
     faHome,
     faInfoCircle,
+    faLock,
     faSearch,
     faShieldAlt,
     faTimes,
@@ -29,6 +32,9 @@ const icons: IconDefinition[] = [
     faInfoCircle,
     faGithub,
     faShieldAlt,
+    faCheck,
+    faEnvelope,
+    faLock,
 ];
 
 @NgModule({
