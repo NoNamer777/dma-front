@@ -9,12 +9,17 @@ import { DmaPrivacyPolicyComponent } from './pages/privacy-policy/dma-privacy-po
 const routes: Routes = [
     {
         path: '',
-        component: DmaHomeComponent,
+        pathMatch: 'full',
+        redirectTo: 'login',
     },
     {
         path: 'spells',
         loadChildren: () =>
             import('@dma-spells-overview/dma-spells-overview.module').then((module) => module.DmaSpellsOverviewModule),
+    },
+    {
+        path: 'home',
+        component: DmaHomeComponent,
     },
     {
         path: 'about',
