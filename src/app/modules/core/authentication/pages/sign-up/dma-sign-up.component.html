@@ -1,0 +1,72 @@
+<article class="container">
+    <h2 class="text-primary fw-bold">Sign up</h2>
+    <hr />
+    <div class="d-flex justify-content-center">
+        <form class="col-lg-6 col-md-8 col-12" novalidate [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text">
+                        <fa-icon icon="user"></fa-icon>
+                    </span>
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="username"
+                        [class.is-invalid]="isInvalid('username')"
+                        [class.is-valid]="isValid('username')"
+                    />
+                    <span class="invalid-feedback">
+                        {{ getErrorMessage('username') }}
+                    </span>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Email address</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text">
+                        <fa-icon icon="envelope"></fa-icon>
+                    </span>
+                    <input
+                        type="email"
+                        class="form-control"
+                        placeholder="my-address@host.org"
+                        formControlName="email"
+                        [class.is-invalid]="isInvalid('email')"
+                        [class.is-valid]="isValid('email')"
+                    />
+                    <span class="invalid-feedback">
+                        {{ getErrorMessage('email') }}
+                    </span>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Password</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text">
+                        <fa-icon icon="lock"></fa-icon>
+                    </span>
+                    <input
+                        type="password"
+                        class="form-control"
+                        formControlName="password"
+                        [class.is-invalid]="isInvalid('password')"
+                        [class.is-valid]="isValid('password')"
+                    />
+                    <span class="invalid-feedback">
+                        {{ getErrorMessage('password') }}
+                    </span>
+                </div>
+            </div>
+            <p class="small">Already have an account? Please login <a routerLink="/login">Here!</a></p>
+            <div class="d-flex justify-content-end align-items-center">
+                <ng-container [ngSwitch]="state">
+                    <p class="text-danger" *ngSwitchCase="'error'"></p>
+                    <span class="spinner-border me-2" *ngSwitchCase="'busy'"></span>
+                    <fa-icon class="text-success fa-2x" icon="check" *ngSwitchCase="'success'"></fa-icon>
+                </ng-container>
+                <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Sign up</button>
+            </div>
+        </form>
+    </div>
+</article>

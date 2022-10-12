@@ -27,28 +27,6 @@ body {
     margin: 0;
 }
 
-@mixin invalid-input {
-    border-right: 0.5rem solid #dc3545;
-}
-
-input.ng-invalid.ng-touched {
-    @include invalid-input();
-}
-
-form.ng-invalid {
-    input.ng-touched:not(.ng-valid) {
-        @include invalid-input();
-    }
-}
-
-button,
-select,
-input {
-    &:focus {
-        box-shadow: none !important;
-    }
-}
-
 .mat-dialog-container {
     overflow: hidden !important;
 }
