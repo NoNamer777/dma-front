@@ -17,6 +17,7 @@ import {
     faShieldAlt,
     faTimes,
     faUndo,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: IconDefinition[] = [
@@ -35,6 +36,7 @@ const icons: IconDefinition[] = [
     faCheck,
     faEnvelope,
     faLock,
+    faUser,
 ];
 
 @NgModule({
