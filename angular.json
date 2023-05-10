@@ -1,116 +1,128 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
-    "newProjectRoot": "projects",
+    "newProjectRoot": "packages",
+    "cli": {
+        "analytics": false,
+        "packageManager": "npm",
+        "schematicCollections": ["@angular-eslint/schematics"]
+    },
     "projects": {
         "dma-front": {
             "projectType": "application",
-            "schematics": {
-                "@schematics/angular:component": {
-                    "style": "scss"
-                },
-                "@schematics/angular:application": {
-                    "strict": true
-                }
-            },
             "root": "",
             "sourceRoot": "src",
             "prefix": "dma",
-            "architect": {
+            "schematics": {
+                "@schematics/angular:component": {
+                    "changeDetection": "OnPush",
+                    "displayBlock": true,
+                    "style": "scss"
+                },
+                "@schematics/angular:directive": {
+                    "flat": false
+                },
+                "@schematics/angular:guard": {
+                    "flat": false
+                },
+                "@schematics/angular:interceptor": {
+                    "flat": false
+                },
+                "@schematics/angular:pipe": {
+                    "flat": false
+                },
+                "@schematics/angular:resolver": {
+                    "flat": false
+                },
+                "@schematics/angular:service": {
+                    "flat": false
+                }
+            },
+            "targets": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/dma-front",
-                        "index": "src/index.html",
-                        "main": "src/main.ts",
-                        "polyfills": "src/polyfills.ts",
-                        "tsConfig": "tsconfig.app.json",
-                        "inlineStyleLanguage": "scss",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+                        "index": "src/index.html",
+                        "inlineStyleLanguage": "scss",
+                        "main": "src/main.ts",
+                        "outputPath": "dist/dma-front",
+                        "polyfills": ["zone.js"],
                         "scripts": [
                             "node_modules/@popperjs/core/dist/umd/popper.min.js",
                             "node_modules/bootstrap/dist/js/bootstrap.min.js"
-                        ]
+                        ],
+                        "styles": ["src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+                        "tsConfig": "tsconfig.app.json"
                     },
+                    "defaultConfiguration": "prod",
                     "configurations": {
-                        "production": {
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
-                                }
-                            ],
-                            "outputHashing": "all"
+                        "prod": {
+                            "crossOrigin": "anonymous",
+                            "outputHashing": "all",
+                            "subresourceIntegrity": true
                         },
-                        "development": {
+                        "dev": {
                             "buildOptimizer": false,
-                            "optimization": false,
-                            "vendorChunk": true,
                             "extractLicenses": false,
-                            "sourceMap": true,
-                            "namedChunks": true,
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
                                     "with": "src/environments/environment.dev.ts"
                                 }
-                            ]
+                            ],
+                            "namedChunks": true,
+                            "optimization": false,
+                            "sourceMap": true,
+                            "vendorChunk": true,
+                            "watch": true
                         }
-                    },
-                    "defaultConfiguration": "production"
+                    }
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
-                    "configurations": {
-                        "production": {
-                            "browserTarget": "dma-front:build:production"
-                        },
-                        "development": {
-                            "browserTarget": "dma-front:build:development"
-                        }
-                    },
-                    "defaultConfiguration": "development"
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "dma-front:build"
+                        "browserTarget": "dma-front:build:dev",
+                        "host": "0.0.0.0"
                     }
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "main": "src/test.ts",
-                        "polyfills": "src/polyfills.ts",
-                        "tsConfig": "tsconfig.spec.json",
-                        "karmaConfig": "karma.conf.js",
-                        "inlineStyleLanguage": "scss",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
-                        "scripts": [
-                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
-                        ],
+                        "codeCoverage": true,
+                        "codeCoverageExclude": ["src/environments/**", "src/app/**/*.module.ts", "src/testing/**"],
                         "fileReplacements": [
                             {
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.test.ts"
                             }
                         ],
-                        "codeCoverage": true,
-                        "codeCoverageExclude": [
-                            "src/environments/**",
-                            "src/app/**/*.module.ts",
-                            "src/test.ts",
-                            "src/testing/**"
-                        ]
+                        "inlineStyleLanguage": "scss",
+                        "karmaConfig": "karma.conf.js",
+                        "polyfills": ["zone.js", "zone.js/testing"],
+                        "reporters": ["progress", "dots"],
+                        "styles": ["src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+                        "scripts": [
+                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                        ],
+                        "tsConfig": "tsconfig.spec.json"
+                    },
+                    "defaultConfiguration": "ci",
+                    "configurations": {
+                        "ci": {
+                            "browsers": "ChromeHeadlessCI",
+                            "progress": false,
+                            "sourceMap": false,
+                            "watch": false
+                        },
+                        "dev": {
+                            "browsers": "ChromeHeadless",
+                            "progress": true,
+                            "sourceMap": true,
+                            "watch": true
+                        }
                     }
                 },
                 "lint": {
@@ -121,10 +133,5 @@
                 }
             }
         }
-    },
-    "defaultProject": "dma-front",
-    "cli": {
-        "defaultCollection": "@angular-eslint/schematics",
-        "analytics": false
     }
 }

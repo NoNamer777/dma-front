@@ -15,9 +15,8 @@ export function findParentElement(element: HTMLElement, targetTagnames: string[]
 
 export function coerceStringProperty(value: unknown): string {
     if (value === null || value === undefined) {
-        return value;
+        return value as string;
     }
-
     return typeof value === 'object' ? JSON.stringify(value) : `${value}`;
 }
 
