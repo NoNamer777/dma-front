@@ -95,9 +95,9 @@ describe('Common Functions', () => {
             const route = TestBed.inject(ActivatedRoute);
 
             expect(extractQueryParam(route.snapshot, 'string', 'string')).toBe('hello there');
-            expect(extractQueryParam(route.snapshot, 'number', 'number')).toBe(9001);
-            expect(extractQueryParam(route.snapshot, 'boolean', 'boolean')).toBe(false);
-            expect(extractQueryParam(route.snapshot, 'other-boolean', 'boolean')).toBe(true);
+            expect(extractQueryParam<number>(route.snapshot, 'number', 'number')).toBe(9001);
+            expect(extractQueryParam<boolean>(route.snapshot, 'boolean', 'boolean')).toBe(false);
+            expect(extractQueryParam<boolean>(route.snapshot, 'other-boolean', 'boolean')).toBe(true);
         });
 
         it('should throw exceptions when mismatched found value type with expected value type', () => {
