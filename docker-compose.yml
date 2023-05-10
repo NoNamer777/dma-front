@@ -2,21 +2,20 @@
 # NOTE: The values used for the Spring datasource username and password need to be the same values
 # used for the database MySQL user and password.
 
-version: '2'
-
+version: '3'
 services:
     app:
-        image: 'ghcr.io/nonamer777/dma-front'
+        image: ghcr.io/nonamer777/dma-front
         container_name: dma-front
         ports:
             - '4000:80'
         links:
-            - 'server'
+            - server
         depends_on:
-            - 'server'
+            - server'
         restart: unless-stopped
     server:
-        image: 'ghcr.io/nonamer777/dma-server'
+        image: ghcr.io/nonamer777/dma-server
         container_name: dma-server
         environment:
             - SPRING_DATASOURCE_URL=jbdc:mysql://<host>:<port>/<database>
@@ -25,12 +24,12 @@ services:
         ports:
             - '4001:8080'
         links:
-            - 'db'
+            - db
         depends_on:
-            - 'db'
+            - db
         restart: unless-stopped
     db:
-        image: 'jc21/mariadb-aria'
+        image: jc21/mariadb-aria
         container_name: dma-mariadb
         environment:
             - MYSQL_DATABASE=<database>
