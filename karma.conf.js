@@ -1,25 +1,11 @@
 module.exports = function (config) {
     config.set({
         basePath: '',
-        frameworks: ['jasmine', '@angular-devkit/build-angular'],
-        plugins: [
-            require('karma-jasmine'),
-            require('karma-chrome-launcher'),
-            require('karma-jasmine-html-reporter'),
-            require('karma-coverage'),
-            require('@angular-devkit/build-angular/plugins/karma'),
-        ],
         client: {
             jasmine: {},
             clearContext: false,
         },
-        jasmineHtmlReporter: {
-            suppressAll: true,
-        },
         coverageReporter: {
-            dir: require('path').join(__dirname, './coverage/dma-front'),
-            subdir: '.',
-            reporters: [{ type: 'html' }, { type: 'text-summary' }],
             check: {
                 global: {
                     statements: 80,
@@ -28,20 +14,27 @@ module.exports = function (config) {
                     lines: 80,
                 },
             },
+            dir: require('path').join(__dirname, './coverage/dma-front'),
+            reporters: [{ type: 'html' }, { type: 'text-summary' }],
+            subdir: '.',
         },
-        reporters: ['progress', 'kjhtml'],
-        port: 9876,
-        colors: true,
-        logLevel: config.LOG_INFO,
-        autoWatch: true,
-        browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessCI'],
-        singleRun: false,
-        restartOnFileChange: true,
         customLaunchers: {
             ChromeHeadlessCI: {
                 base: 'ChromeHeadless',
                 flags: ['--no-sandbox', '--disable-gpu'],
             },
         },
+        frameworks: ['jasmine', '@angular-devkit/build-angular'],
+        jasmineHtmlReporter: {
+            suppressAll: true,
+        },
+        logLevel: config.LOG_INFO,
+        plugins: [
+            require('karma-jasmine'),
+            require('karma-chrome-launcher'),
+            require('karma-jasmine-html-reporter'),
+            require('karma-coverage'),
+            require('@angular-devkit/build-angular/plugins/karma'),
+        ],
     });
 };

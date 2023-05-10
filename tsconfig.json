@@ -1,5 +1,6 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+    "compileOnSave": false,
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "fullTemplateTypeChecks": true,
@@ -7,7 +8,6 @@
         "strictInputAccessModifiers": true,
         "strictTemplates": true
     },
-    "compileOnSave": false,
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "baseUrl": "./",

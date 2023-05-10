@@ -4,17 +4,15 @@
     "license": "GPL-3.0-or-later",
     "private": true,
     "scripts": {
+        "start": "ng serve",
         "build": "ng build",
-        "build:dev": "ng build --watch=true --base-href=.",
-        "check": "run-p format:check lint test",
-        "format:check": "prettier -l .",
-        "format:write": "prettier --write .",
+        "build:dev": "ng build --configuration dev",
+        "test": "ng test",
+        "test:dev": "ng test --configuration dev",
+        "check": "run-p format:check lint build test",
         "lint": "ng lint",
-        "serve": "ng serve",
-        "serve:remote": "ng serve --host=0.0.0.0 --configuration=production",
-        "serve:coverage": "node serve-coverage.js",
-        "test": "ng test --watch=false --browsers=ChromeHeadlessCI",
-        "test:dev": "ng test --watch=true --browsers=ChromeHeadless"
+        "format:check": "prettier -l .",
+        "format:write": "prettier --write ."
     },
     "dependencies": {
         "@angular/animations": "~16.0.0",
