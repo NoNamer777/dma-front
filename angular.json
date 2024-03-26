@@ -79,7 +79,7 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "dma-front:build:dev",
+                        "buildTarget": "dma-front:build:dev",
                         "host": "0.0.0.0"
                     }
                 },
