@@ -20,7 +20,10 @@ export class DmaNotFoundComponent implements OnDestroy {
     }
     private _url = '';
 
-    constructor(private router: Router, titleService: DmaTitleService) {
+    constructor(
+        private router: Router,
+        titleService: DmaTitleService,
+    ) {
         titleService.pageTitle = ' - Not Found';
 
         this.router.events

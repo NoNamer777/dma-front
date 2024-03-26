@@ -32,7 +32,10 @@ export class DmaHeaderComponent implements AfterViewInit, OnDestroy {
 
     private btnIconInitialized = new BehaviorSubject<boolean>(false);
 
-    constructor(public sidebarService: DmaSidebarService, private cdRef: ChangeDetectorRef) {}
+    constructor(
+        public sidebarService: DmaSidebarService,
+        private cdRef: ChangeDetectorRef,
+    ) {}
 
     @HostListener('window:resize')
     get isCollapsable(): boolean {
