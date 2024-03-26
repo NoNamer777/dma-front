@@ -48,10 +48,7 @@
                         "main": "src/main.ts",
                         "outputPath": "dist/dma-front",
                         "polyfills": ["zone.js"],
-                        "scripts": [
-                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
-                        ],
+                        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
                         "styles": ["src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
                         "tsConfig": "tsconfig.app.json"
                     },
@@ -103,10 +100,7 @@
                         "polyfills": ["zone.js", "zone.js/testing"],
                         "reporters": ["progress", "dots"],
                         "styles": ["src/styles.scss", "node_modules/bootstrap/dist/css/bootstrap.min.css"],
-                        "scripts": [
-                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
-                        ],
+                        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
                         "tsConfig": "tsconfig.spec.json"
                     },
                     "defaultConfiguration": "ci",
