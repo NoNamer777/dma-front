@@ -1,11 +1,13 @@
 @use '@angular/material' as mat;
 
-$theme: mat.define-theme((
-    color: (
-        theme-type: light,
-        primary: mat.$blue-palette,
+$theme: mat.define-theme(
+    (
+        color: (
+            theme-type: light,
+            primary: mat.$blue-palette,
+        ),
     )
-));
+);
 
 html,
 body {
